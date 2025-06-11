@@ -1,11 +1,541 @@
 ---
 title: "SHARKS_ACLRBase_SVR3"
+author: "Corey Scholes"
+affiliation: "EBM Analytics"
+version: 1.0
+date: "2025-May-25"
+date-modified: "2025-May-25"
+type: website
+editor: visual
+code-annotations: true
+execute: 
+  echo: true
+  warning: false
+  message: false
+format:
+  html:
+    toc: true
+    number-sections: true
+    code-fold: true
+    
+bibliography: ACLBase.bib
 ---
 
-## Quarto
+# Summary
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+# Preamble
+
+Libraries installed for further analysis
 
 ```{r}
-1 + 1
+#| label: load-packages
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(# Load required packages
+  "gargle",
+  "googledrive",
+  "pwrss",
+  "rcrossref",
+  "tidyverse",
+  "googlesheets4",
+  "epoxy",
+  "ggdist",
+  "simstudy",
+  "DiagrammeR",
+  "ggdag",
+  install = TRUE,
+  update = FALSE
+)
 ```
+
+# Background
+
+*The use of PROMs*
+
+Patient-reported outcome measures are used increasingly to routinely assess patients' subjective experiences during recovery from initial injury of the anterior cruciate ligament, or subsequent surgical reconstruction, in both research and clinical settings [@ridha2025]. Standardised PROMs can provide important insight into multiple dimensions of physical, mental and functional state at the consistent time points of the recovery trajectory and have also been used to define clinical failure after reconstruction [@aldag2023]. Work by the department has also revealed heterogeneous patterns in patients presenting for surgical review of ACL injury when PROMs assessing different dimenions of pain, function and general health are assessed simultaneously [@ting2020].
+
+The most frequent pathology and joints-specific PROMs for monitoring recovery after ACL reconstruction are the KOOS family (JR, 12, full) and the IKDC2000 (International Knee Documentation Committee). The IKDC2000 was chosen for the SHARKS registry due to content validity specific to ACL reconstruction. It contains one question (Symptoms Q7) that is relevant to the motivations of offering surgery in the majority of cases - *what is the highest level of activity you can participate in without experiencing episodes of giving way in the knee?*\
+\
+The IKDC is an 18 question evaluation that measures symptoms (7 items), activities of daily living (9 items) and sport (1 item), and comparative knee function (1 item - not included in total score). Items are scored on a ordinal scale, and equally weighted to give a final score from 0 (high symptoms, low function) to 100 (no symptoms or limitations) [@irrgang2001]. Good validity, responsiveness and reliability in knee surgery patients. MCID at 6 months = 6.3 and at 12 months = 16.7 [@collins2011; @winterstein2013]. To account for the potential confounding effect of age and sex on IKDC scores, a z-score method was published [@anderson2006], whereby an individual score could be substracted from the mean of the matching age and sex subgroup to the patient, with the difference divided by the subgroup standard deviation.
+
+*Discussing PROMs in literature and qualitative comparisons*
+
+However, a key challenge in the implementation of PROMs in the context of service delivery to patients with ACL injury, is understanding whether treatment responses are comparable from one published report to the next. The standard method in general, is to take summary statistics, usually mean and standard deviation and make a qualitative comparison to other papers that are in turn, qualitatively judged to be comparable to the sample in question. Without a systematic approach to benchmarking results, the interpretation of PROMs can be misled by biases arising from confounding.
+
+*Importance of adjustment*
+
+Confounding bias occurs when a variable of interest and a target outcome are simultaneously influenced by a third variable [@tennant2020]. In the proposed study, the variable of interest would be the source of IKDC population estimate (study) and the outcome would be the IKDC total score, while the third variable (the confounder) might be age at the time of initial presentation. An adjustment in this context would compare the IKDC total score between studies within a multivariable regression, which parses out the influence of each variable on the variability of the IKDC score.
+
+Variation in context (setting, patient demographics, service delivery)
+
+## Literature Benchmarks
+
+The natural entry point into benchmarking local data is to draw on the existing literature in one of two ways. The first is to make a comparison across *all* available reports and place the local sample within the context of all findings. The second is to conduct a matching process and identify reports that best match the context and data-generation of the local sample and make targeted comparisons.
+
+Let's start with the first approach and draw on as broader pool as possible. A recent systematic review [@ridha2025] may provide an initial framework to draw from. It reviewed papers reporting the IKDC(2000) from baseline through to 2 years after surgical reconstruction, as well as non-operative management over the same time period.
+
+::: {#fig-radhi2024}
+![](Radhi%20et%20al%20Figure%202.png){fig-alt="Line plot of IKDC2000 trajectories after surgical reconstruction"}
+
+Trajectory of IKDC2000 up to 24 months after surgical reconstruction (left) or after injury with nonsurgical management (right). Reproduced from [@ridha2025].
+:::
+
+The baseline variation for surgical reconstruction cases in @fig-radhi2024 is relatively wide, from \~20 up to \~90 points. It can be seen that the majority of the included papers report baseline data within the range 40-70. The figure illustrates a key pitfall of reviewing studies of PROMs in general, and the IKDC in particular. One study illustrated on the plot resides near zero for all time points. This is a misinterpretation by the review authors, although the paper should be excluded for other reasons. The IKDC2000 can be reported with a *normalised* score, which takes the sum of the available responses and converts it to a percentage of the maximum score available (with a scale of 0-100). The original paper (Rajput et al 2020) identified used a *normative* version of the IKDC score, first reported by [@anderson2006], which calculates a z-score of the normalised score relative to the mean and standard deviation of an age and sex matched cohort. To make matters more complicated for reviewers, the normative score can be generated with two sets of age and sex-matched cohorts - with and without knee injury at the time of cross-sectional survey. The lack of reporting in Rajput et al (it does not state which normative dataset was used to generate the results) should disqualify it from inclusion in the review, and for our purposes here.
+
+# Study Question
+
+The study question was presented using the PICOS framework [@amir-behghadami2020].
+
+::: {#tbl-question}
+| Component | Study Component | Comments |
+|------------------------|------------------------|------------------------|
+| Participants | Patients presenting with injury of the anterior cruciate ligament | Patients present under variable circumstances, with referrals from emergency or primary care |
+| Intervention | Electing to be added to the wait list for surgical reconstruction within the public health system | Typical wait times within the department are \~4months from initial consultation |
+| Comparator | Compared to the published literature | Split into two approaches - overall combined results (meta-analysis) or with selective matching of contextually similar studies |
+| Outcomes | Is baseline IKDC significantly different to published data when adjusted for confounders with respect to normalised or z-score totals |  |
+| Study Design | Meta-analysis and simulation |  |
+
+Study question identified under the PICOS framework
+:::
+
+# Hypotheses
+
+Significant differences between the local sample at baseline and published literature will be removed when comparisons are adjusted for known confounders.
+
+# Methods - Proposed
+
+## Data sources
+
+Local sample - the local sample will be derived from the SHARKS registry. The SHARKS registry is an HREC-approved clinical registry embedded into the department of orthopaedics at QEII Jubilee Hospital. More information is available from the most recent [governance report](https://coreyscholes-sharks-governance.share.connect.posit.cloud/). The Tibiofemoral Instability cohort of the registry draws in patients presenting with injury or other pathology of the ligaments (cruciate \| collateral) and complexes of the posterior lateral or medial corners.
+
+Literature - a non-systematic search will be conducted of Pubmed, Google Scholar to retrieve systematic reviews describing the trajectory of IKDC from baseline to followup, or including papers describing the IKDC at least at baseline prior to surgical reconstruction or non-operative management. The *citationchaser* application @haddaway2021 will be used to retrieve citations from relevant reviews and meta-analyses. Where available, full-text sources will be retrieved and baseline IKDC and relevant contextual factors extracted and summarised in spreadsheet form for further processing.
+
+## Sample selection
+
+Cases will be retrieved from SHARKS that match the criteria described in @ting2020 and summarised below.
+
+::: {#tbl-criteria}
+| Inclusion | Exclusion | Comments |
+|------------------------|------------------------|------------------------|
+| Enrolled in SHARKS registry | Surgical booking not offered | Inclusion criteria for SHARKS can be reviewed on wiki or governance report |
+| Primary presentation | Presentation is the contralateral limb of a previous ACL rupture |  |
+| Clinical and imaging-supported diagnosis of ACL rupture | ACL pathology is a non-traumatic or congenital absence or deficiency |  |
+| Concomitant pathology is limited to menisci | Pathology to collateral and other cruciate ligaments deemed to require surgical reconstruction at the time of surgery |  |
+|  | Withdrawal of consent to participate in registry prior to surgery |  |
+
+Summary of inclusion and exclusion criteria for local sample
+:::
+
+**Insert second table for selecting relevant papers for comparison**
+
+## Variables
+
+The study dataset will be drawn from three main sources. The first is the SHARKS dataset, specifically for the Tibiofemoral Instability cohort, which can be found on the [registry wiki](https://sites.google.com/ebma.com.au/sharksregistry/section-2-cohorts/2-6-knee-tibiofemoral-instability).
+
+The second source is to review the relevant literature and identify any other variables that may not already be collected in the registry dataset, but may be relevant to answering the question posed. An initial review is included below - to be expanded further for the study analysis.
+
+Previous work by our group reported no relationship between PROMs phenotype (cluster) and patient age, sex, body mass index or injury to examination delay @ting2020. Importantly, this study did not directly assess the relationship (adjusted or unadjusted) between baseline IKDC and patient demographics. There is a paucity of data addressing this question directly in the literature, therefore related literature will be drawn on to build a directed acyclic graph, to identify a reasonable adjustment set informing the study dataset.
+
+## The MOON Group
+
+The first place to start is the [MOON](https://acltear.info/) (Multicentre Orthopaedic Outcomes Network) Knee Group, which is a prospective cohort registry of anterior cruciate injuries and surgical reconstruction across 19 physicians and 7 health institutions in the United States, that have enrolled \>3500 cases since 2002.
+
+Research from this dataset has identified time from injury to surgery as a key factor influencing baseline IKDC scores for primary ACL injury [@nguyen2016]. Adjusted for covariates.
+
+Factors associated with more pain at baseline were higher body mass index, female sex, concomitant lateral collateral ligament injury and older age [@dunn2010].
+
+The MOON group previously compared their baseline data (N = 713) to the Norwegian Knee Ligament Registry (N = 4928) [@magnussen2009] and observed the following;
+
+-   Significant difference in age at surgery
+
+-   Significant difference in sex proportions
+
+-   Considerable differences in activity associated with injury
+
+-   Significant difference in time from injury to surgery
+
+-   Significant difference in meniscal and chondral pathology incidence
+
+-   Significant differences in all but one (QoL) subscales of KOOS, but none of the differences exceeded MCID except for "other symptoms". However, this was based on an *unadjusted* comparison.
+
+## Other variables
+
+There are other factors that have not been raised in the literature to date that should be taken into account when attempting to compare samples drawn from a *global* population.
+
+Patient
+
+-   Comorbidities
+
+-   General health
+
+-   Education
+
+-   Bilateral status (index injury or subsequent to contralateral)
+
+-   Surgical history (ipsilateral knee \| limb)\
+
+Healthcare setting
+
+-   Type of service (public, private, other)
+
+-   Referral pathway includes emergency department within facility
+
+-   Country \| state referral pathways and regulations
+
+Data collection setting
+
+-   Cohort or randomised trial of limited scope vs regional, state or national registry
+
+-   Consent model (opt in vs opt-out)
+
+Measurements
+
+-   Collection method (paper vs electronic)
+
+-   PROMs version
+
+-   Scoring method (normalised vs z-score)
+
+::: {#tbl-variables}
+| Category | Variable | Type - Response | Available SHARKS | Available Published |
+|---------------|---------------|---------------|---------------|---------------|
+| Patient | Age at presentation | Continuous - Years | Yes | Yes |
+|  | Sex | Categorical | Yes | Yes |
+|  | Activity Type | Categorical | No | Possible (not universal) |
+|  | Activity Level | Ordinal | Yes - Tegner Activity Scale | Possible (not universal) |
+|  | General Health | Continuous | Yes - VR12 | Unlikely (not usually collected) |
+| Referral Pathway | Injury to Review delay | Continuous | Partial - chart review will be required | Possible (not universal) |
+| Pathology | Concomitant ligament injury | Categorical | Partial - chart review will be required | Yes |
+|  | Concomitant meniscal pathology | Categorical |  |  |
+|  |  |  |  |  |
+| Setting |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+| Measurement | Collection method |  |  |  |
+|  | PROMs version |  |  |  |
+|  | Scoring method |  |  |  |
+
+Summary of study variables required
+:::
+
+```{r}
+#| label: fig-dag
+#| fig-cap: "Directed acyclic graph of Sample -> IKDC Baseline"
+
+DAGPROM <- ggdag::dagify(
+  IKDCBase ~ Sample + Age + Sex + BMI + Bilateral + MeniscPath + ChondPath + InjuryPres + ActivityLevel + GeneralHealth + ServiceType + CollectType + CollectMethod,
+  Sample ~ Age + Sex + BMI + Bilateral + MeniscPath + ChondPath + InjuryPres + ActivityLevel + GeneralHealth + ServiceType + CollectType + CollectMethod,
+  Bilateral ~ Age + Sex,
+  BMI ~ Age + Sex + ActivityLevel,
+  GeneralHealth ~ Age + ActivityLevel + Sex + BMI,
+  MeniscPath ~ Age + ActivityLevel + Sex + BMI + InjuryPres,
+  ChondPath ~ Age + ActivityLevel + Sex + BMI + InjuryPres,
+  ActivityLevel ~ Age + Sex + BMI + Bilateral,
+  InjuryPres ~ ServiceType + CollectType + ActivityLevel,
+  labels = c(
+    "IKDBase" = "Baseline IKDC",
+    "Sample" = "Study \n group",
+    "Age" = "Age at\n Initial Exam",
+    "Sex" = "Sex",
+    "BMI" = "Body Mass\n Index",
+    "Bilateral" = "Bilateral Presentation",
+    "MeniscPath" = "Meniscal\n Pathology",
+    "ChondPath" = "Chondral\n Pathology",
+    "InjuryPres" = "Injury to\n Presentation",
+    "ActivityLevel" = "Activity\n Level", 
+    "GeneralHealth" = " General\n Health",
+    "ServiceType" = "Health Service\n Type",
+    "CollectType" = "Collection Service/n Type",
+    "CollectMethod" = "Method of\n Collection"
+  ),
+  exposure = "Sample",
+  outcome = "IKDCBase"
+)
+
+# Create a tidy version of the DAG and apply custom labels
+tidy_dag1 <- ggdag::tidy_dagitty(DAGPROM, layout = "auto") |>
+  dplyr::mutate(label = case_when(
+    name == "IKDBase" ~ "Baseline IKDC",
+    name == "Sample" ~ "Study \n group",
+    name == "Age" ~ "Age at\n Initial Exam",
+    name == "Sex" ~ "Sex",
+    name == "BMI" ~ "Body Mass\n Index",
+    name == "Bilateral" ~ "Bilateral Presentation",
+    name == "MeniscPath" ~ "Meniscal\n Pathology",
+    name == "ChondPath" ~ "Chondral\n Pathology",
+    name == "InjuryPres" ~ "Injury to\n Presentation",
+    name == "ActivityLevel" ~ "Activity\n Level",
+    name == "GeneralHealth" ~ " General\n Health",
+    name == "ServiceType" ~ "Health Service\n Type",
+    name == "CollectType" ~ "Collection Service\n Type",
+    name == "CollectMethod" ~ "Method of\n Collection",
+    TRUE ~ name
+    )
+  )
+
+# 
+DagPlot <- ggplot(
+  tidy_dag1,
+  aes(
+    x = x,
+    y = y,
+    xend = xend,
+    yend = yend)
+  ) +
+  geom_dag_node(
+    color = "darkblue",
+    fill = "lightblue",
+    alpha = 0.5,
+    size = 20) +
+  geom_dag_text(
+    aes(
+      label = label
+      ),
+    color = "black",
+    fontface = "bold",
+    size = 3,
+    vjust = 0.5
+    ) +
+  geom_dag_edges(
+    edge_color = "gray50",
+    edge_width = 0.5,
+    #edge_arrow_size = 0.3
+    ) +
+  theme_dag(
+    base_size = 12,
+    base_family = "",
+    plot.background = element_rect(fill = "white"),
+    panel.background = element_rect(fill = "white")
+  ) +
+  theme(
+    plot.title = element_text(
+      hjust = 0.5,
+      size = 16,
+      face = "bold"
+      ),
+    plot.margin = margin(
+      20,
+      20,
+      20,
+      20
+      )
+  )
+
+knitr::knit_print(DagPlot)
+
+```
+
+```{r}
+#| label: fig-adjset
+#| fig-cap: "Calculated minimum adjustment set for modelling Sample -> IKDC at Baseline"
+
+Figadjset <- ggdag::ggdag_adjustment_set(
+  tidy_dag1,
+  text = FALSE,
+  #use_labels = "label"
+  exposure = "Sample",
+  outcome = "IKDCBase"
+  ) +
+  geom_dag_node(
+    color = "darkblue", 
+    fill = "lightblue", 
+    alpha = 0.7, 
+    size = 10
+  ) +
+  # geom_dag_text(
+  #   aes(label = label),  # Use the 'label' column directly
+  #   color = "black",
+  #   fontface = "bold",
+  #   size = 3,
+  #   vjust = -1.5,  # Adjust vertical position
+  #   hjust = 1.5,  # Adjust horizontal position
+  #   show.legend = FALSE  # Prevent text from appearing in legend
+  # ) +
+  geom_dag_label_repel(
+    aes(label = label, fill = adjusted),
+    color = "white",
+    fontface = "bold",
+    size = 3,
+    show.legend = FALSE,
+    box.padding = unit(0.5, "lines"),  # Padding around labels
+    point.padding = unit(0.5, "lines"),  # Padding around points
+    nudge_y = 0.5,  # Adjust vertical nudge
+    nudge_x = 0.5   # Adjust horizontal nudge
+  ) +
+  geom_dag_edges(
+    edge_color = "gray50", 
+    edge_width = 0.5
+  ) +
+  theme_dag(
+    base_size = 10,
+    base_family = "",
+    plot.background = element_rect(fill = "white"),
+    panel.background = element_rect(fill = "white")
+  ) +
+  theme(
+    plot.title = element_text(
+      hjust = 0.5, 
+      size = 10, 
+      face = "bold"
+    ),
+    plot.margin = margin(20,20,20,20),
+    legend.position = "bottom",
+    legend.background = element_rect(fill = "white", color = "gray80"),
+    legend.title = element_text(face = "bold")
+  )
+
+
+knitr::knit_print(Figadjset)
+
+```
+
+## Data Collection
+
+```{mermaid}
+%%| label: fig-datacollection
+%%| fig-cap: "Flowchart of data collection steps in proposed study"
+
+flowchart TD
+    subgraph S1 ["Literature-Based Analysis"]
+        A[Literature Review] --> B[Data Extraction]
+        B --> C[Simulation]
+        
+        A -.-> A1["Search databases<br/>Screen articles<br/>Apply inclusion criteria"]
+        B -.-> B1["Extract key parameters<br/>Standardize data formats<br/>Quality assessment"]
+        C -.-> C1["Model development<br/>Parameter estimation<br/>Scenario analysis"]
+    end
+    
+    subgraph S2 ["Registry-Based Analysis"]
+        D[Cohort Retrieval] --> E[Chart Review]
+        
+        D -.-> D1["Query clinical registry<br/>Apply selection criteria<br/>Export patient data"]
+        E -.-> E1["Manual chart review<br/>Data validation<br/>Clinical assessment"]
+    end
+    
+    style A1 fill:#f0f8ff,stroke:#4682b4,stroke-dasharray: 5 5
+    style B1 fill:#f0f8ff,stroke:#4682b4,stroke-dasharray: 5 5
+    style C1 fill:#f0f8ff,stroke:#4682b4,stroke-dasharray: 5 5
+    style D1 fill:#fff8dc,stroke:#daa520,stroke-dasharray: 5 5
+    style E1 fill:#fff8dc,stroke:#daa520,stroke-dasharray: 5 5
+    
+    classDef litBox fill:#e6f3ff,stroke:#4682b4,stroke-width:2px
+    classDef regBox fill:#fffacd,stroke:#daa520,stroke-width:2px
+    
+    class A,B,C litBox
+    class D,E regBox
+
+```
+
+## Analysis
+
+# Ethical Considerations
+
+HREC-approval has been granted for the SHARKS registry to collect relevant information for cases presenting to the department matching the inclusion criteria of the Registry.
+
+As long as chart review proposed matches the variables described in the core dataset of the Registry, no additional HREC submissions will be required for this project.
+
+# Study Output
+
+## Target Presentations
+
+Abstract submission for AOA ASM 2025 closed 4-May-2025.
+
+## Target Publication
+
+The key factors to consider in determining whether a paper is likely to be publishable is
+
+Knee surgery sports traumatology and arthroscopy (Ridha et al 2024)
+
+Journal of patient-reported outcomes
+
+# Study Management
+
+## Assumptions
+
+## Timeline
+
+```{mermaid}
+%%| fig-width: 6.5
+
+
+flowchart LR
+    subgraph T1 ["Months 1-3: Setup Phase"]
+        A[Literature Review] 
+        D[Registry Access]
+        
+        A -.-> A1["Database searches<br/>Article screening<br/>Quality assessment"]
+        D -.-> D1["Ethics approval<br/>Data access agreements<br/>Query development"]
+    end
+    
+    subgraph T2 ["Months 4-6: Data Collection"]
+        B[Data Extraction]
+        E[Cohort Retrieval]
+        
+        B -.-> B1["Parameter extraction<br/>Data standardization<br/>Validation checks"]
+        E -.-> E1["Registry queries<br/>Patient identification<br/>Data export"]
+    end
+    
+    subgraph T3 ["Months 7-9: Analysis Phase"]
+        C[Simulation Modeling]
+        F[Chart Review]
+        
+        C -.-> C1["Model development<br/>Parameter estimation<br/>Scenario testing"]
+        F -.-> F1["Manual review<br/>Clinical validation<br/>Quality control"]
+    end
+    
+    subgraph T4 ["Months 10-12: Synthesis"]
+        G[Results Integration]
+        H[Manuscript Preparation]
+        
+        G -.-> G1["Compare findings<br/>Statistical analysis<br/>Interpretation"]
+        H -.-> H1["Writing<br/>Peer review<br/>Submission"]
+    end
+    
+    A --> B
+    B --> C
+    C --> G
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    
+    style A1 fill:#f0f8ff,stroke:#4682b4,stroke-dasharray: 5 5
+    style B1 fill:#f0f8ff,stroke:#4682b4,stroke-dasharray: 5 5
+    style C1 fill:#f0f8ff,stroke:#4682b4,stroke-dasharray: 5 5
+    style D1 fill:#fff8dc,stroke:#daa520,stroke-dasharray: 5 5
+    style E1 fill:#fff8dc,stroke:#daa520,stroke-dasharray: 5 5
+    style F1 fill:#fff8dc,stroke:#daa520,stroke-dasharray: 5 5
+    style G1 fill:#f0fff0,stroke:#32cd32,stroke-dasharray: 5 5
+    style H1 fill:#f0fff0,stroke:#32cd32,stroke-dasharray: 5 5
+    
+    classDef litBox fill:#e6f3ff,stroke:#4682b4,stroke-width:2px
+    classDef regBox fill:#fffacd,stroke:#daa520,stroke-width:2px
+    classDef synthBox fill:#f0fff0,stroke:#32cd32,stroke-width:2px
+    classDef timeBox fill:#f5f5f5,stroke:#666,stroke-width:1px
+    
+    class A,B,C litBox
+    class D,E,F regBox
+    class G,H synthBox
+```
+
+## Key Dates
+
+## Contributors
+
+Contributor matrix
+
+## Communication and Governance
+
+## Funding and Conflicts of Interest
+
+## Intellectual Property
+
+# Financial Plan
+
+## Direct Costs
+
+## Indirect Costs
+
+## Total Estimates
+
+Total estimates will include the direct and indirect costs

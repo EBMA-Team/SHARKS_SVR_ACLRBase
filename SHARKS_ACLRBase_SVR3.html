@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Corey Scholes">
+<meta name="dcterms.date" content="2025-05-25">
+
+<title>SHARKS_ACLRBase_SVR3</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="SHARKS_ACLRBase_SVR3_files/libs/clipboard/clipboard.min.js"></script>
+<script src="SHARKS_ACLRBase_SVR3_files/libs/quarto-html/quarto.js"></script>
+<script src="SHARKS_ACLRBase_SVR3_files/libs/quarto-html/popper.min.js"></script>
+<script src="SHARKS_ACLRBase_SVR3_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="SHARKS_ACLRBase_SVR3_files/libs/quarto-html/anchor.min.js"></script>
+<link href="SHARKS_ACLRBase_SVR3_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="SHARKS_ACLRBase_SVR3_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="SHARKS_ACLRBase_SVR3_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="SHARKS_ACLRBase_SVR3_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="SHARKS_ACLRBase_SVR3_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="SHARKS_ACLRBase_SVR3_files/libs/quarto-diagram/mermaid.min.js"></script>
+<script src="SHARKS_ACLRBase_SVR3_files/libs/quarto-diagram/mermaid-init.js"></script>
+<link href="SHARKS_ACLRBase_SVR3_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary"><span class="header-section-number">1</span> Summary</a></li>
+  <li><a href="#preamble" id="toc-preamble" class="nav-link" data-scroll-target="#preamble"><span class="header-section-number">2</span> Preamble</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background"><span class="header-section-number">3</span> Background</a>
+  <ul class="collapse">
+  <li><a href="#literature-benchmarks" id="toc-literature-benchmarks" class="nav-link" data-scroll-target="#literature-benchmarks"><span class="header-section-number">3.1</span> Literature Benchmarks</a></li>
+  </ul></li>
+  <li><a href="#study-question" id="toc-study-question" class="nav-link" data-scroll-target="#study-question"><span class="header-section-number">4</span> Study Question</a></li>
+  <li><a href="#hypotheses" id="toc-hypotheses" class="nav-link" data-scroll-target="#hypotheses"><span class="header-section-number">5</span> Hypotheses</a></li>
+  <li><a href="#methods---proposed" id="toc-methods---proposed" class="nav-link" data-scroll-target="#methods---proposed"><span class="header-section-number">6</span> Methods - Proposed</a>
+  <ul class="collapse">
+  <li><a href="#data-sources" id="toc-data-sources" class="nav-link" data-scroll-target="#data-sources"><span class="header-section-number">6.1</span> Data sources</a></li>
+  <li><a href="#sample-selection" id="toc-sample-selection" class="nav-link" data-scroll-target="#sample-selection"><span class="header-section-number">6.2</span> Sample selection</a></li>
+  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"><span class="header-section-number">6.3</span> Variables</a></li>
+  <li><a href="#the-moon-group" id="toc-the-moon-group" class="nav-link" data-scroll-target="#the-moon-group"><span class="header-section-number">6.4</span> The MOON Group</a></li>
+  <li><a href="#other-variables" id="toc-other-variables" class="nav-link" data-scroll-target="#other-variables"><span class="header-section-number">6.5</span> Other variables</a></li>
+  <li><a href="#data-collection" id="toc-data-collection" class="nav-link" data-scroll-target="#data-collection"><span class="header-section-number">6.6</span> Data Collection</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><span class="header-section-number">6.7</span> Analysis</a></li>
+  </ul></li>
+  <li><a href="#ethical-considerations" id="toc-ethical-considerations" class="nav-link" data-scroll-target="#ethical-considerations"><span class="header-section-number">7</span> Ethical Considerations</a></li>
+  <li><a href="#study-output" id="toc-study-output" class="nav-link" data-scroll-target="#study-output"><span class="header-section-number">8</span> Study Output</a>
+  <ul class="collapse">
+  <li><a href="#target-presentations" id="toc-target-presentations" class="nav-link" data-scroll-target="#target-presentations"><span class="header-section-number">8.1</span> Target Presentations</a></li>
+  <li><a href="#target-publication" id="toc-target-publication" class="nav-link" data-scroll-target="#target-publication"><span class="header-section-number">8.2</span> Target Publication</a></li>
+  </ul></li>
+  <li><a href="#study-management" id="toc-study-management" class="nav-link" data-scroll-target="#study-management"><span class="header-section-number">9</span> Study Management</a>
+  <ul class="collapse">
+  <li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions"><span class="header-section-number">9.1</span> Assumptions</a></li>
+  <li><a href="#timeline" id="toc-timeline" class="nav-link" data-scroll-target="#timeline"><span class="header-section-number">9.2</span> Timeline</a></li>
+  <li><a href="#key-dates" id="toc-key-dates" class="nav-link" data-scroll-target="#key-dates"><span class="header-section-number">9.3</span> Key Dates</a></li>
+  <li><a href="#contributors" id="toc-contributors" class="nav-link" data-scroll-target="#contributors"><span class="header-section-number">9.4</span> Contributors</a></li>
+  <li><a href="#communication-and-governance" id="toc-communication-and-governance" class="nav-link" data-scroll-target="#communication-and-governance"><span class="header-section-number">9.5</span> Communication and Governance</a></li>
+  <li><a href="#funding-and-conflicts-of-interest" id="toc-funding-and-conflicts-of-interest" class="nav-link" data-scroll-target="#funding-and-conflicts-of-interest"><span class="header-section-number">9.6</span> Funding and Conflicts of Interest</a></li>
+  <li><a href="#intellectual-property" id="toc-intellectual-property" class="nav-link" data-scroll-target="#intellectual-property"><span class="header-section-number">9.7</span> Intellectual Property</a></li>
+  </ul></li>
+  <li><a href="#financial-plan" id="toc-financial-plan" class="nav-link" data-scroll-target="#financial-plan"><span class="header-section-number">10</span> Financial Plan</a>
+  <ul class="collapse">
+  <li><a href="#direct-costs" id="toc-direct-costs" class="nav-link" data-scroll-target="#direct-costs"><span class="header-section-number">10.1</span> Direct Costs</a></li>
+  <li><a href="#indirect-costs" id="toc-indirect-costs" class="nav-link" data-scroll-target="#indirect-costs"><span class="header-section-number">10.2</span> Indirect Costs</a></li>
+  <li><a href="#total-estimates" id="toc-total-estimates" class="nav-link" data-scroll-target="#total-estimates"><span class="header-section-number">10.3</span> Total Estimates</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">SHARKS_ACLRBase_SVR3</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Corey Scholes </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 25, 2025</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">May 25, 2025</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="summary" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Summary</h1>
+</section>
+<section id="preamble" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Preamble</h1>
+<p>Libraries installed for further analysis</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"pacman"</span>)) <span class="fu">install.packages</span>(<span class="st">"pacman"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="co"># Load required packages</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"gargle"</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"googledrive"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"pwrss"</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"rcrossref"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tidyverse"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"googlesheets4"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"epoxy"</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ggdist"</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"simstudy"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"DiagrammeR"</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ggdag"</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">install =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">update =</span> <span class="cn">FALSE</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="background" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Background</h1>
+<p><em>The use of PROMs</em></p>
+<p>Patient-reported outcome measures are used increasingly to routinely assess patients’ subjective experiences during recovery from initial injury of the anterior cruciate ligament, or subsequent surgical reconstruction, in both research and clinical settings <span class="citation" data-cites="ridha2025">(<a href="#ref-ridha2025" role="doc-biblioref">Ridha et al. 2025</a>)</span>. Standardised PROMs can provide important insight into multiple dimensions of physical, mental and functional state at the consistent time points of the recovery trajectory and have also been used to define clinical failure after reconstruction <span class="citation" data-cites="aldag2023">(<a href="#ref-aldag2023" role="doc-biblioref">Aldag et al. 2023</a>)</span>. Work by the department has also revealed heterogeneous patterns in patients presenting for surgical review of ACL injury when PROMs assessing different dimenions of pain, function and general health are assessed simultaneously <span class="citation" data-cites="ting2020">(<a href="#ref-ting2020" role="doc-biblioref">Ting et al. 2020</a>)</span>.</p>
+<p>The most frequent pathology and joints-specific PROMs for monitoring recovery after ACL reconstruction are the KOOS family (JR, 12, full) and the IKDC2000 (International Knee Documentation Committee). The IKDC2000 was chosen for the SHARKS registry due to content validity specific to ACL reconstruction. It contains one question (Symptoms Q7) that is relevant to the motivations of offering surgery in the majority of cases - <em>what is the highest level of activity you can participate in without experiencing episodes of giving way in the knee?</em><br>
+<br>
+The IKDC is an 18 question evaluation that measures symptoms (7 items), activities of daily living (9 items) and sport (1 item), and comparative knee function (1 item - not included in total score). Items are scored on a ordinal scale, and equally weighted to give a final score from 0 (high symptoms, low function) to 100 (no symptoms or limitations) <span class="citation" data-cites="irrgang2001">(<a href="#ref-irrgang2001" role="doc-biblioref">Irrgang et al. 2001</a>)</span>. Good validity, responsiveness and reliability in knee surgery patients. MCID at 6 months = 6.3 and at 12 months = 16.7 <span class="citation" data-cites="collins2011 winterstein2013">(<a href="#ref-collins2011" role="doc-biblioref">Collins et al. 2011</a>; <a href="#ref-winterstein2013" role="doc-biblioref">Winterstein et al. 2013</a>)</span>. To account for the potential confounding effect of age and sex on IKDC scores, a z-score method was published <span class="citation" data-cites="anderson2006">(<a href="#ref-anderson2006" role="doc-biblioref">Anderson et al. 2006</a>)</span>, whereby an individual score could be substracted from the mean of the matching age and sex subgroup to the patient, with the difference divided by the subgroup standard deviation.</p>
+<p><em>Discussing PROMs in literature and qualitative comparisons</em></p>
+<p>However, a key challenge in the implementation of PROMs in the context of service delivery to patients with ACL injury, is understanding whether treatment responses are comparable from one published report to the next. The standard method in general, is to take summary statistics, usually mean and standard deviation and make a qualitative comparison to other papers that are in turn, qualitatively judged to be comparable to the sample in question. Without a systematic approach to benchmarking results, the interpretation of PROMs can be misled by biases arising from confounding.</p>
+<p><em>Importance of adjustment</em></p>
+<p>Confounding bias occurs when a variable of interest and a target outcome are simultaneously influenced by a third variable <span class="citation" data-cites="tennant2020">(<a href="#ref-tennant2020" role="doc-biblioref">Tennant et al. 2020</a>)</span>. In the proposed study, the variable of interest would be the source of IKDC population estimate (study) and the outcome would be the IKDC total score, while the third variable (the confounder) might be age at the time of initial presentation. An adjustment in this context would compare the IKDC total score between studies within a multivariable regression, which parses out the influence of each variable on the variability of the IKDC score.</p>
+<p>Variation in context (setting, patient demographics, service delivery)</p>
+<section id="literature-benchmarks" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="literature-benchmarks"><span class="header-section-number">3.1</span> Literature Benchmarks</h2>
+<p>The natural entry point into benchmarking local data is to draw on the existing literature in one of two ways. The first is to make a comparison across <em>all</em> available reports and place the local sample within the context of all findings. The second is to conduct a matching process and identify reports that best match the context and data-generation of the local sample and make targeted comparisons.</p>
+<p>Let’s start with the first approach and draw on as broader pool as possible. A recent systematic review <span class="citation" data-cites="ridha2025">(<a href="#ref-ridha2025" role="doc-biblioref">Ridha et al. 2025</a>)</span> may provide an initial framework to draw from. It reviewed papers reporting the IKDC(2000) from baseline through to 2 years after surgical reconstruction, as well as non-operative management over the same time period.</p>
+<div id="fig-radhi2024" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Line plot of IKDC2000 trajectories after surgical reconstruction">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-radhi2024-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Radhi%20et%20al%20Figure%202.png" class="img-fluid figure-img" alt="Line plot of IKDC2000 trajectories after surgical reconstruction">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-radhi2024-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Trajectory of IKDC2000 up to 24 months after surgical reconstruction (left) or after injury with nonsurgical management (right). Reproduced from <span class="citation" data-cites="ridha2025">(<a href="#ref-ridha2025" role="doc-biblioref">Ridha et al. 2025</a>)</span>.
+</figcaption>
+</figure>
+</div>
+<p>The baseline variation for surgical reconstruction cases in <a href="#fig-radhi2024" class="quarto-xref">Figure&nbsp;1</a> is relatively wide, from ~20 up to ~90 points. It can be seen that the majority of the included papers report baseline data within the range 40-70. The figure illustrates a key pitfall of reviewing studies of PROMs in general, and the IKDC in particular. One study illustrated on the plot resides near zero for all time points. This is a misinterpretation by the review authors, although the paper should be excluded for other reasons. The IKDC2000 can be reported with a <em>normalised</em> score, which takes the sum of the available responses and converts it to a percentage of the maximum score available (with a scale of 0-100). The original paper (Rajput et al 2020) identified used a <em>normative</em> version of the IKDC score, first reported by <span class="citation" data-cites="anderson2006">(<a href="#ref-anderson2006" role="doc-biblioref">Anderson et al. 2006</a>)</span>, which calculates a z-score of the normalised score relative to the mean and standard deviation of an age and sex matched cohort. To make matters more complicated for reviewers, the normative score can be generated with two sets of age and sex-matched cohorts - with and without knee injury at the time of cross-sectional survey. The lack of reporting in Rajput et al (it does not state which normative dataset was used to generate the results) should disqualify it from inclusion in the review, and for our purposes here.</p>
+</section>
+</section>
+<section id="study-question" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Study Question</h1>
+<p>The study question was presented using the PICOS framework <span class="citation" data-cites="amir-behghadami2020">(<a href="#ref-amir-behghadami2020" role="doc-biblioref">Amir-Behghadami and Janati 2020</a>)</span>.</p>
+<div id="tbl-question" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-question-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Study question identified under the PICOS framework
+</figcaption>
+<div aria-describedby="tbl-question-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Component</th>
+<th>Study Component</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Participants</td>
+<td>Patients presenting with injury of the anterior cruciate ligament</td>
+<td>Patients present under variable circumstances, with referrals from emergency or primary care</td>
+</tr>
+<tr class="even">
+<td>Intervention</td>
+<td>Electing to be added to the wait list for surgical reconstruction within the public health system</td>
+<td>Typical wait times within the department are ~4months from initial consultation</td>
+</tr>
+<tr class="odd">
+<td>Comparator</td>
+<td>Compared to the published literature</td>
+<td>Split into two approaches - overall combined results (meta-analysis) or with selective matching of contextually similar studies</td>
+</tr>
+<tr class="even">
+<td>Outcomes</td>
+<td>Is baseline IKDC significantly different to published data when adjusted for confounders with respect to normalised or z-score totals</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Study Design</td>
+<td>Meta-analysis and simulation</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="hypotheses" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Hypotheses</h1>
+<p>Significant differences between the local sample at baseline and published literature will be removed when comparisons are adjusted for known confounders.</p>
+</section>
+<section id="methods---proposed" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Methods - Proposed</h1>
+<section id="data-sources" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="data-sources"><span class="header-section-number">6.1</span> Data sources</h2>
+<p>Local sample - the local sample will be derived from the SHARKS registry. The SHARKS registry is an HREC-approved clinical registry embedded into the department of orthopaedics at QEII Jubilee Hospital. More information is available from the most recent <a href="https://coreyscholes-sharks-governance.share.connect.posit.cloud/">governance report</a>. The Tibiofemoral Instability cohort of the registry draws in patients presenting with injury or other pathology of the ligaments (cruciate | collateral) and complexes of the posterior lateral or medial corners.</p>
+<p>Literature - a non-systematic search will be conducted of Pubmed, Google Scholar to retrieve systematic reviews describing the trajectory of IKDC from baseline to followup, or including papers describing the IKDC at least at baseline prior to surgical reconstruction or non-operative management. The <em>citationchaser</em> application <span class="citation" data-cites="haddaway2021">Haddaway, Grainger, and Gray (<a href="#ref-haddaway2021" role="doc-biblioref">2021</a>)</span> will be used to retrieve citations from relevant reviews and meta-analyses. Where available, full-text sources will be retrieved and baseline IKDC and relevant contextual factors extracted and summarised in spreadsheet form for further processing.</p>
+</section>
+<section id="sample-selection" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="sample-selection"><span class="header-section-number">6.2</span> Sample selection</h2>
+<p>Cases will be retrieved from SHARKS that match the criteria described in <span class="citation" data-cites="ting2020">Ting et al. (<a href="#ref-ting2020" role="doc-biblioref">2020</a>)</span> and summarised below.</p>
+<div id="tbl-criteria" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-criteria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Summary of inclusion and exclusion criteria for local sample
+</figcaption>
+<div aria-describedby="tbl-criteria-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Inclusion</th>
+<th>Exclusion</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Enrolled in SHARKS registry</td>
+<td>Surgical booking not offered</td>
+<td>Inclusion criteria for SHARKS can be reviewed on wiki or governance report</td>
+</tr>
+<tr class="even">
+<td>Primary presentation</td>
+<td>Presentation is the contralateral limb of a previous ACL rupture</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Clinical and imaging-supported diagnosis of ACL rupture</td>
+<td>ACL pathology is a non-traumatic or congenital absence or deficiency</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Concomitant pathology is limited to menisci</td>
+<td>Pathology to collateral and other cruciate ligaments deemed to require surgical reconstruction at the time of surgery</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Withdrawal of consent to participate in registry prior to surgery</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Insert second table for selecting relevant papers for comparison</strong></p>
+</section>
+<section id="variables" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="variables"><span class="header-section-number">6.3</span> Variables</h2>
+<p>The study dataset will be drawn from three main sources. The first is the SHARKS dataset, specifically for the Tibiofemoral Instability cohort, which can be found on the <a href="https://sites.google.com/ebma.com.au/sharksregistry/section-2-cohorts/2-6-knee-tibiofemoral-instability">registry wiki</a>.</p>
+<p>The second source is to review the relevant literature and identify any other variables that may not already be collected in the registry dataset, but may be relevant to answering the question posed. An initial review is included below - to be expanded further for the study analysis.</p>
+<p>Previous work by our group reported no relationship between PROMs phenotype (cluster) and patient age, sex, body mass index or injury to examination delay <span class="citation" data-cites="ting2020">Ting et al. (<a href="#ref-ting2020" role="doc-biblioref">2020</a>)</span>. Importantly, this study did not directly assess the relationship (adjusted or unadjusted) between baseline IKDC and patient demographics. There is a paucity of data addressing this question directly in the literature, therefore related literature will be drawn on to build a directed acyclic graph, to identify a reasonable adjustment set informing the study dataset.</p>
+</section>
+<section id="the-moon-group" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="the-moon-group"><span class="header-section-number">6.4</span> The MOON Group</h2>
+<p>The first place to start is the <a href="https://acltear.info/">MOON</a> (Multicentre Orthopaedic Outcomes Network) Knee Group, which is a prospective cohort registry of anterior cruciate injuries and surgical reconstruction across 19 physicians and 7 health institutions in the United States, that have enrolled &gt;3500 cases since 2002.</p>
+<p>Research from this dataset has identified time from injury to surgery as a key factor influencing baseline IKDC scores for primary ACL injury <span class="citation" data-cites="nguyen2016">(<a href="#ref-nguyen2016" role="doc-biblioref">Nguyen et al. 2016</a>)</span>. Adjusted for covariates.</p>
+<p>Factors associated with more pain at baseline were higher body mass index, female sex, concomitant lateral collateral ligament injury and older age <span class="citation" data-cites="dunn2010">(<a href="#ref-dunn2010" role="doc-biblioref">Dunn et al. 2010</a>)</span>.</p>
+<p>The MOON group previously compared their baseline data (N = 713) to the Norwegian Knee Ligament Registry (N = 4928) <span class="citation" data-cites="magnussen2009">(<a href="#ref-magnussen2009" role="doc-biblioref">Magnussen et al. 2009</a>)</span> and observed the following;</p>
+<ul>
+<li><p>Significant difference in age at surgery</p></li>
+<li><p>Significant difference in sex proportions</p></li>
+<li><p>Considerable differences in activity associated with injury</p></li>
+<li><p>Significant difference in time from injury to surgery</p></li>
+<li><p>Significant difference in meniscal and chondral pathology incidence</p></li>
+<li><p>Significant differences in all but one (QoL) subscales of KOOS, but none of the differences exceeded MCID except for “other symptoms”. However, this was based on an <em>unadjusted</em> comparison.</p></li>
+</ul>
+</section>
+<section id="other-variables" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="other-variables"><span class="header-section-number">6.5</span> Other variables</h2>
+<p>There are other factors that have not been raised in the literature to date that should be taken into account when attempting to compare samples drawn from a <em>global</em> population.</p>
+<p>Patient</p>
+<ul>
+<li><p>Comorbidities</p></li>
+<li><p>General health</p></li>
+<li><p>Education</p></li>
+<li><p>Bilateral status (index injury or subsequent to contralateral)</p></li>
+<li><p>Surgical history (ipsilateral knee | limb)<br>
+</p></li>
+</ul>
+<p>Healthcare setting</p>
+<ul>
+<li><p>Type of service (public, private, other)</p></li>
+<li><p>Referral pathway includes emergency department within facility</p></li>
+<li><p>Country | state referral pathways and regulations</p></li>
+</ul>
+<p>Data collection setting</p>
+<ul>
+<li><p>Cohort or randomised trial of limited scope vs regional, state or national registry</p></li>
+<li><p>Consent model (opt in vs opt-out)</p></li>
+</ul>
+<p>Measurements</p>
+<ul>
+<li><p>Collection method (paper vs electronic)</p></li>
+<li><p>PROMs version</p></li>
+<li><p>Scoring method (normalised vs z-score)</p></li>
+</ul>
+<div id="tbl-variables" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-variables-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Summary of study variables required
+</figcaption>
+<div aria-describedby="tbl-variables-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Category</th>
+<th>Variable</th>
+<th>Type - Response</th>
+<th>Available SHARKS</th>
+<th>Available Published</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Patient</td>
+<td>Age at presentation</td>
+<td>Continuous - Years</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Sex</td>
+<td>Categorical</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Activity Type</td>
+<td>Categorical</td>
+<td>No</td>
+<td>Possible (not universal)</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Activity Level</td>
+<td>Ordinal</td>
+<td>Yes - Tegner Activity Scale</td>
+<td>Possible (not universal)</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>General Health</td>
+<td>Continuous</td>
+<td>Yes - VR12</td>
+<td>Unlikely (not usually collected)</td>
+</tr>
+<tr class="even">
+<td>Referral Pathway</td>
+<td>Injury to Review delay</td>
+<td>Continuous</td>
+<td>Partial - chart review will be required</td>
+<td>Possible (not universal)</td>
+</tr>
+<tr class="odd">
+<td>Pathology</td>
+<td>Concomitant ligament injury</td>
+<td>Categorical</td>
+<td>Partial - chart review will be required</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Concomitant meniscal pathology</td>
+<td>Categorical</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Setting</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Measurement</td>
+<td>Collection method</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>PROMs version</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Scoring method</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>DAGPROM <span class="ot">&lt;-</span> ggdag<span class="sc">::</span><span class="fu">dagify</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  IKDCBase <span class="sc">~</span> Sample <span class="sc">+</span> Age <span class="sc">+</span> Sex <span class="sc">+</span> BMI <span class="sc">+</span> Bilateral <span class="sc">+</span> MeniscPath <span class="sc">+</span> ChondPath <span class="sc">+</span> InjuryPres <span class="sc">+</span> ActivityLevel <span class="sc">+</span> GeneralHealth <span class="sc">+</span> ServiceType <span class="sc">+</span> CollectType <span class="sc">+</span> CollectMethod,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  Sample <span class="sc">~</span> Age <span class="sc">+</span> Sex <span class="sc">+</span> BMI <span class="sc">+</span> Bilateral <span class="sc">+</span> MeniscPath <span class="sc">+</span> ChondPath <span class="sc">+</span> InjuryPres <span class="sc">+</span> ActivityLevel <span class="sc">+</span> GeneralHealth <span class="sc">+</span> ServiceType <span class="sc">+</span> CollectType <span class="sc">+</span> CollectMethod,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  Bilateral <span class="sc">~</span> Age <span class="sc">+</span> Sex,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  BMI <span class="sc">~</span> Age <span class="sc">+</span> Sex <span class="sc">+</span> ActivityLevel,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  GeneralHealth <span class="sc">~</span> Age <span class="sc">+</span> ActivityLevel <span class="sc">+</span> Sex <span class="sc">+</span> BMI,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  MeniscPath <span class="sc">~</span> Age <span class="sc">+</span> ActivityLevel <span class="sc">+</span> Sex <span class="sc">+</span> BMI <span class="sc">+</span> InjuryPres,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  ChondPath <span class="sc">~</span> Age <span class="sc">+</span> ActivityLevel <span class="sc">+</span> Sex <span class="sc">+</span> BMI <span class="sc">+</span> InjuryPres,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  ActivityLevel <span class="sc">~</span> Age <span class="sc">+</span> Sex <span class="sc">+</span> BMI <span class="sc">+</span> Bilateral,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  InjuryPres <span class="sc">~</span> ServiceType <span class="sc">+</span> CollectType <span class="sc">+</span> ActivityLevel,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"IKDBase"</span> <span class="ot">=</span> <span class="st">"Baseline IKDC"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sample"</span> <span class="ot">=</span> <span class="st">"Study </span><span class="sc">\n</span><span class="st"> group"</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Age"</span> <span class="ot">=</span> <span class="st">"Age at</span><span class="sc">\n</span><span class="st"> Initial Exam"</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sex"</span> <span class="ot">=</span> <span class="st">"Sex"</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BMI"</span> <span class="ot">=</span> <span class="st">"Body Mass</span><span class="sc">\n</span><span class="st"> Index"</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Bilateral"</span> <span class="ot">=</span> <span class="st">"Bilateral Presentation"</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MeniscPath"</span> <span class="ot">=</span> <span class="st">"Meniscal</span><span class="sc">\n</span><span class="st"> Pathology"</span>,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ChondPath"</span> <span class="ot">=</span> <span class="st">"Chondral</span><span class="sc">\n</span><span class="st"> Pathology"</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"InjuryPres"</span> <span class="ot">=</span> <span class="st">"Injury to</span><span class="sc">\n</span><span class="st"> Presentation"</span>,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ActivityLevel"</span> <span class="ot">=</span> <span class="st">"Activity</span><span class="sc">\n</span><span class="st"> Level"</span>, </span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GeneralHealth"</span> <span class="ot">=</span> <span class="st">" General</span><span class="sc">\n</span><span class="st"> Health"</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ServiceType"</span> <span class="ot">=</span> <span class="st">"Health Service</span><span class="sc">\n</span><span class="st"> Type"</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CollectType"</span> <span class="ot">=</span> <span class="st">"Collection Service/n Type"</span>,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CollectMethod"</span> <span class="ot">=</span> <span class="st">"Method of</span><span class="sc">\n</span><span class="st"> Collection"</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">exposure =</span> <span class="st">"Sample"</span>,</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">outcome =</span> <span class="st">"IKDCBase"</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a tidy version of the DAG and apply custom labels</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>tidy_dag1 <span class="ot">&lt;-</span> ggdag<span class="sc">::</span><span class="fu">tidy_dagitty</span>(DAGPROM, <span class="at">layout =</span> <span class="st">"auto"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">label =</span> <span class="fu">case_when</span>(</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    name <span class="sc">==</span> <span class="st">"IKDBase"</span> <span class="sc">~</span> <span class="st">"Baseline IKDC"</span>,</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    name <span class="sc">==</span> <span class="st">"Sample"</span> <span class="sc">~</span> <span class="st">"Study </span><span class="sc">\n</span><span class="st"> group"</span>,</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    name <span class="sc">==</span> <span class="st">"Age"</span> <span class="sc">~</span> <span class="st">"Age at</span><span class="sc">\n</span><span class="st"> Initial Exam"</span>,</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    name <span class="sc">==</span> <span class="st">"Sex"</span> <span class="sc">~</span> <span class="st">"Sex"</span>,</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    name <span class="sc">==</span> <span class="st">"BMI"</span> <span class="sc">~</span> <span class="st">"Body Mass</span><span class="sc">\n</span><span class="st"> Index"</span>,</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    name <span class="sc">==</span> <span class="st">"Bilateral"</span> <span class="sc">~</span> <span class="st">"Bilateral Presentation"</span>,</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    name <span class="sc">==</span> <span class="st">"MeniscPath"</span> <span class="sc">~</span> <span class="st">"Meniscal</span><span class="sc">\n</span><span class="st"> Pathology"</span>,</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    name <span class="sc">==</span> <span class="st">"ChondPath"</span> <span class="sc">~</span> <span class="st">"Chondral</span><span class="sc">\n</span><span class="st"> Pathology"</span>,</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    name <span class="sc">==</span> <span class="st">"InjuryPres"</span> <span class="sc">~</span> <span class="st">"Injury to</span><span class="sc">\n</span><span class="st"> Presentation"</span>,</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    name <span class="sc">==</span> <span class="st">"ActivityLevel"</span> <span class="sc">~</span> <span class="st">"Activity</span><span class="sc">\n</span><span class="st"> Level"</span>,</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    name <span class="sc">==</span> <span class="st">"GeneralHealth"</span> <span class="sc">~</span> <span class="st">" General</span><span class="sc">\n</span><span class="st"> Health"</span>,</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    name <span class="sc">==</span> <span class="st">"ServiceType"</span> <span class="sc">~</span> <span class="st">"Health Service</span><span class="sc">\n</span><span class="st"> Type"</span>,</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    name <span class="sc">==</span> <span class="st">"CollectType"</span> <span class="sc">~</span> <span class="st">"Collection Service</span><span class="sc">\n</span><span class="st"> Type"</span>,</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    name <span class="sc">==</span> <span class="st">"CollectMethod"</span> <span class="sc">~</span> <span class="st">"Method of</span><span class="sc">\n</span><span class="st"> Collection"</span>,</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> name</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>DagPlot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>  tidy_dag1,</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> x,</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> y,</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">xend =</span> xend,</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">yend =</span> yend)</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dag_node</span>(</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"darkblue"</span>,</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"lightblue"</span>,</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dag_text</span>(</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> label</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>    <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="fl">0.5</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dag_edges</span>(</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">edge_color =</span> <span class="st">"gray50"</span>,</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>    <span class="at">edge_width =</span> <span class="fl">0.5</span>,</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>    <span class="co">#edge_arrow_size = 0.3</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dag</span>(</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>    <span class="at">base_size =</span> <span class="dv">12</span>,</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">base_family =</span> <span class="st">""</span>,</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>),</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>)</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>      <span class="at">hjust =</span> <span class="fl">0.5</span>,</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">16</span>,</span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>      <span class="at">face =</span> <span class="st">"bold"</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.margin =</span> <span class="fu">margin</span>(</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>      <span class="dv">20</span>,</span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>      <span class="dv">20</span>,</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>      <span class="dv">20</span>,</span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>      <span class="dv">20</span></span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">knit_print</span>(DagPlot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-dag" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="SHARKS_ACLRBase_SVR3_files/figure-html/fig-dag-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Directed acyclic graph of Sample -&gt; IKDC Baseline
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Figadjset <span class="ot">&lt;-</span> ggdag<span class="sc">::</span><span class="fu">ggdag_adjustment_set</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  tidy_dag1,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#use_labels = "label"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">exposure =</span> <span class="st">"Sample"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">outcome =</span> <span class="st">"IKDCBase"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dag_node</span>(</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"darkblue"</span>, </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"lightblue"</span>, </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.7</span>, </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">10</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_dag_text(</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   aes(label = label),  # Use the 'label' column directly</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   color = "black",</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   fontface = "bold",</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   size = 3,</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   vjust = -1.5,  # Adjust vertical position</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   hjust = 1.5,  # Adjust horizontal position</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   show.legend = FALSE  # Prevent text from appearing in legend</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ) +</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dag_label_repel</span>(</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> label, <span class="at">fill =</span> adjusted),</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">show.legend =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">box.padding =</span> <span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">"lines"</span>),  <span class="co"># Padding around labels</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">point.padding =</span> <span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">"lines"</span>),  <span class="co"># Padding around points</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">nudge_y =</span> <span class="fl">0.5</span>,  <span class="co"># Adjust vertical nudge</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">nudge_x =</span> <span class="fl">0.5</span>   <span class="co"># Adjust horizontal nudge</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dag_edges</span>(</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">edge_color =</span> <span class="st">"gray50"</span>, </span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">edge_width =</span> <span class="fl">0.5</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dag</span>(</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">base_size =</span> <span class="dv">10</span>,</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">base_family =</span> <span class="st">""</span>,</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>),</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>      <span class="at">hjust =</span> <span class="fl">0.5</span>, </span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">10</span>, </span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>      <span class="at">face =</span> <span class="st">"bold"</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">20</span>,<span class="dv">20</span>,<span class="dv">20</span>,<span class="dv">20</span>),</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="st">"gray80"</span>),</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">knit_print</span>(Figadjset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-adjset" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-adjset-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="SHARKS_ACLRBase_SVR3_files/figure-html/fig-adjset-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-adjset-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Calculated minimum adjustment set for modelling Sample -&gt; IKDC at Baseline
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="data-collection" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="data-collection"><span class="header-section-number">6.6</span> Data Collection</h2>
+<div class="cell" data-layout-align="default">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>flowchart TD</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    subgraph S1 ["Literature-Based Analysis"]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        A[Literature Review] --&gt; B[Data Extraction]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        B --&gt; C[Simulation]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        A -.-&gt; A1["Search databases&lt;br/&gt;Screen articles&lt;br/&gt;Apply inclusion criteria"]</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        B -.-&gt; B1["Extract key parameters&lt;br/&gt;Standardize data formats&lt;br/&gt;Quality assessment"]</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        C -.-&gt; C1["Model development&lt;br/&gt;Parameter estimation&lt;br/&gt;Scenario analysis"]</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    subgraph S2 ["Registry-Based Analysis"]</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        D[Cohort Retrieval] --&gt; E[Chart Review]</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        D -.-&gt; D1["Query clinical registry&lt;br/&gt;Apply selection criteria&lt;br/&gt;Export patient data"]</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        E -.-&gt; E1["Manual chart review&lt;br/&gt;Data validation&lt;br/&gt;Clinical assessment"]</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    style A1 fill:#f0f8ff,stroke:#4682b4,stroke-dasharray: 5 5</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    style B1 fill:#f0f8ff,stroke:#4682b4,stroke-dasharray: 5 5</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    style C1 fill:#f0f8ff,stroke:#4682b4,stroke-dasharray: 5 5</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    style D1 fill:#fff8dc,stroke:#daa520,stroke-dasharray: 5 5</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    style E1 fill:#fff8dc,stroke:#daa520,stroke-dasharray: 5 5</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    classDef litBox fill:#e6f3ff,stroke:#4682b4,stroke-width:2px</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    classDef regBox fill:#fffacd,stroke:#daa520,stroke-width:2px</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    class A,B,C litBox</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    class D,E regBox</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-datacollection" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-datacollection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-datacollection">flowchart TD
+    subgraph S1 ["Literature-Based Analysis"]
+        A[Literature Review] --&gt; B[Data Extraction]
+        B --&gt; C[Simulation]
+        
+        A -.-&gt; A1["Search databases&lt;br/&gt;Screen articles&lt;br/&gt;Apply inclusion criteria"]
+        B -.-&gt; B1["Extract key parameters&lt;br/&gt;Standardize data formats&lt;br/&gt;Quality assessment"]
+        C -.-&gt; C1["Model development&lt;br/&gt;Parameter estimation&lt;br/&gt;Scenario analysis"]
+    end
+    
+    subgraph S2 ["Registry-Based Analysis"]
+        D[Cohort Retrieval] --&gt; E[Chart Review]
+        
+        D -.-&gt; D1["Query clinical registry&lt;br/&gt;Apply selection criteria&lt;br/&gt;Export patient data"]
+        E -.-&gt; E1["Manual chart review&lt;br/&gt;Data validation&lt;br/&gt;Clinical assessment"]
+    end
+    
+    style A1 fill:#f0f8ff,stroke:#4682b4,stroke-dasharray: 5 5
+    style B1 fill:#f0f8ff,stroke:#4682b4,stroke-dasharray: 5 5
+    style C1 fill:#f0f8ff,stroke:#4682b4,stroke-dasharray: 5 5
+    style D1 fill:#fff8dc,stroke:#daa520,stroke-dasharray: 5 5
+    style E1 fill:#fff8dc,stroke:#daa520,stroke-dasharray: 5 5
+    
+    classDef litBox fill:#e6f3ff,stroke:#4682b4,stroke-width:2px
+    classDef regBox fill:#fffacd,stroke:#daa520,stroke-width:2px
+    
+    class A,B,C litBox
+    class D,E regBox
+
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-datacollection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Flowchart of data collection steps in proposed study
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="analysis" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="analysis"><span class="header-section-number">6.7</span> Analysis</h2>
+</section>
+</section>
+<section id="ethical-considerations" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Ethical Considerations</h1>
+<p>HREC-approval has been granted for the SHARKS registry to collect relevant information for cases presenting to the department matching the inclusion criteria of the Registry.</p>
+<p>As long as chart review proposed matches the variables described in the core dataset of the Registry, no additional HREC submissions will be required for this project.</p>
+</section>
+<section id="study-output" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Study Output</h1>
+<section id="target-presentations" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="target-presentations"><span class="header-section-number">8.1</span> Target Presentations</h2>
+<p>Abstract submission for AOA ASM 2025 closed 4-May-2025.</p>
+</section>
+<section id="target-publication" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="target-publication"><span class="header-section-number">8.2</span> Target Publication</h2>
+<p>The key factors to consider in determining whether a paper is likely to be publishable is</p>
+<p>Knee surgery sports traumatology and arthroscopy (Ridha et al 2024)</p>
+<p>Journal of patient-reported outcomes</p>
+</section>
+</section>
+<section id="study-management" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Study Management</h1>
+<section id="assumptions" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="assumptions"><span class="header-section-number">9.1</span> Assumptions</h2>
+</section>
+<section id="timeline" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="timeline"><span class="header-section-number">9.2</span> Timeline</h2>
+<div class="cell" data-fig-width="6.5" data-layout-align="default">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  A[Hard edge] --&gt; B(Round edge)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  B --&gt; C{Decision}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A[Hard edge] --&gt; B(Round edge)
+  B --&gt; C{Decision}
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="key-dates" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="key-dates"><span class="header-section-number">9.3</span> Key Dates</h2>
+</section>
+<section id="contributors" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="contributors"><span class="header-section-number">9.4</span> Contributors</h2>
+<p>Contributor matrix</p>
+</section>
+<section id="communication-and-governance" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="communication-and-governance"><span class="header-section-number">9.5</span> Communication and Governance</h2>
+</section>
+<section id="funding-and-conflicts-of-interest" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="funding-and-conflicts-of-interest"><span class="header-section-number">9.6</span> Funding and Conflicts of Interest</h2>
+</section>
+<section id="intellectual-property" class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="intellectual-property"><span class="header-section-number">9.7</span> Intellectual Property</h2>
+</section>
+</section>
+<section id="financial-plan" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Financial Plan</h1>
+<section id="direct-costs" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="direct-costs"><span class="header-section-number">10.1</span> Direct Costs</h2>
+</section>
+<section id="indirect-costs" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="indirect-costs"><span class="header-section-number">10.2</span> Indirect Costs</h2>
+</section>
+<section id="total-estimates" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="total-estimates"><span class="header-section-number">10.3</span> Total Estimates</h2>
+<p>Total estimates will include the direct and indirect costs</p>
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-aldag2023" class="csl-entry" role="listitem">
+Aldag, Levi, Johnathan Dallman, Erik Henkelman, Ashley Herda, Jeffrey Randall, Armin Tarakemeh, Tucker Morey, and Bryan G. Vopat. 2023. <span>“Various Definitions of Failure Are Used in Studies of Patients Who Underwent Anterior Cruciate Ligament Reconstruction.”</span> <em>Arthroscopy, Sports Medicine, and Rehabilitation</em> 5 (6): 100801. <a href="https://doi.org/10.1016/j.asmr.2023.100801">https://doi.org/10.1016/j.asmr.2023.100801</a>.
+</div>
+<div id="ref-amir-behghadami2020" class="csl-entry" role="listitem">
+Amir-Behghadami, Mehrdad, and Ali Janati. 2020. <span>“Population, Intervention, Comparison, Outcomes and Study (PICOS) Design as a Framework to Formulate Eligibility Criteria in Systematic Reviews.”</span> <em>Emergency Medicine Journal</em> 37 (6): 387–87. <a href="https://doi.org/10.1136/emermed-2020-209567">https://doi.org/10.1136/emermed-2020-209567</a>.
+</div>
+<div id="ref-anderson2006" class="csl-entry" role="listitem">
+Anderson, Allen F., James J. Irrgang, Mininder S. Kocher, Barton J. Mann, and John J. Harrast. 2006. <span>“The International Knee Documentation Committee Subjective Knee Evaluation Form.”</span> <em>The American Journal of Sports Medicine</em> 34 (1): 128–35. <a href="https://doi.org/10.1177/0363546505280214">https://doi.org/10.1177/0363546505280214</a>.
+</div>
+<div id="ref-collins2011" class="csl-entry" role="listitem">
+Collins, Natalie J., Devyani Misra, David T. Felson, Kay M. Crossley, and Ewa M. Roos. 2011. <span>“Measures of Knee Function: International Knee Documentation Committee (IKDC) Subjective Knee Evaluation Form, Knee Injury and Osteoarthritis Outcome Score (KOOS), Knee Injury and Osteoarthritis Outcome Score Physical Function Short Form (KOOS<span>-</span>PS), Knee Outcome Survey Activities of Daily Living Scale (KOS<span>-</span>ADL), Lysholm Knee Scoring Scale, Oxford Knee Score (OKS), Western Ontario and McMaster Universities Osteoarthritis Index (WOMAC), Activity Rating Scale (ARS), and Tegner Activity Score (TAS).”</span> <em>Arthritis Care &amp; Research</em> 63 (S11). <a href="https://doi.org/10.1002/acr.20632">https://doi.org/10.1002/acr.20632</a>.
+</div>
+<div id="ref-dunn2010" class="csl-entry" role="listitem">
+Dunn, Warren R., Kurt P. Spindler, Annunziato Amendola, Jack T. Andrish, Christopher C. Kaeding, Robert G. Marx, Eric C. McCarty, et al. 2010. <span>“Which Preoperative Factors, Including Bone Bruise, Are Associated With Knee Pain/Symptoms at Index Anterior Cruciate Ligament Reconstruction (ACLR)?”</span> <em>The American Journal of Sports Medicine</em> 38 (9): 1778–87. <a href="https://doi.org/10.1177/0363546510370279">https://doi.org/10.1177/0363546510370279</a>.
+</div>
+<div id="ref-haddaway2021" class="csl-entry" role="listitem">
+Haddaway, N R, M J Grainger, and C T Gray. 2021. <span>“Citationchaser: An r Package and Shiny App for Forward and Backward Citations Chasing in Academic Searching,”</span> February.
+</div>
+<div id="ref-irrgang2001" class="csl-entry" role="listitem">
+Irrgang, James J., Allen F. Anderson, Arthur L. Boland, Christopher D. Harner, Masahiro Kurosaka, Phillipe Neyret, John C. Richmond, and K. Donald Shelborne. 2001. <span>“Development and Validation of the International Knee Documentation Committee Subjective Knee Form.”</span> <em>The American Journal of Sports Medicine</em> 29 (5): 600–613. <a href="https://doi.org/10.1177/03635465010290051301">https://doi.org/10.1177/03635465010290051301</a>.
+</div>
+<div id="ref-magnussen2009" class="csl-entry" role="listitem">
+Magnussen, Robert A., Lars-Petter Granan, Warren R. Dunn, Annunziato Amendola, Jack T. Andrish, Robert Brophy, James L. Carey, et al. 2009. <span>“Cross<span>-</span>Cultural Comparison of Patients Undergoing ACL Reconstruction in the United States and Norway.”</span> <em>Knee Surgery, Sports Traumatology, Arthroscopy</em> 18 (1): 98–105. <a href="https://doi.org/10.1007/s00167-009-0919-5">https://doi.org/10.1007/s00167-009-0919-5</a>.
+</div>
+<div id="ref-nguyen2016" class="csl-entry" role="listitem">
+Nguyen, Joseph T., David Wasserstein, Emily K. Reinke, Kurt P. Spindler, Nabil Mehta, John B. Doyle, Robert G. Marx, et al. 2016. <span>“Does the Chronicity of Anterior Cruciate Ligament Ruptures Influence Patient-Reported Outcomes Before Surgery?”</span> <em>The American Journal of Sports Medicine</em> 45 (3): 541–49. <a href="https://doi.org/10.1177/0363546516669344">https://doi.org/10.1177/0363546516669344</a>.
+</div>
+<div id="ref-ridha2025" class="csl-entry" role="listitem">
+Ridha, Ali, Siddarth Raj, Henry Searle, Imran Ahmed, Nicholas Smith, Andrew Metcalfe, and Chetan Khatri. 2025. <span>“The Recovery Trajectory of Anterior Cruciate Ligament Ruptures in Randomised Controlled Trials: A Systematic Review and Meta<span>-</span>Analysis of Operative and Nonoperative Treatments.”</span> <em>Knee Surgery, Sports Traumatology, Arthroscopy</em>, February. <a href="https://doi.org/10.1002/ksa.12626">https://doi.org/10.1002/ksa.12626</a>.
+</div>
+<div id="ref-tennant2020" class="csl-entry" role="listitem">
+Tennant, Peter W G, Eleanor J Murray, Kellyn F Arnold, Laurie Berrie, Matthew P Fox, Sarah C Gadd, Wendy J Harrison, et al. 2020. <span>“Use of Directed Acyclic Graphs (DAGs) to Identify Confounders in Applied Health Research: Review and Recommendations.”</span> <em>International Journal of Epidemiology</em> 50 (2): 620–32. <a href="https://doi.org/10.1093/ije/dyaa213">https://doi.org/10.1093/ije/dyaa213</a>.
+</div>
+<div id="ref-ting2020" class="csl-entry" role="listitem">
+Ting, Chee Han, Corey Scholes, David Zbrojkiewicz, and Christopher Bell. 2020. <span>“Baseline Analysis of Patients Presenting for Surgical Review of Anterior Cruciate Ligament Rupture Reveals Heterogeneity in Patient-Reported Outcome Measures.”</span> <em>The Journal of Knee Surgery</em> 35 (02): 159–66. <a href="https://doi.org/10.1055/s-0040-1713658">https://doi.org/10.1055/s-0040-1713658</a>.
+</div>
+<div id="ref-winterstein2013" class="csl-entry" role="listitem">
+Winterstein, Andrew P., Timothy A. McGuine, Kathleen E. Carr, and Scott J. Hetzel. 2013. <span>“Comparison of IKDC and SANE Outcome Measures Following Knee Injury in Active Female Patients.”</span> <em>Sports Health: A Multidisciplinary Approach</em> 5 (6): 523–29. <a href="https://doi.org/10.1177/1941738113499300">https://doi.org/10.1177/1941738113499300</a>.
+</div>
+</div></section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
