@@ -43,6 +43,7 @@ pacman::p_load(# Load required packages
   "simstudy",
   "DiagrammeR",
   "ggdag",
+  "forcats",
   install = TRUE,
   update = FALSE
 )
@@ -445,7 +446,85 @@ The data collection for this study will be conducted over multiple lines of acti
 
     2.  Covariance parameters retrieved from related studies detailing total effects of each parameter on baseline IKDC.
 
-## Analysis
+# Methods - Analysis
+
+To illustrate how the analysis will work - a pilot simulation is provided below.
+
+The first thing is to retrieve some starting parameters from the SHARKS registry. A recent governance report \[link\] was modified to return descriptives for IKDC at baseline and some basic demographics from the Tibiofemoral Instability cohort.
+
+```{r}
+
+SHARKSIKDCMean <- 47.5
+SHARKSIKDCSD <- 12.6
+SHARKSSexProp <- 358/519
+SHARKSAgeMean <- 27.3
+SHARKSAgeSD <- 7.8
+
+```
+
+Let's assume for now that the IKDCScore is correlated to age and sex - this may need to be tested in the SHARKS sample, or the correlation coefficient retrieved from the literature.
+
+```{r}
+#| label: simulation-dataset-sharks
+#| echo: true
+
+CorMat <- matrix(c(
+  1,0.6,0.4,  # SHARKSIKDC correlations
+  0.6,1,0.4,  # SHARKSAge correlations
+  0.4,0.4,1   # SHARKSSex correlations
+),
+nrow= 3
+)
+
+set.seed(2065)
+
+# Generate all correlated data at once (this creates continuous data)
+SHARKSBase <- simstudy::genCorData(
+  n = 500,
+  mu = c(IKDCBaseMean, AgeBaseMean, 0),  # mean for Sex will be adjusted
+  sigma = c(IKDCBaseSD, AgeBaseSD, 1),   # sigma for Sex is arbitrary since we'll convert
+  corMatrix = CorMat_extended,
+  cnames = c("IKDCBase", "AgeBase", "Sex_temp")
+)
+
+# Convert the continuous Sex_temp to binary using logistic transformation
+# This preserves the correlation structure
+SHARKSBase2 <- SHARKSBase |>
+  dplyr::mutate(
+    Sex1 = forcats::as_factor(as.numeric(plogis(Sex_temp) > (1 - 0.69))),
+    Sex2 = forcats::fct_recode(
+      Sex1,
+      Male = "1",
+      Female = "0"
+    )
+    ) |> dplyr::select(
+    -Sex_temp,
+    -Sex1
+    )  # Remove temporary variablee
+```
+
+A quick tabulation
+
+```{r}
+
+tblSHARKS <- gtsummary::tbl_summary(
+  SHARKSBase2 |> dplyr::select(
+    IKDCBase,
+    AgeBase,
+    Sex2
+  ),
+by = "Sex2",
+statistic = list(
+  all_continuous() ~ "{mean} ({sd})"
+),
+digits = list(
+  IKDCBase = c(1,1)
+)
+)
+
+knitr::knit_print(tblSHARKS)
+
+```
 
 # Ethical Considerations
 
