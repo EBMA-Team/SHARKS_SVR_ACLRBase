@@ -136,7 +136,7 @@ The second source is to review the relevant literature and identify any other va
 
 Previous work by our group reported no relationship between PROMs phenotype (cluster) and patient age, sex, body mass index or injury to examination delay @ting2020. Importantly, this study did not directly assess the relationship (adjusted or unadjusted) between baseline IKDC and patient demographics. There is a paucity of data addressing this question directly in the literature, therefore related literature will be drawn on to build a directed acyclic graph, to identify a reasonable adjustment set informing the study dataset.
 
-## The MOON Group
+### The MOON Group
 
 The first place to start is the [MOON](https://acltear.info/) (Multicentre Orthopaedic Outcomes Network) Knee Group, which is a prospective cohort registry of anterior cruciate injuries and surgical reconstruction across 19 physicians and 7 health institutions in the United States, that have enrolled \>3500 cases since 2002.
 
@@ -158,7 +158,7 @@ The MOON group previously compared their baseline data (N = 713) to the Norwegia
 
 -   Significant differences in all but one (QoL) subscales of KOOS, but none of the differences exceeded MCID except for "other symptoms". However, this was based on an *unadjusted* comparison.
 
-## Other variables
+### Other variables
 
 There are other factors that have not been raised in the literature to date that should be taken into account when attempting to compare samples drawn from a *global* population.
 
@@ -206,14 +206,13 @@ Measurements
 |  | General Health | Continuous | Yes - VR12 | Unlikely (not usually collected) |
 | Referral Pathway | Injury to Review delay | Continuous | Partial - chart review will be required | Possible (not universal) |
 | Pathology | Concomitant ligament injury | Categorical | Partial - chart review will be required | Yes |
-|  | Concomitant meniscal pathology | Categorical |  |  |
+|  | Concomitant meniscal pathology | Categorical | Partial - chart review will be required | Yes; form of capture can vary between studies |
+| Setting | Service Type | Categorical | Yes | Yes |
 |  |  |  |  |  |
-| Setting |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
-| Measurement | Collection method |  |  |  |
-|  | PROMs version |  |  |  |
-|  | Scoring method |  |  |  |
+|  | Consent Model | Categorical | Yes | Yes |
+| Measurement | Data Collection | Categorical | Yes | Yes |
+|  | PROMs version | Categorical | Yes | Yes |
+|  | Scoring method | Categorical | Yes | Possible; often not described |
 
 Summary of study variables required
 :::
@@ -426,6 +425,26 @@ flowchart TD
 
 ```
 
+The data collection for this study will be conducted over multiple lines of action as illustrated in @fig-datacollection;
+
+1.  Literature retrieval and data extraction
+
+    1.  Filtering for *comparable* studies to the local dataset based on population characteristics, healthcare setting and data-generation mechanisms.
+
+2.  Chart review of relevant cases in SHARKS registry
+
+    1.  An initial list derived from SHARKS registry, shared with hospital collaborator. Includes form links to standardised input for comorbidities and other inputs
+
+    2.  Chart review with feedback on each record for inclusion/exclusion variables
+
+    3.  Matching and processing to produce a refined list for data retrieval on *included* records only
+
+3.  Data simulation based on parameters retrieved from relevant literature
+
+    1.  Distribution parameters of outcome data (IKDC) and sample characteristics as per @fig-adjset.
+
+    2.  Covariance parameters retrieved from related studies detailing total effects of each parameter on baseline IKDC.
+
 ## Analysis
 
 # Ethical Considerations
@@ -524,9 +543,26 @@ flowchart LR
 
 Contributor matrix
 
+::: {#tbl-contributors}
+| Name            | Role                             | Project Role | Comments |
+|-----------------|----------------------------------|--------------|----------|
+| Lorenzo Calabro |                                  |              |          |
+| Corey Scholes   |                                  |              |          |
+| Garry Kirwan    | Assistant Director Physiotherapy | Collaborator |          |
+|                 |                                  |              |          |
+|                 |                                  |              |          |
+|                 |                                  |              |          |
+:::
+
 ## Communication and Governance
 
 ## Funding and Conflicts of Interest
+
+Funding will be provided the Orthopaedic Research Fund at QEII Hospital.
+
+Author CS is a stockholder of EBM Analytics and declares an institutional relationship with the Department of Orthopaedics (QEII Hospital) for the purposes of this project.
+
+The proposed stakeholders of this project
 
 ## Intellectual Property
 
