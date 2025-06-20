@@ -51,6 +51,7 @@ pacman::p_load(# Load required packages
   "fabricatr",
   "broom",
   "broom.mixed",
+  "broom.helpers",
   "lme4",
   "performance",
   "marginaleffects",
@@ -1269,6 +1270,8 @@ epoxy("
 ```{r}
 #|label: fig-adjust-compare
 #|fig-cap: "Comparison between observed and adjusted scores for SHARKS IKDC baseline"
+
+
 # Step 6: Visualization of adjustment effects
 # =============================================================================
 
