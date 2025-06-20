@@ -23,6 +23,8 @@ bibliography: ACLBase.bib
 
 # Summary
 
+Insert summary
+
 # Preamble
 
 Libraries installed for further analysis
@@ -44,6 +46,15 @@ pacman::p_load(# Load required packages
   "DiagrammeR",
   "ggdag",
   "forcats",
+  "gtsummary",
+  "gt",
+  "fabricatr",
+  "broom",
+  "broom.mixed",
+  "lme4",
+  "performance",
+  "marginaleffects",
+  "sjPlot",
   install = TRUE,
   update = FALSE
 )
@@ -88,13 +99,19 @@ The baseline variation for surgical reconstruction cases in @fig-radhi2024 is re
 The study question was presented using the PICOS framework [@amir-behghadami2020].
 
 ::: {#tbl-question}
-| Component | Study Component | Comments |
-|------------------------|------------------------|------------------------|
-| Participants | Patients presenting with injury of the anterior cruciate ligament | Patients present under variable circumstances, with referrals from emergency or primary care |
-| Intervention | Electing to be added to the wait list for surgical reconstruction within the public health system | Typical wait times within the department are \~4months from initial consultation |
-| Comparator | Compared to the published literature | Split into two approaches - overall combined results (meta-analysis) or with selective matching of contextually similar studies |
-| Outcomes | Is baseline IKDC significantly different to published data when adjusted for confounders with respect to normalised or z-score totals |  |
-| Study Design | Meta-analysis and simulation |  |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| Component             | Study Component                                                                                                                       | Comments                                                                                                                        |
++=======================+=======================================================================================================================================+=================================================================================================================================+
+| Participants          | Patients presenting with injury of the anterior cruciate ligament                                                                     | Patients present under variable circumstances, with referrals from emergency or primary care                                    |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| Intervention          | Electing to be added to the wait list for surgical reconstruction within the public health system                                     | Typical wait times within the department are \~4months from initial consultation                                                |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| Comparator            | Compared to the published literature                                                                                                  | Split into two approaches - overall combined results (meta-analysis) or with selective matching of contextually similar studies |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| Outcomes              | Is baseline IKDC significantly different to published data when adjusted for confounders with respect to normalised or z-score totals |                                                                                                                                 |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| Study Design          | Meta-analysis and simulation                                                                                                          |                                                                                                                                 |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
 
 Study question identified under the PICOS framework
 :::
@@ -116,13 +133,19 @@ Literature - a non-systematic search will be conducted of Pubmed, Google Scholar
 Cases will be retrieved from SHARKS that match the criteria described in @ting2020 and summarised below.
 
 ::: {#tbl-criteria}
-| Inclusion | Exclusion | Comments |
-|------------------------|------------------------|------------------------|
-| Enrolled in SHARKS registry | Surgical booking not offered | Inclusion criteria for SHARKS can be reviewed on wiki or governance report |
-| Primary presentation | Presentation is the contralateral limb of a previous ACL rupture |  |
-| Clinical and imaging-supported diagnosis of ACL rupture | ACL pathology is a non-traumatic or congenital absence or deficiency |  |
-| Concomitant pathology is limited to menisci | Pathology to collateral and other cruciate ligaments deemed to require surgical reconstruction at the time of surgery |  |
-|  | Withdrawal of consent to participate in registry prior to surgery |  |
++---------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+
+| Inclusion                                               | Exclusion                                                                                                             | Comments                                                                   |
++=========================================================+=======================================================================================================================+============================================================================+
+| Enrolled in SHARKS registry                             | Surgical booking not offered                                                                                          | Inclusion criteria for SHARKS can be reviewed on wiki or governance report |
++---------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+
+| Primary presentation                                    | Presentation is the contralateral limb of a previous ACL rupture                                                      |                                                                            |
++---------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+
+| Clinical and imaging-supported diagnosis of ACL rupture | ACL pathology is a non-traumatic or congenital absence or deficiency                                                  |                                                                            |
++---------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+
+| Concomitant pathology is limited to menisci             | Pathology to collateral and other cruciate ligaments deemed to require surgical reconstruction at the time of surgery |                                                                            |
++---------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+
+|                                                         | Withdrawal of consent to participate in registry prior to surgery                                                     |                                                                            |
++---------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+
 
 Summary of inclusion and exclusion criteria for local sample
 :::
@@ -198,22 +221,37 @@ Measurements
 -   Scoring method (normalised vs z-score)
 
 ::: {#tbl-variables}
-| Category | Variable | Type - Response | Available SHARKS | Available Published |
-|---------------|---------------|---------------|---------------|---------------|
-| Patient | Age at presentation | Continuous - Years | Yes | Yes |
-|  | Sex | Categorical | Yes | Yes |
-|  | Activity Type | Categorical | No | Possible (not universal) |
-|  | Activity Level | Ordinal | Yes - Tegner Activity Scale | Possible (not universal) |
-|  | General Health | Continuous | Yes - VR12 | Unlikely (not usually collected) |
-| Referral Pathway | Injury to Review delay | Continuous | Partial - chart review will be required | Possible (not universal) |
-| Pathology | Concomitant ligament injury | Categorical | Partial - chart review will be required | Yes |
-|  | Concomitant meniscal pathology | Categorical | Partial - chart review will be required | Yes; form of capture can vary between studies |
-| Setting | Service Type | Categorical | Yes | Yes |
-|  |  |  |  |  |
-|  | Consent Model | Categorical | Yes | Yes |
-| Measurement | Data Collection | Categorical | Yes | Yes |
-|  | PROMs version | Categorical | Yes | Yes |
-|  | Scoring method | Categorical | Yes | Possible; often not described |
++------------------+--------------------------------+--------------------+-----------------------------------------+-----------------------------------------------+
+| Category         | Variable                       | Type - Response    | Available SHARKS                        | Available Published                           |
++==================+================================+====================+=========================================+===============================================+
+| Patient          | Age at presentation            | Continuous - Years | Yes                                     | Yes                                           |
++------------------+--------------------------------+--------------------+-----------------------------------------+-----------------------------------------------+
+|                  | Sex                            | Categorical        | Yes                                     | Yes                                           |
++------------------+--------------------------------+--------------------+-----------------------------------------+-----------------------------------------------+
+|                  | Activity Type                  | Categorical        | No                                      | Possible (not universal)                      |
++------------------+--------------------------------+--------------------+-----------------------------------------+-----------------------------------------------+
+|                  | Activity Level                 | Ordinal            | Yes - Tegner Activity Scale             | Possible (not universal)                      |
++------------------+--------------------------------+--------------------+-----------------------------------------+-----------------------------------------------+
+|                  | General Health                 | Continuous         | Yes - VR12                              | Unlikely (not usually collected)              |
++------------------+--------------------------------+--------------------+-----------------------------------------+-----------------------------------------------+
+| Referral Pathway | Injury to Review delay         | Continuous         | Partial - chart review will be required | Possible (not universal)                      |
++------------------+--------------------------------+--------------------+-----------------------------------------+-----------------------------------------------+
+| Pathology        | Concomitant ligament injury    | Categorical        | Partial - chart review will be required | Yes                                           |
++------------------+--------------------------------+--------------------+-----------------------------------------+-----------------------------------------------+
+|                  | Concomitant meniscal pathology | Categorical        | Partial - chart review will be required | Yes; form of capture can vary between studies |
++------------------+--------------------------------+--------------------+-----------------------------------------+-----------------------------------------------+
+| Setting          | Service Type                   | Categorical        | Yes                                     | Yes                                           |
++------------------+--------------------------------+--------------------+-----------------------------------------+-----------------------------------------------+
+|                  |                                |                    |                                         |                                               |
++------------------+--------------------------------+--------------------+-----------------------------------------+-----------------------------------------------+
+|                  | Consent Model                  | Categorical        | Yes                                     | Yes                                           |
++------------------+--------------------------------+--------------------+-----------------------------------------+-----------------------------------------------+
+| Measurement      | Data Collection                | Categorical        | Yes                                     | Yes                                           |
++------------------+--------------------------------+--------------------+-----------------------------------------+-----------------------------------------------+
+|                  | PROMs version                  | Categorical        | Yes                                     | Yes                                           |
++------------------+--------------------------------+--------------------+-----------------------------------------+-----------------------------------------------+
+|                  | Scoring method                 | Categorical        | Yes                                     | Possible; often not described                 |
++------------------+--------------------------------+--------------------+-----------------------------------------+-----------------------------------------------+
 
 Summary of study variables required
 :::
@@ -448,83 +486,873 @@ The data collection for this study will be conducted over multiple lines of acti
 
 # Methods - Analysis
 
-To illustrate how the analysis will work - a pilot simulation is provided below.
+Now that we have some sources to work with, for the purposes of this planning document it is now possible to walk through a simulated analysis to illustrate how the study will look. The first step is to define the literature characteristics to take these into account in the case-mixture adjustment when comparing our local data to the broader knowledge. For the purposes of this illustration, the following characteristics have been included;
 
-The first thing is to retrieve some starting parameters from the SHARKS registry. A recent governance report \[link\] was modified to return descriptives for IKDC at baseline and some basic demographics from the Tibiofemoral Instability cohort.
+::: {#tbl-sim-prep}
++---------------------------------------------------------+-----------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Characteristic                                          | Responses                                                       | Comments                                                                      |
++=========================================================+=================================================================+===============================================================================+
+| Study type                                              | Randomised controlled trial                                     |                                                                               |
+|                                                         |                                                                 |                                                                               |
+|                                                         | Registry                                                        |                                                                               |
+|                                                         |                                                                 |                                                                               |
+|                                                         | Uncontrolled cohort or case series                              |                                                                               |
++---------------------------------------------------------+-----------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Effect of selection bias                                | 0; -1; -2                                                       | The least biased with respect to patient selection would be national registry |
++---------------------------------------------------------+-----------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Measurement precision                                   | 0.8; 0.9; 0.7                                                   | Large-scale registry most precise                                             |
++---------------------------------------------------------+-----------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Missing date rate                                       | 0.05; 0.15; 0.20                                                | RCT generally has lowest missing data rate                                    |
++---------------------------------------------------------+-----------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Capture method                                          | Electronic; Paper                                               | Expect a roughly even split across studies and regions                        |
++---------------------------------------------------------+-----------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Variance due to measurement error                       | 2; 4                                                            | Expect electronic to be more precise for the purposes of the simulation       |
++---------------------------------------------------------+-----------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Health setting                                          | Academic_Medical_Center; Community_Hospital; Specialty_Clinic;  | This will need refinement during literature extraction                        |
+|                                                         |                                                                 |                                                                               |
+|                                                         | Primary_Care                                                    |                                                                               |
++---------------------------------------------------------+-----------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Resources available to patient prior to surgical review | 4, 2, 3, 1                                                      | This is more related to socioeconomic status of country_region                |
++---------------------------------------------------------+-----------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Case complexity                                         | 65, 50, 35, 20                                                  | Severity of functional deficit at the time of review                          |
++---------------------------------------------------------+-----------------------------------------------------------------+-------------------------------------------------------------------------------+
+
+Region and study characteristics incorporated into analysis simulation
+:::
 
 ```{r}
+#| label: ikdc-simulation-prep-1
 
-SHARKSIKDCMean <- 47.5
-SHARKSIKDCSD <- 12.6
-SHARKSSexProp <- 358/519
-SHARKSAgeMean <- 27.3
-SHARKSAgeSD <- 7.8
 
-```
-
-Let's assume for now that the IKDCScore is correlated to age and sex - this may need to be tested in the SHARKS sample, or the correlation coefficient retrieved from the literature.
-
-```{r}
-#| label: simulation-dataset-sharks
-#| echo: true
-
-CorMat <- matrix(c(
-  1,0.6,0.4,  # SHARKSIKDC correlations
-  0.6,1,0.4,  # SHARKSAge correlations
-  0.4,0.4,1   # SHARKSSex correlations
-),
-nrow= 3
-)
 
 set.seed(2065)
 
-# Generate all correlated data at once (this creates continuous data)
-SHARKSBase <- simstudy::genCorData(
-  n = 500,
-  mu = c(IKDCBaseMean, AgeBaseMean, 0),  # mean for Sex will be adjusted
-  sigma = c(IKDCBaseSD, AgeBaseSD, 1),   # sigma for Sex is arbitrary since we'll convert
-  corMatrix = CorMat_extended,
-  cnames = c("IKDCBase", "AgeBase", "Sex_temp")
+# Step 1: DEFINE STUDY CHARACTERISTICS AND DATA GENERATING MECHANISMS
+# =============================================================================
+
+# Define study types and their characteristics (from draft 2)
+study_types <- tibble(
+  study_type = c("RCT", "Registry", "Observational_Cohort"),
+  selection_bias_effect = c(0, -2, -1),  # RCT least biased
+  measurement_precision = c(0.8, 0.9, 0.7),  # Registry most precise
+  missing_data_rate = c(0.05, 0.15, 0.20)
 )
 
-# Convert the continuous Sex_temp to binary using logistic transformation
-# This preserves the correlation structure
-SHARKSBase2 <- SHARKSBase |>
-  dplyr::mutate(
-    Sex1 = forcats::as_factor(as.numeric(plogis(Sex_temp) > (1 - 0.69))),
-    Sex2 = forcats::fct_recode(
-      Sex1,
-      Male = "1",
-      Female = "0"
-    )
-    ) |> dplyr::select(
-    -Sex_temp,
-    -Sex1
-    )  # Remove temporary variablee
+# Define data capture methods
+capture_methods <- tibble(
+  capture_method = c("Electronic", "Paper"),
+  measurement_error_sd = c(2, 4),  # Electronic more precise
+  processing_delay_bias = c(0, 0.5)
+)
+
+# Define healthcare setting types
+setting_types <- tibble(
+  setting_type = c("Academic_Medical_Center", "Community_Hospital", 
+                   "Specialty_Clinic", "Primary_Care"),
+  resource_avail = c(4, 2, 3, 1),  # 1=low, 4=high resources
+  case_complexity_mean = c(65, 50, 35, 20),  # baseline severity
+  staff_training_effect = c(2, -1, 1, -2)
+)
+
 ```
 
-A quick tabulation
+We'll use a simulation package to create a hierarchical dataset with the following structure
+
+Region - highest level
+
+Study - nested within region; contains study characteristics
+
+Patient - nested within study and region; contains patient-level characteristics
 
 ```{r}
 
-tblSHARKS <- gtsummary::tbl_summary(
-  SHARKSBase2 |> dplyr::select(
-    IKDCBase,
-    AgeBase,
-    Sex2
-  ),
-by = "Sex2",
-statistic = list(
-  all_continuous() ~ "{mean} ({sd})"
-),
-digits = list(
-  IKDCBase = c(1,1)
-)
+
+# Step 2: Define Region-level variation (affects baseline IKDC across regions)
+gen.region <- defData(
+  varname = "RegionEffect",
+  dist = "normal",
+  formula = 0,        # Overall mean effect
+  variance = 8,       # Between-region variance for IKDC
+  id = "idRegion"
 )
 
-knitr::knit_print(tblSHARKS)
+gen.region <- defData(
+  gen.region,
+  varname = "nStudy",
+  dist = "noZeroPoisson",
+  formula = 4
+)
+
+# Add regional preferences for study types and settings
+gen.region <- defData(
+  gen.region,
+  varname = "region_academic_preference",
+  dist = "normal",
+  formula = 0,
+  variance = 0.25
+)
+
+gen.region <- defData(
+  gen.region,
+  varname = "region_electronic_adoption",
+  dist = "normal", 
+  formula = 0.4,  # Base 70% electronic adoption
+  variance = 0.06
+)
+
+# Generate regions
+dtRegion <- genData(8, gen.region) |>
+  mutate(
+    region_electronic_adoption = pmax(0.25, pmin(0.8, region_electronic_adoption))
+  )
+
+
+
 
 ```
+
+Now that the region characteristics have been defined, the study characteristics can be defined, including an effect of study on variation in baseline IKDC, the sample size and regional variation on the proportion of male cases within the study sample.
+
+```{r}
+
+# Step 3: Define Study-level variation within regions
+gen.study <- defDataAdd(
+  varname = "StudyEffect", 
+  dist = "normal", 
+  formula = 0,        # Mean study effect within region
+  variance = 2        # Between-study variance within region
+)
+
+gen.study <- defDataAdd(
+  gen.study,
+  varname = "nSample", 
+  dist = "noZeroPoisson",
+  formula = 150       # Sample size per study
+)
+
+# Add study design characteristics
+gen.study <- defDataAdd(
+  gen.study,
+  varname = "study_type_prob",
+  dist = "uniform",
+  formula = "0;1"
+)
+
+gen.study <- defDataAdd(
+  gen.study,
+  varname = "setting_type_prob", 
+  dist = "uniform",
+  formula = "0;1"
+)
+
+# Add regional variation in covariate distributions (from draft 1)
+gen.study <- defDataAdd(
+  gen.study,
+  varname = "RegionMaleRate",
+  dist = "normal",
+  formula = "0.69 + 0.15 * RegionEffect/5",  # Regional variation in male proportion
+  variance = 0.01
+)
+
+gen.study <- defDataAdd(
+  gen.study,
+  varname = "RegionAgeShift",
+  dist = "normal", 
+  formula = "RegionEffect * 0.5",  # Regional age variation
+  variance = 1
+)
+
+# Generate studies within regions
+dtStudy <- genCluster(dtRegion, "idRegion", numIndsVar = "nStudy", level1ID = "idStudy")
+dtStudy <- addColumns(gen.study, dtStudy)
+
+# Assign study characteristics based on probabilities
+dtStudy <- dtStudy |>
+  mutate(
+    RegionMaleRate = pmax(0.4, pmin(0.8, RegionMaleRate)),
+    
+    # Assign study type
+    study_type = case_when(
+      study_type_prob < 0.3 ~ "RCT",
+      study_type_prob < 0.6 ~ "Registry", 
+      TRUE ~ "Observational_Cohort"
+    ),
+    
+    # Assign setting type (academic centers more likely in regions with positive effects)
+    setting_type = case_when(
+      setting_type_prob < (0.2 + 0.1 * pmax(0, RegionEffect/5)) ~ "Academic_Medical_Center",
+      setting_type_prob < 0.5 ~ "Specialty_Clinic",
+      setting_type_prob < 0.8 ~ "Community_Hospital",
+      TRUE ~ "Primary_Care"
+    ),
+    
+    # Assign capture method based on regional adoption
+    capture_method = ifelse(
+      runif(n()) < region_electronic_adoption, 
+      "Electronic", 
+      "Paper"
+    )
+  ) |>
+  # Join with study characteristics
+  left_join(study_types, by = "study_type") |>
+  left_join(setting_types, by = "setting_type") |>
+  left_join(capture_methods, by = "capture_method")
+
+
+```
+
+We then move to estimating patient characteristics based on the hierarchical data structure, with patient age, sex proportions and the incidence of meniscus or cartilage pathology all varying by region. In addition, socioeconomic status, education level and comorbidity burden have been incorporated into the simulation. These have been included for illustration purposes as these are typically not reported in the literature for ACL injury and reconstruction.
+
+```{r}
+
+
+# Step 4: Define Patient-level covariates using SHARKS approach with study effects
+gen.patient <- defDataAdd(
+  varname = "age_offset",
+  dist = "gamma",
+  formula = "log(27.3 - 16 + RegionAgeShift)",  # Regional age variation
+  variance = "(5.5^2) / (27.3 - 16)^2",
+  link = "log"
+)
+
+gen.patient <- defDataAdd(
+  gen.patient,
+  varname = "Age",
+  formula = "age_offset + 16",
+  dist = "nonrandom"
+)
+
+# Gender with study-specific selection effects
+gen.patient <- defDataAdd(
+  gen.patient,
+  varname = "Male",
+  dist = "binary",
+  formula = "RegionMaleRate + 0.1 * (study_type == 'RCT')",  # RCTs may have different gender balance
+  link = "logit"
+)
+
+gen.patient <- defDataAdd(
+  gen.patient,
+  varname = "bmi_scale",
+  formula = "log(26 + 0.15 * (Age - 25) + 3 * Male + 0.1 * RegionEffect)",
+  variance = 0.04,
+  dist = "gamma",
+  link = "log"
+)
+
+gen.patient <- defDataAdd(
+  gen.patient,
+  varname = "BMI",
+  formula = "pmax(pmin(bmi_scale, 40), 18)",
+  dist = "nonrandom"
+)
+
+gen.patient <- defDataAdd(
+  gen.patient,
+  varname = "MeniscusCartilage",
+  formula = "-1.5 + 0.02 * Age + 0.04 * Male + 0.06 * BMI + 0.05 * RegionEffect",
+  dist = "binary",
+  link = "logit"
+)
+
+# Add socioeconomic variables (from draft 2 approach)
+gen.patient <- defDataAdd(
+  gen.patient,
+  varname = "ses_score",
+  dist = "normal",
+  formula = "50 + 5 * (setting_type == 'Academic_Medical_Center') + 2 * RegionEffect",
+  variance = 100
+)
+
+gen.patient <- defDataAdd(
+  gen.patient,
+  varname = "education_years",
+  dist = "normal",
+  formula = "14 + 0.02 * ses_score + (setting_type == 'Academic_Medical_Center')",
+  variance = 9
+)
+
+gen.patient <- defDataAdd(
+  gen.patient,
+  varname = "comorbidity_count",
+  dist = "poisson",
+  formula = "log(2 + 0.5 * (setting_type == 'Academic_Medical_Center') + 0.02 * Age)"
+)
+
+```
+
+Now that we have the independent variables defined, we can generate a varying IKDC score that is clustered to regions and studies.
+
+```{r}
+
+ #Step 5: Define IKDC with hierarchical structure and study methodology effects
+gen.patient <- defDataAdd(
+  gen.patient,
+  varname = "ikdc_base",
+  formula = "log(72 - 0.25 * Age + 4 * Male - 0.4 * BMI - 12 * MeniscusCartilage + 0.1 * ses_score - 2 * comorbidity_count)",
+  variance = 0.06,
+  dist = "gamma",
+  link = "log"
+)
+
+# Add study methodology effects to IKDC
+gen.patient <- defDataAdd(
+  gen.patient,
+  varname = "IKDC_raw",
+  formula = "ikdc_base + RegionEffect + StudyEffect + selection_bias_effect + staff_training_effect",
+  dist = "nonrandom"
+)
+
+# Add measurement error based on capture method
+gen.patient <- defDataAdd(
+  gen.patient,
+  varname = "measurement_error",
+  dist = "normal",
+  formula = "0",
+  variance = "measurement_error_sd^2"
+)
+
+gen.patient <- defDataAdd(
+  gen.patient,
+  varname = "IKDC",
+  formula = "pmax(pmin(IKDC_raw + measurement_error + processing_delay_bias, 100), 0)",
+  dist = "nonrandom"
+)
+
+# Generate patients within studies
+dtPatient <- genCluster(
+  dtStudy, 
+  cLevelVar = "idStudy",
+  numIndsVar = "nSample",
+  level1ID = "idPatient"
+)
+
+dtPatient <- addColumns(gen.patient, dtPatient)
+```
+
+The literature dataset is now in place - we can move to a separate dataset to represent the local SHARKS dataset. Then the study characteristics are added to enable combination with the literature dataset for further analysis.
+
+```{r}
+# Step 6: Add the local SHARKS dataset with known characteristics
+SHARKSDef <- defData(
+  varname = "age_offset",
+  dist = "gamma",
+  formula = "log(27.3 - 16)",
+  variance = (7.8^2) / (27.3 - 16)^2, 
+  link = "log"
+)
+
+SHARKSDef <- defData(
+  SHARKSDef,
+  varname = "Age",
+  formula = "age_offset + 16",
+  dist = "nonrandom"
+)
+
+SHARKSDef <- defData(
+  SHARKSDef, 
+  varname = "Male", 
+  dist = "binary",
+  formula = 0.69, 
+  link = "logit"
+)
+
+SHARKSDef <- defData(
+  SHARKSDef,
+  varname = "bmi_scale",
+  formula = "log(26 + 0.15 * (Age - 25) + 3 * Male)",
+  variance = 0.04,
+  dist = "gamma",
+  link = "log"
+)
+
+SHARKSDef <- defData(
+  SHARKSDef,
+  varname = "BMI",
+  formula = "pmax(pmin(bmi_scale, 40), 18)",
+  dist = "nonrandom"
+)
+
+SHARKSDef <- defData(
+  SHARKSDef,
+  varname = "MeniscusCartilage",
+  formula = "-1.5 + 0.02 * Age + 0.04 * Male + 0.06 * BMI",
+  dist = "binary",
+  link = "logit"
+)
+
+# Add socioeconomic variables for local data
+SHARKSDef <- defData(
+  SHARKSDef,
+  varname = "ses_score",
+  dist = "normal",
+  formula = 52,  # Slightly above average for your setting
+  variance = 80
+)
+
+SHARKSDef <- defData(
+  SHARKSDef,
+  varname = "education_years", 
+  dist = "normal",
+  formula = 15,  # Higher education in your population
+  variance = 6
+)
+
+SHARKSDef <- defData(
+  SHARKSDef,
+  varname = "comorbidity_count",
+  dist = "poisson",
+  formula = "log(3.2 + 0.02 * Age)"  # Higher comorbidity
+)
+
+SHARKSDef <- defData(
+  SHARKSDef,
+  varname = "ikdc_scale",
+  formula = "log(72 - 0.25 * Age + 4 * Male - 0.4 * BMI - 12 * MeniscusCartilage + 0.1 * ses_score - 2 * comorbidity_count)",
+  variance = 0.12,
+  dist = "gamma",
+  link = "log"
+)
+
+SHARKSDef <- defData(
+  SHARKSDef,
+  varname = "IKDC",
+  formula = "pmax(pmin(ikdc_scale, 100), 0)",
+  dist = "nonrandom"
+)
+
+# Generate local SHARKS data
+SHARKSData <- genData(n = 500, SHARKSDef)
+
+# Add study characteristics for local data
+SHARKSLocal <- SHARKSData |>
+  mutate(
+    idRegion = 1,
+    idStudy = 0,
+    idPatient = row_number() + max(dtPatient$idPatient),
+    RegionEffect = 0,
+    StudyEffect = 0,
+    RegionMaleRate = 0.69,
+    RegionAgeShift = 0,
+    nStudy = NA,
+    nSample = NA,
+    # Local study characteristics
+    study_type = "Observational_Cohort",
+    setting_type = "Community_Hospital",  # Adjust as appropriate
+    capture_method = "Electronic",
+    selection_bias_effect = -1,
+    measurement_precision = 0.7,
+    missing_data_rate = 0.20,
+    resource_avail = 2,
+    case_complexity_mean = 50,
+    staff_training_effect = -1,
+    measurement_error_sd = 2,
+    processing_delay_bias = 0,
+    # Intermediate variables
+    age_offset = NA,
+    bmi_scale = NA,
+    ikdc_base = NA,
+    ikdc_scale = IKDC,
+    IKDC_raw = IKDC,
+    measurement_error = 0,
+    region_academic_preference = 0,
+    region_electronic_adoption = 1,
+    study_type_prob = NA,
+    setting_type_prob = NA
+  ) |>
+  select(all_of(names(dtPatient)))
+
+
+```
+
+We now combine the datasets and make some final adjustments to enable application of regression methods for a hierarchical model construction to underpin the case-mixture adjustment.
+
+```{r}
+# Step 7: Combine datasets
+dtCombined <- bind_rows(
+  dtPatient,
+  SHARKSLocal
+) |>
+  mutate(
+    DataSource = ifelse(idStudy == 0, "Local_SHARKS", "Literature"),
+    idRegion = as.factor(idRegion),
+    study_type = factor(study_type),
+    setting_type = factor(setting_type),
+    capture_method = factor(capture_method)
+  )
+
+# Create analysis dataset with proper factors and centering
+dtAnalysis <- dtCombined |>
+  mutate(
+    # Center continuous variables
+    Age_c = scale(Age, center = TRUE, scale = FALSE)[,1],
+    BMI_c = scale(BMI, center = TRUE, scale = FALSE)[,1],
+    ses_score_c = scale(ses_score, center = TRUE, scale = FALSE)[,1],
+    education_years_c = scale(education_years, center = TRUE, scale = FALSE)[,1],
+    # Create factor versions
+    idRegion_f = as.factor(idRegion),
+    idStudy_f = as.factor(idStudy),
+    Sex_f = factor(Male, levels = c(0, 1), labels = c("Female", "Male")),
+    MeniscusCartilage_f = factor(MeniscusCartilage, levels = c(0, 1), 
+                                labels = c("No", "Yes")),
+    DataSource_f = factor(DataSource, levels = c("Local_SHARKS", "Literature")),
+    is_local = ifelse(DataSource == "Local_SHARKS", 1, 0)
+  )
+```
+
+## Visualisation
+
+Let's have a look at the dataset in table and plot forms so we can understand the data structure a bit better. Let's have a look at the variation in IKDC by region.
+
+```{r}
+#| label: fig-sim-IKDC
+#| fig-cap: "Distribution of simulated IKDC at baseline assessment across multiple regions. Region 0 is the local dataset"
+
+
+FigSimIKDC <- dtAnalysis |> ggplot(aes(y = idRegion, x = IKDC)) +
+  stat_halfeye()
+
+knitr::knit_print(FigSimIKDC)
+
+```
+
+Now let's summarise simply using a table to have a look at all of the different characteristics. Keep in mind, the capture method for SHARKS is actually split between electronic and paper.
+
+```{r}
+#| label: tbl-summary
+#| tbl-cap: "Summary of simulated study and patient characteristics between literature and SHARKS dataset"
+
+# Create comprehensive summary table
+summary_table <- dtAnalysis |>
+  select(DataSource, study_type, setting_type, capture_method, 
+         IKDC, Age, Sex_f, BMI, MeniscusCartilage_f, 
+         comorbidity_count, ses_score, education_years) |>
+  tbl_summary(
+    by = DataSource,
+    statistic = list(
+      all_continuous() ~ "{mean} ({sd})",
+      all_categorical() ~ "{n} ({p}%)"
+    ),
+    digits = all_continuous() ~ 2,
+    label = list(
+      IKDC ~ "IKDC Score",
+      Age ~ "Age (years)",
+      Sex_f ~ "Sex",
+      BMI ~ "BMI (kg/m²)",
+      MeniscusCartilage_f ~ "Meniscus/Cartilage Pathology",
+      comorbidity_count ~ "Comorbidity Count",
+      ses_score ~ "SES Score",
+      education_years ~ "Education (years)",
+      study_type ~ "Study Type",
+      setting_type ~ "Setting Type",
+      capture_method ~ "Capture Method"
+    )
+  ) |>
+  add_overall() |>
+  modify_header(label ~ "**Variable**") |>
+  modify_caption("**Study Characteristics by Dataset**")
+
+knitr::knit_print(summary_table)
+
+```
+
+Now we have a dataset to work with, we can work on constructing a case-mixture adjustment model. For this step we will draw partly on the review works of [@burgess2019] and [@sibert2021]. They describe considerable variability in the construction of adjustment models in the context of patient-reported outcomes and specifically within the musculoskeletal setting. In reality, this simulated model will be unlikely to be replicated, as there is unlikely to be sufficient description or reporting of some of the sample characteristics. Nevertheless, the simulation helps to illustrate key analytical choices to produce a reasonable adjustment based on the available information.
+
+
+```{r}
+
+# Case-Mix Adjustment for IKDC Scores using Mixed Effects Models
+# Based on Silbert et al. review - implementing indirect standardization
+
+# Step 1: Fit hierarchical mixed effects model
+# =============================================================================
+# This model accounts for clustering within studies and regions
+# Following indirect standardization approach from the review
+
+# Full mixed effects model with random effects for region and study
+ikdc_model <- lme4::lmer(
+  IKDC ~ 
+    # Fixed effects - patient case-mix variables
+    Age_c + 
+    I(Age_c^2) +  # Age squared for non-linear relationship
+    Sex_f + 
+    BMI_c + 
+    MeniscusCartilage_f + 
+    comorbidity_count + 
+    ses_score_c + 
+    education_years_c +
+    # Study methodology variables
+    study_type + 
+    setting_type + 
+    capture_method +
+    # Random effects for clustering
+    (1 | idRegion_f) + 
+    (1 | idStudy_f),
+  data = dtAnalysis,
+  REML = TRUE
+)
+```
+
+
+```{r}
+# Case-mix model table
+model_table <- ikdc_model |>
+  tbl_regression(
+    label = list(
+      Age_c ~ "Age (centered)",
+      Sex_f ~ "Sex (Female vs Male)",
+      BMI_c ~ "BMI (centered)",
+      MeniscusCartilage_f ~ "Meniscus/Cartilage Pathology",
+      comorbidity_count ~ "Comorbidity Count",
+      ses_score_c ~ "SES Score (centered)",
+      education_years_c ~ "Education Years (centered)",
+      study_type ~ "Study Type",
+      setting_type ~ "Setting Type",
+      capture_method ~ "Capture Method (Elec vs Paper)"
+    ),
+    tidy_fun = broom.mixed::tidy,
+    exponentiate = TRUE,
+    show_single_row = c(
+      Sex_f,
+      MeniscusCartilage_f,
+      capture_method
+    )
+  ) |>
+  modify_header(label ~ "**Variable**") |>
+  modify_caption("**Literature-Based Case-Mix Adjustment Model**")
+
+knitr::knit_print(model_table)
+```
+```{r}
+# Display model summary
+model_summary <- tidy(ikdc_model, effects = "fixed") %>%
+  mutate(across(where(is.numeric), ~ round(.x, 3)))
+
+epoxy("
+### Mixed Effects Model Summary
+Fixed effects coefficients:
+{knitr::kable(model_summary, format = 'markdown')}
+")
+```
+
+Create predictions
+
+```{r}
+# Generate predictions
+dtAnalysisPredict <- marginaleffects::predictions(
+  ikdc_model,
+  re.form = NA # restrict to fixed effects only
+)
+
+#marry into dtAnalysis
+#
+dtAnalysis1 <- dplyr::left_join(
+  dtAnalysis,
+  dtAnalysisPredict |> dplyr::select(
+    rowid,
+    estimate
+  ),
+  join_by(idPatient == rowid)
+) |> dplyr::rename(
+  IKDCPredict = "estimate"
+)
+
+# Calculate overall mean IKDC for reference population (literature data)
+overall_mean <- dtAnalysis1 %>% 
+  filter(DataSource == "Literature") %>% 
+  pull(IKDC) %>%
+  mean(na.rm = TRUE)
+
+epoxy("Overall mean IKDC in literature: {round(overall_mean, 2)}")
+```
+
+```{r}
+#| label: casemix-adjustments
+
+dtAnalysis2 <- dtAnalysis1 |> dplyr::mutate(
+   # Method 1: Nuttal et al. approach - Ratio method (unit/scale-preserving)
+# adjusted score = (observed/expected) * overall observed average
+  IKDC_adj_nuttal = (IKDC / IKDCPredict) * overall_mean, 
+  # Method 2: Resnik and Hart approach - Difference method
+# adjusted score = expected - observed (performance indicator)
+ IKDC_adj_resnik = IKDCPredict - IKDC, # Positive = better than expected
+# Method 3: Varagunam et al. approach - Residual + overall mean
+# adjusted score = (observed - expected) + overall observed average
+IKDC_adj_varagunam = (IKDC - IKDCPredict) + overall_mean
+  
+)
+
+```
+
+
+```{r}
+# Step x: Calculate adjusted scores specifically for SHARKS dataset
+# =============================================================================
+
+sharks_results <- dtAnalysis2 %>%
+  filter(DataSource == "Local_SHARKS") %>%
+  summarise(
+    n = n(),
+    across(
+      c(IKDC, IKDCPredict, IKDC_adj_nuttal, IKDC_adj_resnik, IKDC_adj_varagunam),
+      list(mean = ~ mean(.x, na.rm = TRUE), sd = ~ sd(.x, na.rm = TRUE)),
+      .names = "{.col}_{.fn}"
+    )
+  ) |>
+  pivot_longer(
+    cols = -n,
+    names_to = c("measure", "statistic"),
+    names_sep = "_(?=mean|sd$)",
+    values_to = "value"
+  ) |>
+  pivot_wider(
+    names_from = statistic,
+    values_from = value
+  ) %>%
+  mutate(
+    measure = case_when(
+      measure == "IKDC" ~ "Observed IKDC",
+      measure == "IKDCPredict" ~ "Expected IKDC", 
+      measure == "IKDC_adj_nuttal" ~ "Adjusted IKDC (Nuttal)",
+      measure == "IKDC_adj_resnik" ~ "Performance Score (Resnik)",
+      measure == "IKDC_adj_varagunam" ~ "Adjusted IKDC (Varagunam)",
+      TRUE ~ measure
+    ),
+    across(c(mean, sd), ~ round(.x, 2))
+  )
+
+```
+```{r}
+# Calculate confidence intervals for adjusted scores using tidyverse
+sharks_ci <- dtAnalysis2 %>%
+  filter(DataSource == "Local_SHARKS") %>%
+  summarise(
+    across(
+      c(IKDC, IKDC_adj_nuttal, IKDC_adj_varagunam, IKDC_adj_resnik),
+      list(
+        mean = ~ mean(.x, na.rm = TRUE),
+        se = ~ sd(.x, na.rm = TRUE) / sqrt(sum(!is.na(.x))),
+        ci_lower = ~ mean(.x, na.rm = TRUE) - 1.96 * sd(.x, na.rm = TRUE) / sqrt(sum(!is.na(.x))),
+        ci_upper = ~ mean(.x, na.rm = TRUE) + 1.96 * sd(.x, na.rm = TRUE) / sqrt(sum(!is.na(.x)))
+      ),
+      .names = "{.col}_{.fn}"
+    )
+  ) %>%
+  pivot_longer(
+    cols = everything(),
+    names_to = c("measure", "statistic"),
+    names_pattern = "^(.+)_(mean|se|ci_lower|ci_upper)$",  # Changed this line
+    values_to = "value"
+  ) %>%
+  pivot_wider(
+    names_from = statistic,
+    values_from = value
+  ) %>%
+  mutate(
+    measure = case_when(
+      measure == "IKDC" ~ "Observed IKDC",
+      measure == "IKDC_adj_nuttal" ~ "Adjusted IKDC (Nuttal)",
+      measure == "IKDC_adj_varagunam" ~ "Adjusted IKDC (Varagunam)",
+      measure == "IKDC_adj_resnik" ~ "Performance Score (Resnik)",
+      TRUE ~ measure
+    ),
+    across(c(mean, se, ci_lower, ci_upper), ~ round(.x, 2)),
+    ci_text = paste0(mean, " (", ci_lower, ", ", ci_upper, ")")
+  ) %>%
+  select(measure, ci_text)
+
+epoxy("
+### SHARKS Dataset Case-Mix Adjustment Results (n = {sharks_results$n[1]}) (Mean and 95% CI)
+{knitr::kable(sharks_ci, col.names = c('Measure', '95% CI'), format = 'markdown')}
+")
+```
+```{r}
+#|label: fig-adjust-compare
+#|fig-cap: "Comparison between observed and adjusted scores for SHARKS IKDC baseline"
+# Step 6: Visualization of adjustment effects
+# =============================================================================
+
+# Plot comparing observed vs adjusted scores for SHARKS
+plot_data <- dtAnalysis2 %>%
+  filter(DataSource == "Local_SHARKS") %>%
+  select(idPatient, IKDC, IKDCPredict, IKDC_adj_nuttal, IKDC_adj_varagunam) |>
+  pivot_longer(cols = -idPatient, names_to = "Score_Type", values_to = "Score") |>
+  filter(
+    !is.na(Score_Type)
+  ) |>
+  mutate(
+    Score_Type = factor(Score_Type, 
+                       levels = c("IKDC", "IKDCPredict", "IKDC_adj_nuttal", "IKDC_adj_varagunam"),
+                       labels = c("Observed-Sim", "Expected", "Adjusted (Nuttal)", "Adjusted (Varagunam)"))
+  )
+
+comparison_plot <- ggplot(plot_data, aes(x = Score_Type, y = Score)) +
+  stat_slabinterval(side = "right")  +
+  geom_hline(yintercept = overall_mean, linetype = "dashed", color = "red", linewidth = 1) +
+  annotate("text", x = 1.5, y = overall_mean + 2, 
+           label = str_glue("Lit Mean = {round(overall_mean, 1)}"), 
+           color = "red") +
+  labs(
+    title = "IKDC Score Comparison: Observed vs Case-Mix Adjusted",
+    subtitle = "SHARKS Dataset - Different Adjustment Methods",
+    x = "Score Type",
+    y = "IKDC Score",
+    fill = "Score Type"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+knitr::knit_print(comparison_plot)
+```
+
+
+
+```{r}
+# Step 8: Clinical interpretation using epoxy
+# =============================================================================
+
+# Calculate key metrics for interpretation
+sharks_metrics <- dtAnalysis2 %>%
+  filter(DataSource == "Local_SHARKS") %>%
+  summarise(
+    observed_mean = mean(IKDC, na.rm = TRUE),
+    expected_mean = mean(IKDCPredict, na.rm = TRUE),
+    performance_mean = mean(IKDC_adj_resnik, na.rm = TRUE),
+    adjusted_nuttal_mean = mean(IKDC_adj_nuttal, na.rm = TRUE)
+  )
+
+# Performance assessment
+performance_status <- if_else(
+  sharks_metrics$observed_mean > sharks_metrics$expected_mean,
+  "BETTER",
+  "WORSE"
+)
+
+# Benchmark comparison
+benchmark_status <- if_else(
+  sharks_metrics$adjusted_nuttal_mean > overall_mean,
+  "ABOVE",
+  "BELOW"
+)
+
+epoxy("
+### Potential Clinical Interpretation
+
+**SHARKS Dataset Performance:**
+• SHARKS reports baseline IKDC that is **{performance_status}** than expected based on case-mix
+• Observed mean: {round(sharks_metrics$observed_mean, 1)}
+• Expected mean: {round(sharks_metrics$expected_mean, 1)}  
+• Performance difference: {round(abs(sharks_metrics$performance_mean), 1)} points
+
+**Benchmark Comparison:**
+• After case-mix adjustment, SHARKS patients present with an IKDC score that is **{benchmark_status}** the literature average
+• Adjusted IKDC (Nuttal method): {round(sharks_metrics$adjusted_nuttal_mean, 1)} vs Literature mean: {round(overall_mean, 1)}
+")
+```
+
+
+
+# Sample size considerations
 
 # Ethical Considerations
 
@@ -623,14 +1451,21 @@ flowchart LR
 Contributor matrix
 
 ::: {#tbl-contributors}
-| Name            | Role                             | Project Role | Comments |
-|-----------------|----------------------------------|--------------|----------|
-| Lorenzo Calabro |                                  |              |          |
-| Corey Scholes   |                                  |              |          |
-| Garry Kirwan    | Assistant Director Physiotherapy | Collaborator |          |
-|                 |                                  |              |          |
-|                 |                                  |              |          |
-|                 |                                  |              |          |
++-----------------+----------------------------------+--------------+-------------+
+| Name            | Role                             | Project Role | Comments    |
++=================+==================================+==============+=============+
+| Lorenzo Calabro |                                  |              |             |
++-----------------+----------------------------------+--------------+-------------+
+| Corey Scholes   |                                  |              |             |
++-----------------+----------------------------------+--------------+-------------+
+| Garry Kirwan    | Assistant Director Physiotherapy | Collaborator |             |
++-----------------+----------------------------------+--------------+-------------+
+|                 |                                  |              |             |
++-----------------+----------------------------------+--------------+-------------+
+|                 |                                  |              |             |
++-----------------+----------------------------------+--------------+-------------+
+|                 |                                  |              |             |
++-----------------+----------------------------------+--------------+-------------+
 :::
 
 ## Communication and Governance
