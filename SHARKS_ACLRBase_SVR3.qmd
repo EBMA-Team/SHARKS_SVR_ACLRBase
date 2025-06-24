@@ -666,6 +666,13 @@ gen.study <- defDataAdd(
   variance = 1
 )
 
+gen.study <- defDataAdd(
+  gen.study,
+  varname = "idPatient",
+  dist = "uniform", 
+  formula = "1;40"  # number of patients per study
+)
+
 # Generate studies within regions
 dtStudy <- genCluster(dtRegion, "idRegion", numIndsVar = "nStudy", level1ID = "idStudy")
 dtStudy <- addColumns(gen.study, dtStudy)
@@ -1382,156 +1389,181 @@ Potential Clinical Interpretation
 
 # Sample size considerations
 
+
+Redo the simulation to reduce the sample size and complexity initially.
+
+We'll recreate the model using simr and insert effect sizes based on the model we've just presented.
+
+
 ```{r}
-# Create a memoised version of powerSim with progress tracking
-create_memoised_powersim <- function() {
-  
-  # Create progress bar function
-  progress_callback <- function(i, total, start_time) {
-    if (i == 1) {
-      pb <<- progress_bar$new(
-        format = "Power Simulation [:bar] :percent in :elapsed, eta: :eta",
-        total = total,
-        clear = FALSE,
-        width = 60
-      )
-    }
-    pb$tick()
-  }
-  
-  # Wrapper function for powerSim that includes progress tracking
-  powersim_with_progress <- function(model, test, nsim = 100, seed = NULL, ...) {
-    
-    # Set seed for reproducibility
-    if (!is.null(seed)) set.seed(seed)
-    
-    cat("Starting power simulation with", nsim, "iterations...\n")
-    start_time <- Sys.time()
-    
-    # Run powerSim with progress callback
-    result <- powerSim(
-      model, 
-      test = test, 
-      nsim = nsim,
-      progress = TRUE,
-      ...
-    )
-    
-    end_time <- Sys.time()
-    cat("\nPower simulation completed in", 
-        round(difftime(end_time, start_time, units = "mins"), 2), "minutes\n")
-    
-    return(result)
-  }
-  
-  # Create memoised version
-  memoised_powersim <- memoise(powersim_with_progress)
-  
-  return(memoised_powersim)
-}
 
-# Initialize the memoised function
-memo_powersim <- create_memoised_powersim()
+# we'll grab the dtAnalysis structure and slice out some covariates
+# 
 
-# Example usage for your model
-run_power_analysis <- function(model, effect_name, nsim = 100, seed = 123) {
-  
-  # Define the test based on effect name
-  test <- switch(effect_name,
-    "Age_c" = fixed("Age_c"),
-    "Age_c_squared" = fixed("I(Age_c^2)"),
-    "Sex" = fixed("Sex_fMale"),
-    "BMI" = fixed("BMI_c"),
-    "MeniscusCartilage" = fixed("MeniscusCartilage_fYes"),
-    "comorbidity" = fixed("comorbidity_count"),
-    "ses" = fixed("ses_score_c"),
-    "education" = fixed("education_years_c"),
-    "study_type_Prospective" = fixed("study_typeProspective_Cohort"),
-    "study_type_RCT" = fixed("study_typeRCT"),
-    "setting_Community" = fixed("setting_typeCommunity_Clinic"),
-    "setting_Private" = fixed("setting_typePrivate_Practice"),
-    "setting_Sports" = fixed("setting_typeSports_Medicine_Clinic"),
-    "capture_Electronic" = fixed("capture_methodElectronic"),
-    stop("Unknown effect name")
-  )
-  
-  # Run memoised power simulation
-  result <- memo_powersim(
-    model = model,
-    test = test,
-    nsim = nsim,
-    seed = seed
-  )
-  
-  return(result)
-}
+str(dtAnalysis)
+
 
 ```
 
-
-```{r}
-# Function to run power analysis for multiple effects
-run_multiple_power_analyses <- function(model, effects, nsim = 100, seed = 123) {
-  
-  results <- list()
-  
-  for (effect in effects) {
-    cat("\n", paste(rep("=", 50), collapse = ""), "\n")
-    cat("Running power analysis for:", effect, "\n")
-    cat(paste(rep("=", 50), collapse = ""), "\n")
-    
-    results[[effect]] <- run_power_analysis(model, effect, nsim, seed)
-    
-    # Print summary
-    cat("Power for", effect, ":", 
-        round(results[[effect]]$power, 3), 
-        "(", results[[effect]]$successes, "/", results[[effect]]$trials, ")\n")
-  }
-  
-  return(results)
-}
-
-```
-
-
+Construct the covariate data.frame by slicing out the requisite columns from dtAnalysis
 
 ```{r}
 
-# Load your data and fit simplified model
-simplified_model <- lmer(
-  IKDC ~ Age_c + I(Age_c^2) + Sex_f + BMI_c + MeniscusCartilage_f + 
-         (1|idStudy_f),
-  data = dtAnalysis2
+dtCovar <- dtAnalysis |> dplyr::select(
+  idPatient,
+  idStudy_f,
+  idRegion_f,
+  Age_c,
+  BMI_c,
+  MeniscusCartilage_f,
+  Sex_f
 )
 
-# Run power analysis for key effects
-key_effects <- c("Age_c", "Sex", "BMI", "MeniscusCartilage")
-power_results <- run_multiple_power_analyses(simplified_model, key_effects, nsim = 100)
+```
+
+Construct model parameters from previous simulation
+
+```{r}
+
+## Intercept and slopes for intervention, time1, time2, intervention:time1, intervention:time2
+fixed <- c(
+  57.78,
+  -0.255,
+  -0.4,
+  -11.7, 
+  3.96
+  )
+
+randint <- list(
+  4,
+  0
+)
+
+resvar <- 182.348
+
+```
+
+Create lmer model from scratch
+
+```{r}
+
+SimModel <- makeLmer(IKDC ~ 
+    # Fixed effects - patient case-mix variables
+    Age_c +
+    BMI_c +
+    MeniscusCartilage_f + 
+    Sex_f + 
+    # Random effects for clustering
+    (1 | idRegion_f) + 
+    (1 | idStudy_f), 
+    fixef = fixed, 
+    VarCorr = randint, 
+    sigma = resvar, 
+    data = dtCovar
+    )
 
 ```
 
 ```{r}
-# Debug function to test a single effect first
-test_single_power_analysis <- function(model, effect_name, nsim = 10) {
-  cat("Testing power analysis for:", effect_name, "\n")
-  
-  tryCatch({
-    result <- run_power_analysis(model, effect_name, nsim)
-    cat("Success! Result structure:\n")
-    str(result)
-    return(result)
-  }, error = function(e) {
-    cat("Error:", e$message, "\n")
-    return(NULL)
-  })
-}
+sim_Sex <- powerSim(SimModel, nsim=10, test = fcompare(IKDC~Sex_f))
+
+sim_Sex
 ```
 
 ```{r}
-test_result <- test_single_power_analysis(ikdc_model, "Age_c", nsim = 10)
+# Check the structure of your factor
+str(dtCovar$idStudy_f)
+levels(dtCovar$idStudy_f)
+length(levels(dtCovar$idStudy_f))
+
+# Check how many studies you currently have vs. trying to extend to
+current_n_studies <- length(levels(dtCovar$idStudy_f))
+print(paste("Current studies:", current_n_studies, "Extending to:", 20))
+```
+```{r}
+SimModel_ext_study <- extend(
+  SimModel, 
+  along = "idStudy_f", 
+  n = 60
+  )
 ```
 
 
+```{r}
+p_curve_treat1 <- powerCurve(
+  SimModel_ext_study, 
+  test=fcompare(IKDC~Sex_f), 
+  along="idStudy_f"
+  )
+```
+
+
+```{r}
+
+plot(p_curve_treat1)
+
+```
+
+### Example
+
+
+
+```{r}
+subj <- factor(1:10)
+class_id <- letters[1:5]
+time <- 0:2
+group <- c("control", "intervention")
+
+subj_full <- rep(subj, 15)
+class_full <- rep(rep(class_id, each=10), 3)
+time_full <- rep(time, each=50)
+group_full <- rep(rep(group, each=5), 15)
+
+covars <- data.frame(id=subj_full, class=class_full, treat=group_full, time=factor(time_full))
+
+covars
+```
+
+
+```{r}
+## Intercept and slopes for intervention, time1, time2, intervention:time1, intervention:time2
+fixed <- c(5, 0, 0.1, 0.2, 1, 0.9)
+
+## Random intercepts for participants clustered by class
+rand <- list(0.5, 0.1)
+
+## residual variance
+res <- 2
+```
+
+
+```{r}
+Exmodel <- makeLmer(y ~ treat*time + (1|class/id), fixef=fixed, VarCorr=rand, sigma=res, data=covars)
+Exmodel
+```
+
+```{r}
+Exsim_treat <- powerSim(Exmodel, nsim=100, test = fcompare(y~time))
+Exsim_treat
+```
+
+
+```{r}
+sim_time <- powerSim(Exmodel, nsim=100, test = fcompare(y~treat))
+sim_time
+```
+
+```{r}
+Exmodel_ext_class <- extend(Exmodel, along = "class", n = 20)
+Exmodel_ext_class
+
+nrow(getData(Exmodel_ext_class))
+nrow(getData(Exmodel))
+```
+```{r}
+p_curve_treat <- powerCurve(Exmodel_ext_class, test=fcompare(y~time), along="class")
+plot(p_curve_treat)
+```
 
 # Ethical Considerations
 
