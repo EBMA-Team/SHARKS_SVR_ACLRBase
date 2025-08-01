@@ -34,6 +34,7 @@ Libraries installed for further analysis
 
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(# Load required packages
+  "pmsampsize",
   "gargle",
   "googledrive",
   "pwrss",
@@ -103,19 +104,19 @@ The baseline variation for surgical reconstruction cases in @fig-radhi2024 is re
 The study question was presented using the PICOS framework [@amir-behghadami2020].
 
 ::: {#tbl-question}
-+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| Component             | Study Component                                                                                                                       | Comments                                                                                                                        |
-+=======================+=======================================================================================================================================+=================================================================================================================================+
-| Participants          | Patients presenting with injury of the anterior cruciate ligament                                                                     | Patients present under variable circumstances, with referrals from emergency or primary care                                    |
-+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| Intervention          | Electing to be added to the wait list for surgical reconstruction within the public health system                                     | Typical wait times within the department are \~4months from initial consultation                                                |
-+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| Comparator            | Compared to the published literature                                                                                                  | Split into two approaches - overall combined results (meta-analysis) or with selective matching of contextually similar studies |
-+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| Outcomes              | Is baseline IKDC significantly different to published data when adjusted for confounders with respect to normalised or z-score totals |                                                                                                                                 |
-+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| Study Design          | Meta-analysis and simulation                                                                                                          |                                                                                                                                 |
-+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
++--------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| Component    | Study Component                                                                                                                       | Comments                                                                                                                        |
++==============+=======================================================================================================================================+=================================================================================================================================+
+| Participants | Patients presenting with injury of the anterior cruciate ligament                                                                     | Patients present under variable circumstances, with referrals from emergency or primary care                                    |
++--------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| Intervention | Electing to be added to the wait list for surgical reconstruction within the public health system                                     | Typical wait times within the department are \~4months from initial consultation                                                |
++--------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| Comparator   | Compared to the published literature                                                                                                  | Split into two approaches - overall combined results (meta-analysis) or with selective matching of contextually similar studies |
++--------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| Outcomes     | Is baseline IKDC significantly different to published data when adjusted for confounders with respect to normalised or z-score totals |                                                                                                                                 |
++--------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| Study Design | Meta-analysis and simulation                                                                                                          |                                                                                                                                 |
++--------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
 
 Study question identified under the PICOS framework
 :::
@@ -493,33 +494,33 @@ The data collection for this study will be conducted over multiple lines of acti
 Now that we have some sources to work with, for the purposes of this planning document it is now possible to walk through a simulated analysis to illustrate how the study will look. The first step is to define the literature characteristics to take these into account in the case-mixture adjustment when comparing our local data to the broader knowledge. For the purposes of this illustration, the following characteristics have been included;
 
 ::: {#tbl-sim-prep}
-+---------------------------------------------------------+-----------------------------------------------------------------+-------------------------------------------------------------------------------+
-| Characteristic                                          | Responses                                                       | Comments                                                                      |
-+=========================================================+=================================================================+===============================================================================+
-| Study type                                              | Randomised controlled trial                                     |                                                                               |
-|                                                         |                                                                 |                                                                               |
-|                                                         | Registry                                                        |                                                                               |
-|                                                         |                                                                 |                                                                               |
-|                                                         | Uncontrolled cohort or case series                              |                                                                               |
-+---------------------------------------------------------+-----------------------------------------------------------------+-------------------------------------------------------------------------------+
-| Effect of selection bias                                | 0; -1; -2                                                       | The least biased with respect to patient selection would be national registry |
-+---------------------------------------------------------+-----------------------------------------------------------------+-------------------------------------------------------------------------------+
-| Measurement precision                                   | 0.8; 0.9; 0.7                                                   | Large-scale registry most precise                                             |
-+---------------------------------------------------------+-----------------------------------------------------------------+-------------------------------------------------------------------------------+
-| Missing date rate                                       | 0.05; 0.15; 0.20                                                | RCT generally has lowest missing data rate                                    |
-+---------------------------------------------------------+-----------------------------------------------------------------+-------------------------------------------------------------------------------+
-| Capture method                                          | Electronic; Paper                                               | Expect a roughly even split across studies and regions                        |
-+---------------------------------------------------------+-----------------------------------------------------------------+-------------------------------------------------------------------------------+
-| Variance due to measurement error                       | 2; 4                                                            | Expect electronic to be more precise for the purposes of the simulation       |
-+---------------------------------------------------------+-----------------------------------------------------------------+-------------------------------------------------------------------------------+
-| Health setting                                          | Academic_Medical_Center; Community_Hospital; Specialty_Clinic;  | This will need refinement during literature extraction                        |
-|                                                         |                                                                 |                                                                               |
-|                                                         | Primary_Care                                                    |                                                                               |
-+---------------------------------------------------------+-----------------------------------------------------------------+-------------------------------------------------------------------------------+
-| Resources available to patient prior to surgical review | 4, 2, 3, 1                                                      | This is more related to socioeconomic status of country_region                |
-+---------------------------------------------------------+-----------------------------------------------------------------+-------------------------------------------------------------------------------+
-| Case complexity                                         | 65, 50, 35, 20                                                  | Severity of functional deficit at the time of review                          |
-+---------------------------------------------------------+-----------------------------------------------------------------+-------------------------------------------------------------------------------+
++---------------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Characteristic                                          | Responses                                                      | Comments                                                                      |
++=========================================================+================================================================+===============================================================================+
+| Study type                                              | Randomised controlled trial                                    |                                                                               |
+|                                                         |                                                                |                                                                               |
+|                                                         | Registry                                                       |                                                                               |
+|                                                         |                                                                |                                                                               |
+|                                                         | Uncontrolled cohort or case series                             |                                                                               |
++---------------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Effect of selection bias                                | 0; -1; -2                                                      | The least biased with respect to patient selection would be national registry |
++---------------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Measurement precision                                   | 0.8; 0.9; 0.7                                                  | Large-scale registry most precise                                             |
++---------------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Missing date rate                                       | 0.05; 0.15; 0.20                                               | RCT generally has lowest missing data rate                                    |
++---------------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Capture method                                          | Electronic; Paper                                              | Expect a roughly even split across studies and regions                        |
++---------------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Variance due to measurement error                       | 2; 4                                                           | Expect electronic to be more precise for the purposes of the simulation       |
++---------------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Health setting                                          | Academic_Medical_Center; Community_Hospital; Specialty_Clinic; | This will need refinement during literature extraction                        |
+|                                                         |                                                                |                                                                               |
+|                                                         | Primary_Care                                                   |                                                                               |
++---------------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Resources available to patient prior to surgical review | 4, 2, 3, 1                                                     | This is more related to socioeconomic status of country_region                |
++---------------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Case complexity                                         | 65, 50, 35, 20                                                 | Severity of functional deficit at the time of review                          |
++---------------------------------------------------------+----------------------------------------------------------------+-------------------------------------------------------------------------------+
 
 Region and study characteristics incorporated into analysis simulation
 :::
@@ -1071,7 +1072,6 @@ knitr::knit_print(summary_table)
 
 Now we have a dataset to work with, we can work on constructing a case-mixture adjustment model. For this step we will draw partly on the review works of [@burgess2019] and [@sibert2021]. They describe considerable variability in the construction of adjustment models in the context of patient-reported outcomes and specifically within the musculoskeletal setting. In reality, this simulated model will be unlikely to be replicated, as there is unlikely to be sufficient description or reporting of some of the sample characteristics. Nevertheless, the simulation helps to illustrate key analytical choices to produce a reasonable adjustment based on the available information.
 
-
 ```{r}
 
 # Case-Mix Adjustment for IKDC Scores using Mixed Effects Models
@@ -1106,7 +1106,6 @@ ikdc_model <- lme4::lmer(
 )
 ```
 
-
 ```{r}
 # Case-mix model table
 model_table <- ikdc_model |>
@@ -1136,6 +1135,7 @@ model_table <- ikdc_model |>
 
 knitr::knit_print(model_table)
 ```
+
 ```{r}
 # Display model summary
 model_summary <- tidy(ikdc_model, effects = "fixed") |>
@@ -1143,7 +1143,6 @@ model_summary <- tidy(ikdc_model, effects = "fixed") |>
 
 
 ```
-
 
 ```{r}
 #| label: tbl-model-summary
@@ -1210,7 +1209,6 @@ IKDC_adj_varagunam = (IKDC - IKDCPredict) + overall_mean
 
 ```
 
-
 ```{r}
 # Step x: Calculate adjusted scores specifically for SHARKS dataset
 # =============================================================================
@@ -1248,6 +1246,7 @@ sharks_results <- dtAnalysis2 %>%
   )
 
 ```
+
 ```{r}
 # Calculate confidence intervals for adjusted scores using tidyverse
 sharks_ci <- dtAnalysis2 %>%
@@ -1289,14 +1288,12 @@ sharks_ci <- dtAnalysis2 %>%
 
 ```
 
-
 ```{epoxy}
 
 SHARKS Dataset Case-Mix Adjustment Results (n = {sharks_results$n[1]}) (Mean and 95% CI)
 {knitr::kable(sharks_ci, col.names = c('Measure', '95% CI'), format = 'markdown')}
 
 ```
-
 
 ```{r}
 #|label: fig-adjust-compare
@@ -1339,8 +1336,6 @@ comparison_plot <- ggplot(plot_data, aes(x = Score_Type, y = Score)) +
 knitr::knit_print(comparison_plot)
 ```
 
-
-
 ```{r}
 # Step 8: Clinical interpretation using epoxy
 # =============================================================================
@@ -1371,7 +1366,6 @@ benchmark_status <- if_else(
 
 ```
 
-
 ```{epoxy}
 
 Potential Clinical Interpretation
@@ -1389,11 +1383,9 @@ Potential Clinical Interpretation
 
 # Sample size considerations
 
-
 Redo the simulation to reduce the sample size and complexity initially.
 
 We'll recreate the model using simr and insert effect sizes based on the model we've just presented.
-
 
 ```{r}
 
@@ -1480,6 +1472,7 @@ length(levels(dtCovar$idStudy_f))
 current_n_studies <- length(levels(dtCovar$idStudy_f))
 print(paste("Current studies:", current_n_studies, "Extending to:", 20))
 ```
+
 ```{r}
 SimModel_ext_study <- extend(
   SimModel, 
@@ -1487,7 +1480,6 @@ SimModel_ext_study <- extend(
   n = 60
   )
 ```
-
 
 ```{r}
 p_curve_treat1 <- powerCurve(
@@ -1497,7 +1489,6 @@ p_curve_treat1 <- powerCurve(
   )
 ```
 
-
 ```{r}
 
 plot(p_curve_treat1)
@@ -1505,8 +1496,6 @@ plot(p_curve_treat1)
 ```
 
 ### Example
-
-
 
 ```{r}
 subj <- factor(1:10)
@@ -1524,7 +1513,6 @@ covars <- data.frame(id=subj_full, class=class_full, treat=group_full, time=fact
 covars
 ```
 
-
 ```{r}
 ## Intercept and slopes for intervention, time1, time2, intervention:time1, intervention:time2
 fixed <- c(5, 0, 0.1, 0.2, 1, 0.9)
@@ -1536,7 +1524,6 @@ rand <- list(0.5, 0.1)
 res <- 2
 ```
 
-
 ```{r}
 Exmodel <- makeLmer(y ~ treat*time + (1|class/id), fixef=fixed, VarCorr=rand, sigma=res, data=covars)
 Exmodel
@@ -1546,7 +1533,6 @@ Exmodel
 Exsim_treat <- powerSim(Exmodel, nsim=100, test = fcompare(y~time))
 Exsim_treat
 ```
-
 
 ```{r}
 sim_time <- powerSim(Exmodel, nsim=100, test = fcompare(y~treat))
@@ -1560,6 +1546,7 @@ Exmodel_ext_class
 nrow(getData(Exmodel_ext_class))
 nrow(getData(Exmodel))
 ```
+
 ```{r}
 p_curve_treat <- powerCurve(Exmodel_ext_class, test=fcompare(y~time), along="class")
 plot(p_curve_treat)
@@ -1588,6 +1575,66 @@ Journal of patient-reported outcomes
 # Study Management
 
 ## Assumptions
+
+-   QEII staff will undertake data collection activities
+
+    -   Chart review for SHARKS dataset
+
+    -   Literature review search, retrieval and extraction for IKDC baseline-related literature
+
+## Activities
+
+The best analogy for the proposed study is that of the development and validation of a prognostic clinical prediction model, for which some guidance with respect to best practice has been provided in the relevant literature [@collins2024]. For the purposes of this study plan, the open science practices for medicine as described by [@cobey2023] are used to outline the key activities of the proposed project. All items are recommended in this context, except for publication to journals.
+
+::: {#tbl-activities}
++---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
+| Stage               | Action                                                  | Comments - Source                                                   |
++=====================+=========================================================+=====================================================================+
+| Setup               | Protocol preparation                                    |                                                                     |
++---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
+|                     | Protocol preprint                                       |                                                                     |
++---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
+|                     | Protocol registration                                   | ANZCTR                                                              |
++---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
+|                     | Protocol journal publication                            |                                                                     |
++---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
+| Data Collection     | Confirm reporting guidelines                            |                                                                     |
++---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
+|                     | Conduct literature review and extraction                |                                                                     |
++---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
+|                     | Track risk of bias assessment                           |                                                                     |
++---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
+|                     | Align dataset to predictors in protocol                 | Quality Checking                                                    |
++---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
+| Analysis            | Manuscript setup                                        |                                                                     |
++---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
+|                     | Analysis report preparation                             | Including model builds (literature and SHARKS dataset)              |
+|                     |                                                         |                                                                     |
+|                     |                                                         | Conduct sensitivity analyses                                        |
++---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
+|                     | Provide sufficient information for model implementation |                                                                     |
++---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
+|                     | Data and code publication                               | Data and code repositories with persistent identifiers [@cobey2023] |
++---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
+|                     | Preparation as supplementary material                   | Includes links to code and data                                     |
++---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
+| Synthesis Reporting | Manuscript preparation                                  |                                                                     |
++---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
+|                     | Reporting checklist                                     |                                                                     |
++---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
+|                     | Author conflicts of interest                            |                                                                     |
++---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
+|                     | Author contributions                                    | Use persistent identifiers (ORCID)                                  |
++---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
+|                     | Prepare funding statement                               |                                                                     |
++---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
+|                     | Publish preprint                                        |                                                                     |
++---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
+|                     | Publish manuscript (open-access)                        |                                                                     |
++---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
+
+Key activities recommended as part of the proposed study
+:::
 
 ## Timeline
 
