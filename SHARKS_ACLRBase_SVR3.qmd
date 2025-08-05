@@ -1383,9 +1383,11 @@ Potential Clinical Interpretation
 
 # Sample size considerations
 
+The required sample sizes generally relate to the number of samples available in the local dataset, as well as potentially how many studies are required in the literature to establish a reasonably powered model.
+
 Redo the simulation to reduce the sample size and complexity initially.
 
-We'll recreate the model using simr and insert effect sizes based on the model we've just presented.
+We'll recreate the model using simr and insert effect sizes based on the model just presented.
 
 ```{r}
 
@@ -1482,14 +1484,11 @@ SimModel_ext_study <- extend(
 ```
 
 ```{r}
-p_curve_treat1 <- powerCurve(
-  SimModel_ext_study, 
-  test=fcompare(IKDC~Sex_f), 
-  along="idStudy_f"
-  )
-```
-
-```{r}
+# p_curve_treat1 <- powerCurve(
+#   SimModel_ext_study, 
+#   test=fcompare(IKDC~Sex_f), 
+#   along="idStudy_f"
+#   )
 
 plot(p_curve_treat1)
 
