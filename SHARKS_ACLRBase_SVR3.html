@@ -126,6 +126,7 @@ div.csl-indent {
   <li><a href="#methods---analysis" id="toc-methods---analysis" class="nav-link" data-scroll-target="#methods---analysis"><span class="header-section-number">7</span> Methods - Analysis</a>
   <ul class="collapse">
   <li><a href="#visualisation" id="toc-visualisation" class="nav-link" data-scroll-target="#visualisation"><span class="header-section-number">7.1</span> Visualisation</a></li>
+  <li><a href="#case-mixture-adjustment" id="toc-case-mixture-adjustment" class="nav-link" data-scroll-target="#case-mixture-adjustment"><span class="header-section-number">7.2</span> Case-mixture adjustment</a></li>
   </ul></li>
   <li><a href="#sample-size-considerations" id="toc-sample-size-considerations" class="nav-link" data-scroll-target="#sample-size-considerations"><span class="header-section-number">8</span> Sample size considerations</a></li>
   <li><a href="#ethical-considerations" id="toc-ethical-considerations" class="nav-link" data-scroll-target="#ethical-considerations"><span class="header-section-number">9</span> Ethical Considerations</a></li>
@@ -137,18 +138,12 @@ div.csl-indent {
   <li><a href="#study-management" id="toc-study-management" class="nav-link" data-scroll-target="#study-management"><span class="header-section-number">11</span> Study Management</a>
   <ul class="collapse">
   <li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions"><span class="header-section-number">11.1</span> Assumptions</a></li>
-  <li><a href="#timeline" id="toc-timeline" class="nav-link" data-scroll-target="#timeline"><span class="header-section-number">11.2</span> Timeline</a></li>
-  <li><a href="#key-dates" id="toc-key-dates" class="nav-link" data-scroll-target="#key-dates"><span class="header-section-number">11.3</span> Key Dates</a></li>
-  <li><a href="#contributors" id="toc-contributors" class="nav-link" data-scroll-target="#contributors"><span class="header-section-number">11.4</span> Contributors</a></li>
-  <li><a href="#communication-and-governance" id="toc-communication-and-governance" class="nav-link" data-scroll-target="#communication-and-governance"><span class="header-section-number">11.5</span> Communication and Governance</a></li>
-  <li><a href="#funding-and-conflicts-of-interest" id="toc-funding-and-conflicts-of-interest" class="nav-link" data-scroll-target="#funding-and-conflicts-of-interest"><span class="header-section-number">11.6</span> Funding and Conflicts of Interest</a></li>
-  <li><a href="#intellectual-property" id="toc-intellectual-property" class="nav-link" data-scroll-target="#intellectual-property"><span class="header-section-number">11.7</span> Intellectual Property</a></li>
-  </ul></li>
-  <li><a href="#financial-plan" id="toc-financial-plan" class="nav-link" data-scroll-target="#financial-plan"><span class="header-section-number">12</span> Financial Plan</a>
-  <ul class="collapse">
-  <li><a href="#direct-costs" id="toc-direct-costs" class="nav-link" data-scroll-target="#direct-costs"><span class="header-section-number">12.1</span> Direct Costs</a></li>
-  <li><a href="#indirect-costs" id="toc-indirect-costs" class="nav-link" data-scroll-target="#indirect-costs"><span class="header-section-number">12.2</span> Indirect Costs</a></li>
-  <li><a href="#total-estimates" id="toc-total-estimates" class="nav-link" data-scroll-target="#total-estimates"><span class="header-section-number">12.3</span> Total Estimates</a></li>
+  <li><a href="#activities" id="toc-activities" class="nav-link" data-scroll-target="#activities"><span class="header-section-number">11.2</span> Activities</a></li>
+  <li><a href="#timeline" id="toc-timeline" class="nav-link" data-scroll-target="#timeline"><span class="header-section-number">11.3</span> Timeline</a></li>
+  <li><a href="#key-dates" id="toc-key-dates" class="nav-link" data-scroll-target="#key-dates"><span class="header-section-number">11.4</span> Key Dates</a></li>
+  <li><a href="#contributors" id="toc-contributors" class="nav-link" data-scroll-target="#contributors"><span class="header-section-number">11.5</span> Contributors</a></li>
+  <li><a href="#communication-and-governance" id="toc-communication-and-governance" class="nav-link" data-scroll-target="#communication-and-governance"><span class="header-section-number">11.6</span> Communication and Governance</a></li>
+  <li><a href="#funding-and-conflicts-of-interest" id="toc-funding-and-conflicts-of-interest" class="nav-link" data-scroll-target="#funding-and-conflicts-of-interest"><span class="header-section-number">11.7</span> Funding and Conflicts of Interest</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -181,7 +176,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">May 25, 2025</p>
+      <p class="date-modified">August 6, 2025</p>
     </div>
   </div>
     
@@ -204,30 +199,35 @@ div.csl-indent {
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"pacman"</span>)) <span class="fu">install.packages</span>(<span class="st">"pacman"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="co"># Load required packages</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"gargle"</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"googledrive"</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"pwrss"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"rcrossref"</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tidyverse"</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"googlesheets4"</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"epoxy"</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ggdist"</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"simstudy"</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"DiagrammeR"</span>,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ggdag"</span>,</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"forcats"</span>,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"gtsummary"</span>,</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"gt"</span>,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"fabricatr"</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"broom"</span>,</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"broom.mixed"</span>,</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"lme4"</span>,</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">"performance"</span>,</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">"marginaleffects"</span>,</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">"sjPlot"</span>,</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">install =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">update =</span> <span class="cn">FALSE</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"pmsampsize"</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"gargle"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"googledrive"</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"pwrss"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"rcrossref"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tidyverse"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"googlesheets4"</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"epoxy"</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ggdist"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"simstudy"</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"DiagrammeR"</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ggdag"</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"forcats"</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"gtsummary"</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"gt"</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"fabricatr"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"broom"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"broom.mixed"</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">"broom.helpers"</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">"lme4"</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">"performance"</span>,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">"marginaleffects"</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">"sjPlot"</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">"simr"</span>,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="st">"memoise"</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="st">"progress"</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">install =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">update =</span> <span class="cn">FALSE</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -237,7 +237,7 @@ div.csl-indent {
 <p>Patient-reported outcome measures are used increasingly to routinely assess patients’ subjective experiences during recovery from initial injury of the anterior cruciate ligament, or subsequent surgical reconstruction, in both research and clinical settings <span class="citation" data-cites="ridha2025">(<a href="#ref-ridha2025" role="doc-biblioref">Ridha et al. 2025</a>)</span>. Standardised PROMs can provide important insight into multiple dimensions of physical, mental and functional state at the consistent time points of the recovery trajectory and have also been used to define clinical failure after reconstruction <span class="citation" data-cites="aldag2023">(<a href="#ref-aldag2023" role="doc-biblioref">Aldag et al. 2023</a>)</span>. Work by the department has also revealed heterogeneous patterns in patients presenting for surgical review of ACL injury when PROMs assessing different dimenions of pain, function and general health are assessed simultaneously <span class="citation" data-cites="ting2020">(<a href="#ref-ting2020" role="doc-biblioref">Ting et al. 2020</a>)</span>.</p>
 <p>The most frequent pathology and joints-specific PROMs for monitoring recovery after ACL reconstruction are the KOOS family (JR, 12, full) and the IKDC2000 (International Knee Documentation Committee). The IKDC2000 was chosen for the SHARKS registry due to content validity specific to ACL reconstruction. It contains one question (Symptoms Q7) that is relevant to the motivations of offering surgery in the majority of cases - <em>what is the highest level of activity you can participate in without experiencing episodes of giving way in the knee?</em><br>
 <br>
-The IKDC is an 18 question evaluation that measures symptoms (7 items), activities of daily living (9 items) and sport (1 item), and comparative knee function (1 item - not included in total score). Items are scored on a ordinal scale, and equally weighted to give a final score from 0 (high symptoms, low function) to 100 (no symptoms or limitations) <span class="citation" data-cites="irrgang2001">(<a href="#ref-irrgang2001" role="doc-biblioref">Irrgang et al. 2001</a>)</span>. Good validity, responsiveness and reliability in knee surgery patients. MCID at 6 months = 6.3 and at 12 months = 16.7 <span class="citation" data-cites="collins2011 winterstein2013">(<a href="#ref-collins2011" role="doc-biblioref">Collins et al. 2011</a>; <a href="#ref-winterstein2013" role="doc-biblioref">Winterstein et al. 2013</a>)</span>. To account for the potential confounding effect of age and sex on IKDC scores, a z-score method was published <span class="citation" data-cites="anderson2006">(<a href="#ref-anderson2006" role="doc-biblioref">Anderson et al. 2006</a>)</span>, whereby an individual score could be substracted from the mean of the matching age and sex subgroup to the patient, with the difference divided by the subgroup standard deviation.</p>
+The IKDC is an 18 question evaluation that measures symptoms (7 items), activities of daily living (9 items) and sport (1 item), and comparative knee function (1 item - not included in total score). Items are scored on a ordinal scale, and equally weighted to give a final score from 0 (high symptoms, low function) to 100 (no symptoms or limitations) <span class="citation" data-cites="irrgang2001">(<a href="#ref-irrgang2001" role="doc-biblioref">Irrgang et al. 2001</a>)</span>. Good validity, responsiveness and reliability in knee surgery patients. MCID at 6 months = 6.3 and at 12 months = 16.7 <span class="citation" data-cites="collins2011 winterstein2013">(<a href="#ref-collins2011" role="doc-biblioref">N. J. Collins et al. 2011</a>; <a href="#ref-winterstein2013" role="doc-biblioref">Winterstein et al. 2013</a>)</span>. To account for the potential confounding effect of age and sex on IKDC scores, a z-score method was published <span class="citation" data-cites="anderson2006">(<a href="#ref-anderson2006" role="doc-biblioref">Anderson et al. 2006</a>)</span>, whereby an individual score could be substracted from the mean of the matching age and sex subgroup to the patient, with the difference divided by the subgroup standard deviation.</p>
 <p><em>Discussing PROMs in literature and qualitative comparisons</em></p>
 <p>However, a key challenge in the implementation of PROMs in the context of service delivery to patients with ACL injury, is understanding whether treatment responses are comparable from one published report to the next. The standard method in general, is to take summary statistics, usually mean and standard deviation and make a qualitative comparison to other papers that are in turn, qualitatively judged to be comparable to the sample in question. Without a systematic approach to benchmarking results, the interpretation of PROMs can be misled by biases arising from confounding.</p>
 <p><em>Importance of adjustment</em></p>
@@ -271,9 +271,9 @@ Table&nbsp;1: Study question identified under the PICOS framework
 <div aria-describedby="tbl-question-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
 <colgroup>
-<col style="width: 8%">
+<col style="width: 5%">
+<col style="width: 48%">
 <col style="width: 46%">
-<col style="width: 44%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -859,7 +859,7 @@ Table&nbsp;4: Region and study characteristics incorporated into analysis simula
 <table class="table">
 <colgroup>
 <col style="width: 28%">
-<col style="width: 32%">
+<col style="width: 31%">
 <col style="width: 39%">
 </colgroup>
 <thead>
@@ -1054,41 +1054,48 @@ Table&nbsp;4: Region and study characteristics incorporated into analysis simula
 <span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>  <span class="at">variance =</span> <span class="dv">1</span></span>
 <span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate studies within regions</span></span>
-<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>dtStudy <span class="ot">&lt;-</span> <span class="fu">genCluster</span>(dtRegion, <span class="st">"idRegion"</span>, <span class="at">numIndsVar =</span> <span class="st">"nStudy"</span>, <span class="at">level1ID =</span> <span class="st">"idStudy"</span>)</span>
-<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>dtStudy <span class="ot">&lt;-</span> <span class="fu">addColumns</span>(gen.study, dtStudy)</span>
-<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign study characteristics based on probabilities</span></span>
-<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>dtStudy <span class="ot">&lt;-</span> dtStudy <span class="sc">|&gt;</span></span>
-<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">RegionMaleRate =</span> <span class="fu">pmax</span>(<span class="fl">0.4</span>, <span class="fu">pmin</span>(<span class="fl">0.8</span>, RegionMaleRate)),</span>
-<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Assign study type</span></span>
-<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">study_type =</span> <span class="fu">case_when</span>(</span>
-<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>      study_type_prob <span class="sc">&lt;</span> <span class="fl">0.3</span> <span class="sc">~</span> <span class="st">"RCT"</span>,</span>
-<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>      study_type_prob <span class="sc">&lt;</span> <span class="fl">0.6</span> <span class="sc">~</span> <span class="st">"Registry"</span>, </span>
-<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Observational_Cohort"</span></span>
-<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>gen.study <span class="ot">&lt;-</span> <span class="fu">defDataAdd</span>(</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>  gen.study,</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>  <span class="at">varname =</span> <span class="st">"idPatient"</span>,</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>  <span class="at">dist =</span> <span class="st">"uniform"</span>, </span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> <span class="st">"1;40"</span>  <span class="co"># number of patients per study</span></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate studies within regions</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>dtStudy <span class="ot">&lt;-</span> <span class="fu">genCluster</span>(dtRegion, <span class="st">"idRegion"</span>, <span class="at">numIndsVar =</span> <span class="st">"nStudy"</span>, <span class="at">level1ID =</span> <span class="st">"idStudy"</span>)</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>dtStudy <span class="ot">&lt;-</span> <span class="fu">addColumns</span>(gen.study, dtStudy)</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign study characteristics based on probabilities</span></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>dtStudy <span class="ot">&lt;-</span> dtStudy <span class="sc">|&gt;</span></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">RegionMaleRate =</span> <span class="fu">pmax</span>(<span class="fl">0.4</span>, <span class="fu">pmin</span>(<span class="fl">0.8</span>, RegionMaleRate)),</span>
 <span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Assign setting type (academic centers more likely in regions with positive effects)</span></span>
-<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>    <span class="at">setting_type =</span> <span class="fu">case_when</span>(</span>
-<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>      setting_type_prob <span class="sc">&lt;</span> (<span class="fl">0.2</span> <span class="sc">+</span> <span class="fl">0.1</span> <span class="sc">*</span> <span class="fu">pmax</span>(<span class="dv">0</span>, RegionEffect<span class="sc">/</span><span class="dv">5</span>)) <span class="sc">~</span> <span class="st">"Academic_Medical_Center"</span>,</span>
-<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>      setting_type_prob <span class="sc">&lt;</span> <span class="fl">0.5</span> <span class="sc">~</span> <span class="st">"Specialty_Clinic"</span>,</span>
-<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>      setting_type_prob <span class="sc">&lt;</span> <span class="fl">0.8</span> <span class="sc">~</span> <span class="st">"Community_Hospital"</span>,</span>
-<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Primary_Care"</span></span>
-<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Assign capture method based on regional adoption</span></span>
-<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>    <span class="at">capture_method =</span> <span class="fu">ifelse</span>(</span>
-<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>      <span class="fu">runif</span>(<span class="fu">n</span>()) <span class="sc">&lt;</span> region_electronic_adoption, </span>
-<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Electronic"</span>, </span>
-<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Paper"</span></span>
-<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Join with study characteristics</span></span>
-<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(study_types, <span class="at">by =</span> <span class="st">"study_type"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(setting_types, <span class="at">by =</span> <span class="st">"setting_type"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(capture_methods, <span class="at">by =</span> <span class="st">"capture_method"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Assign study type</span></span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>    <span class="at">study_type =</span> <span class="fu">case_when</span>(</span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>      study_type_prob <span class="sc">&lt;</span> <span class="fl">0.3</span> <span class="sc">~</span> <span class="st">"RCT"</span>,</span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>      study_type_prob <span class="sc">&lt;</span> <span class="fl">0.6</span> <span class="sc">~</span> <span class="st">"Registry"</span>, </span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Observational_Cohort"</span></span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Assign setting type (academic centers more likely in regions with positive effects)</span></span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>    <span class="at">setting_type =</span> <span class="fu">case_when</span>(</span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>      setting_type_prob <span class="sc">&lt;</span> (<span class="fl">0.2</span> <span class="sc">+</span> <span class="fl">0.1</span> <span class="sc">*</span> <span class="fu">pmax</span>(<span class="dv">0</span>, RegionEffect<span class="sc">/</span><span class="dv">5</span>)) <span class="sc">~</span> <span class="st">"Academic_Medical_Center"</span>,</span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>      setting_type_prob <span class="sc">&lt;</span> <span class="fl">0.5</span> <span class="sc">~</span> <span class="st">"Specialty_Clinic"</span>,</span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>      setting_type_prob <span class="sc">&lt;</span> <span class="fl">0.8</span> <span class="sc">~</span> <span class="st">"Community_Hospital"</span>,</span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Primary_Care"</span></span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Assign capture method based on regional adoption</span></span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>    <span class="at">capture_method =</span> <span class="fu">ifelse</span>(</span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>      <span class="fu">runif</span>(<span class="fu">n</span>()) <span class="sc">&lt;</span> region_electronic_adoption, </span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Electronic"</span>, </span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Paper"</span></span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Join with study characteristics</span></span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(study_types, <span class="at">by =</span> <span class="st">"study_type"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(setting_types, <span class="at">by =</span> <span class="st">"setting_type"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(capture_methods, <span class="at">by =</span> <span class="st">"capture_method"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>We then move to estimating patient characteristics based on the hierarchical data structure, with patient age, sex proportions and the incidence of meniscus or cartilage pathology all varying by region. In addition, socioeconomic status, education level and comorbidity burden have been incorporated into the simulation. These have been included for illustration purposes as these are typically not reported in the literature for ACL injury and reconstruction.</p>
@@ -1215,7 +1222,7 @@ Table&nbsp;4: Region and study characteristics incorporated into analysis simula
 <span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">level1ID =</span> <span class="st">"idPatient"</span></span>
 <span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>dtPatient <span class="ot">&lt;-</span> <span class="fu">addColumns</span>(gen.patient, dtPatient)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>dtPatient1 <span class="ot">&lt;-</span> <span class="fu">addColumns</span>(gen.patient, dtPatient)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>The literature dataset is now in place - we can move to a separate dataset to represent the local SHARKS dataset. Then the study characteristics are added to enable combination with the literature dataset for further analysis.</p>
@@ -1348,8 +1355,7 @@ Table&nbsp;4: Region and study characteristics incorporated into analysis simula
 <span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a>    <span class="at">region_electronic_adoption =</span> <span class="dv">1</span>,</span>
 <span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a>    <span class="at">study_type_prob =</span> <span class="cn">NA</span>,</span>
 <span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a>    <span class="at">setting_type_prob =</span> <span class="cn">NA</span></span>
-<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">all_of</span>(<span class="fu">names</span>(dtPatient)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>We now combine the datasets and make some final adjustments to enable application of regression methods for a hierarchical model construction to underpin the case-mixture adjustment.</p>
@@ -1358,7 +1364,7 @@ Table&nbsp;4: Region and study characteristics incorporated into analysis simula
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 7: Combine datasets</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>dtCombined <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  dtPatient,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  dtPatient1,</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  SHARKSLocal</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
@@ -1394,7 +1400,7 @@ Table&nbsp;4: Region and study characteristics incorporated into analysis simula
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>FigSimIKDC <span class="ot">&lt;-</span> dtAnalysis <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> idRegion, <span class="at">x =</span> IKDC)) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>FigSimIKDC <span class="ot">&lt;-</span> dtAnalysis <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> idRegion_f, <span class="at">x =</span> IKDC)) <span class="sc">+</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_halfeye</span>()</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">knit_print</span>(FigSimIKDC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1455,23 +1461,23 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
 </figcaption>
 <div aria-describedby="tbl-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="awtjsoirjk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#awtjsoirjk table {
+<div id="dhbxjspvyg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#dhbxjspvyg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#awtjsoirjk thead, #awtjsoirjk tbody, #awtjsoirjk tfoot, #awtjsoirjk tr, #awtjsoirjk td, #awtjsoirjk th {
+#dhbxjspvyg thead, #dhbxjspvyg tbody, #dhbxjspvyg tfoot, #dhbxjspvyg tr, #dhbxjspvyg td, #dhbxjspvyg th {
   border-style: none;
 }
 
-#awtjsoirjk p {
+#dhbxjspvyg p {
   margin: 0;
   padding: 0;
 }
 
-#awtjsoirjk .gt_table {
+#dhbxjspvyg .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1497,12 +1503,12 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
   border-left-color: #D3D3D3;
 }
 
-#awtjsoirjk .gt_caption {
+#dhbxjspvyg .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#awtjsoirjk .gt_title {
+#dhbxjspvyg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1514,7 +1520,7 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
   border-bottom-width: 0;
 }
 
-#awtjsoirjk .gt_subtitle {
+#dhbxjspvyg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1526,7 +1532,7 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
   border-top-width: 0;
 }
 
-#awtjsoirjk .gt_heading {
+#dhbxjspvyg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1538,13 +1544,13 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
   border-right-color: #D3D3D3;
 }
 
-#awtjsoirjk .gt_bottom_border {
+#dhbxjspvyg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#awtjsoirjk .gt_col_headings {
+#dhbxjspvyg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1559,7 +1565,7 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
   border-right-color: #D3D3D3;
 }
 
-#awtjsoirjk .gt_col_heading {
+#dhbxjspvyg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1579,7 +1585,7 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
   overflow-x: hidden;
 }
 
-#awtjsoirjk .gt_column_spanner_outer {
+#dhbxjspvyg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1591,15 +1597,15 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
   padding-right: 4px;
 }
 
-#awtjsoirjk .gt_column_spanner_outer:first-child {
+#dhbxjspvyg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#awtjsoirjk .gt_column_spanner_outer:last-child {
+#dhbxjspvyg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#awtjsoirjk .gt_column_spanner {
+#dhbxjspvyg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1611,11 +1617,11 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
   width: 100%;
 }
 
-#awtjsoirjk .gt_spanner_row {
+#dhbxjspvyg .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#awtjsoirjk .gt_group_heading {
+#dhbxjspvyg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1641,7 +1647,7 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
   text-align: left;
 }
 
-#awtjsoirjk .gt_empty_group_heading {
+#dhbxjspvyg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1656,15 +1662,15 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
   vertical-align: middle;
 }
 
-#awtjsoirjk .gt_from_md > :first-child {
+#dhbxjspvyg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#awtjsoirjk .gt_from_md > :last-child {
+#dhbxjspvyg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#awtjsoirjk .gt_row {
+#dhbxjspvyg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1683,7 +1689,7 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
   overflow-x: hidden;
 }
 
-#awtjsoirjk .gt_stub {
+#dhbxjspvyg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1696,7 +1702,7 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
   padding-right: 5px;
 }
 
-#awtjsoirjk .gt_stub_row_group {
+#dhbxjspvyg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1710,15 +1716,15 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
   vertical-align: top;
 }
 
-#awtjsoirjk .gt_row_group_first td {
+#dhbxjspvyg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#awtjsoirjk .gt_row_group_first th {
+#dhbxjspvyg .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#awtjsoirjk .gt_summary_row {
+#dhbxjspvyg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1728,16 +1734,16 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
   padding-right: 5px;
 }
 
-#awtjsoirjk .gt_first_summary_row {
+#dhbxjspvyg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#awtjsoirjk .gt_first_summary_row.thick {
+#dhbxjspvyg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#awtjsoirjk .gt_last_summary_row {
+#dhbxjspvyg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1747,7 +1753,7 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
   border-bottom-color: #D3D3D3;
 }
 
-#awtjsoirjk .gt_grand_summary_row {
+#dhbxjspvyg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1757,7 +1763,7 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
   padding-right: 5px;
 }
 
-#awtjsoirjk .gt_first_grand_summary_row {
+#dhbxjspvyg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1767,7 +1773,7 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
   border-top-color: #D3D3D3;
 }
 
-#awtjsoirjk .gt_last_grand_summary_row_top {
+#dhbxjspvyg .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1777,11 +1783,11 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
   border-bottom-color: #D3D3D3;
 }
 
-#awtjsoirjk .gt_striped {
+#dhbxjspvyg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#awtjsoirjk .gt_table_body {
+#dhbxjspvyg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1790,7 +1796,7 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
   border-bottom-color: #D3D3D3;
 }
 
-#awtjsoirjk .gt_footnotes {
+#dhbxjspvyg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1804,7 +1810,7 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
   border-right-color: #D3D3D3;
 }
 
-#awtjsoirjk .gt_footnote {
+#dhbxjspvyg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1813,7 +1819,7 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
   padding-right: 5px;
 }
 
-#awtjsoirjk .gt_sourcenotes {
+#dhbxjspvyg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1827,7 +1833,7 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
   border-right-color: #D3D3D3;
 }
 
-#awtjsoirjk .gt_sourcenote {
+#dhbxjspvyg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1835,72 +1841,72 @@ Table&nbsp;5: Summary of simulated study and patient characteristics between lit
   padding-right: 5px;
 }
 
-#awtjsoirjk .gt_left {
+#dhbxjspvyg .gt_left {
   text-align: left;
 }
 
-#awtjsoirjk .gt_center {
+#dhbxjspvyg .gt_center {
   text-align: center;
 }
 
-#awtjsoirjk .gt_right {
+#dhbxjspvyg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#awtjsoirjk .gt_font_normal {
+#dhbxjspvyg .gt_font_normal {
   font-weight: normal;
 }
 
-#awtjsoirjk .gt_font_bold {
+#dhbxjspvyg .gt_font_bold {
   font-weight: bold;
 }
 
-#awtjsoirjk .gt_font_italic {
+#dhbxjspvyg .gt_font_italic {
   font-style: italic;
 }
 
-#awtjsoirjk .gt_super {
+#dhbxjspvyg .gt_super {
   font-size: 65%;
 }
 
-#awtjsoirjk .gt_footnote_marks {
+#dhbxjspvyg .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#awtjsoirjk .gt_asterisk {
+#dhbxjspvyg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#awtjsoirjk .gt_indent_1 {
+#dhbxjspvyg .gt_indent_1 {
   text-indent: 5px;
 }
 
-#awtjsoirjk .gt_indent_2 {
+#dhbxjspvyg .gt_indent_2 {
   text-indent: 10px;
 }
 
-#awtjsoirjk .gt_indent_3 {
+#dhbxjspvyg .gt_indent_3 {
   text-indent: 15px;
 }
 
-#awtjsoirjk .gt_indent_4 {
+#dhbxjspvyg .gt_indent_4 {
   text-indent: 20px;
 }
 
-#awtjsoirjk .gt_indent_5 {
+#dhbxjspvyg .gt_indent_5 {
   text-indent: 25px;
 }
 
-#awtjsoirjk .katex-display {
+#dhbxjspvyg .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#awtjsoirjk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#dhbxjspvyg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1996,27 +2002,27 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Electronic</td>
-<td class="gt_row gt_center" headers="stat_0">2,611 (40%)</td>
-<td class="gt_row gt_center" headers="stat_1">2,111 (35%)</td>
+<td class="gt_row gt_center" headers="stat_0">4,044 (61%)</td>
+<td class="gt_row gt_center" headers="stat_1">3,544 (58%)</td>
 <td class="gt_row gt_center" headers="stat_2">500 (100%)</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Paper</td>
-<td class="gt_row gt_center" headers="stat_0">3,994 (60%)</td>
-<td class="gt_row gt_center" headers="stat_1">3,994 (65%)</td>
+<td class="gt_row gt_center" headers="stat_0">2,561 (39%)</td>
+<td class="gt_row gt_center" headers="stat_1">2,561 (42%)</td>
 <td class="gt_row gt_center" headers="stat_2">0 (0%)</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">IKDC Score</td>
-<td class="gt_row gt_center" headers="stat_0">49.13 (15.38)</td>
-<td class="gt_row gt_center" headers="stat_1">48.98 (15.10)</td>
-<td class="gt_row gt_center" headers="stat_2">50.99 (18.41)</td>
+<td class="gt_row gt_center" headers="stat_0">49.08 (15.31)</td>
+<td class="gt_row gt_center" headers="stat_1">48.92 (14.98)</td>
+<td class="gt_row gt_center" headers="stat_2">51.03 (18.80)</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">Age (years)</td>
-<td class="gt_row gt_center" headers="stat_0">26.88 (5.55)</td>
-<td class="gt_row gt_center" headers="stat_1">26.84 (5.33)</td>
-<td class="gt_row gt_center" headers="stat_2">27.39 (7.77)</td>
+<td class="gt_row gt_center" headers="stat_0">26.88 (5.57)</td>
+<td class="gt_row gt_center" headers="stat_1">26.85 (5.36)</td>
+<td class="gt_row gt_center" headers="stat_2">27.27 (7.66)</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">Sex</td>
@@ -2029,27 +2035,27 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Female</td>
-<td class="gt_row gt_center" headers="stat_0">2,177 (33%)</td>
-<td class="gt_row gt_center" headers="stat_1">2,017 (33%)</td>
-<td class="gt_row gt_center" headers="stat_2">160 (32%)</td>
+<td class="gt_row gt_center" headers="stat_0">2,176 (33%)</td>
+<td class="gt_row gt_center" headers="stat_1">2,012 (33%)</td>
+<td class="gt_row gt_center" headers="stat_2">164 (33%)</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Male</td>
-<td class="gt_row gt_center" headers="stat_0">4,428 (67%)</td>
-<td class="gt_row gt_center" headers="stat_1">4,088 (67%)</td>
-<td class="gt_row gt_center" headers="stat_2">340 (68%)</td>
+<td class="gt_row gt_center" headers="stat_0">4,429 (67%)</td>
+<td class="gt_row gt_center" headers="stat_1">4,093 (67%)</td>
+<td class="gt_row gt_center" headers="stat_2">336 (67%)</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">BMI (kg/m²)</td>
 <td class="gt_row gt_center" headers="stat_0">28.12 (5.55)</td>
-<td class="gt_row gt_center" headers="stat_1">28.10 (5.56)</td>
-<td class="gt_row gt_center" headers="stat_2">28.42 (5.45)</td>
+<td class="gt_row gt_center" headers="stat_1">28.11 (5.58)</td>
+<td class="gt_row gt_center" headers="stat_2">28.33 (5.16)</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">Meniscus/Cartilage Pathology</td>
-<td class="gt_row gt_center" headers="stat_0">4,425 (67%)</td>
-<td class="gt_row gt_center" headers="stat_1">4,073 (67%)</td>
-<td class="gt_row gt_center" headers="stat_2">352 (70%)</td>
+<td class="gt_row gt_center" headers="stat_0">4,377 (66%)</td>
+<td class="gt_row gt_center" headers="stat_1">4,024 (66%)</td>
+<td class="gt_row gt_center" headers="stat_2">353 (71%)</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">Comorbidity Count</td>
@@ -2062,39 +2068,39 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;0</td>
-<td class="gt_row gt_center" headers="stat_0">2,571 (39%)</td>
-<td class="gt_row gt_center" headers="stat_1">2,422 (40%)</td>
-<td class="gt_row gt_center" headers="stat_2">149 (30%)</td>
+<td class="gt_row gt_center" headers="stat_0">2,560 (39%)</td>
+<td class="gt_row gt_center" headers="stat_1">2,415 (40%)</td>
+<td class="gt_row gt_center" headers="stat_2">145 (29%)</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;1</td>
-<td class="gt_row gt_center" headers="stat_0">2,440 (37%)</td>
-<td class="gt_row gt_center" headers="stat_1">2,263 (37%)</td>
-<td class="gt_row gt_center" headers="stat_2">177 (35%)</td>
+<td class="gt_row gt_center" headers="stat_0">2,449 (37%)</td>
+<td class="gt_row gt_center" headers="stat_1">2,270 (37%)</td>
+<td class="gt_row gt_center" headers="stat_2">179 (36%)</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;2</td>
-<td class="gt_row gt_center" headers="stat_0">1,108 (17%)</td>
-<td class="gt_row gt_center" headers="stat_1">1,006 (16%)</td>
-<td class="gt_row gt_center" headers="stat_2">102 (20%)</td>
+<td class="gt_row gt_center" headers="stat_0">1,103 (17%)</td>
+<td class="gt_row gt_center" headers="stat_1">1,000 (16%)</td>
+<td class="gt_row gt_center" headers="stat_2">103 (21%)</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;3</td>
-<td class="gt_row gt_center" headers="stat_0">367 (5.6%)</td>
-<td class="gt_row gt_center" headers="stat_1">317 (5.2%)</td>
-<td class="gt_row gt_center" headers="stat_2">50 (10%)</td>
+<td class="gt_row gt_center" headers="stat_0">379 (5.7%)</td>
+<td class="gt_row gt_center" headers="stat_1">325 (5.3%)</td>
+<td class="gt_row gt_center" headers="stat_2">54 (11%)</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;4</td>
-<td class="gt_row gt_center" headers="stat_0">102 (1.5%)</td>
+<td class="gt_row gt_center" headers="stat_0">100 (1.5%)</td>
 <td class="gt_row gt_center" headers="stat_1">83 (1.4%)</td>
-<td class="gt_row gt_center" headers="stat_2">19 (3.8%)</td>
+<td class="gt_row gt_center" headers="stat_2">17 (3.4%)</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;5</td>
-<td class="gt_row gt_center" headers="stat_0">12 (0.2%)</td>
-<td class="gt_row gt_center" headers="stat_1">10 (0.2%)</td>
-<td class="gt_row gt_center" headers="stat_2">2 (0.4%)</td>
+<td class="gt_row gt_center" headers="stat_0">9 (0.1%)</td>
+<td class="gt_row gt_center" headers="stat_1">8 (0.1%)</td>
+<td class="gt_row gt_center" headers="stat_2">1 (0.2%)</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;6</td>
@@ -2110,15 +2116,15 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">SES Score</td>
-<td class="gt_row gt_center" headers="stat_0">48.72 (10.15)</td>
-<td class="gt_row gt_center" headers="stat_1">48.49 (10.21)</td>
-<td class="gt_row gt_center" headers="stat_2">51.51 (8.93)</td>
+<td class="gt_row gt_center" headers="stat_0">48.74 (10.10)</td>
+<td class="gt_row gt_center" headers="stat_1">48.48 (10.16)</td>
+<td class="gt_row gt_center" headers="stat_2">51.86 (8.79)</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">Education (years)</td>
-<td class="gt_row gt_center" headers="stat_0">15.08 (2.95)</td>
-<td class="gt_row gt_center" headers="stat_1">15.09 (2.98)</td>
-<td class="gt_row gt_center" headers="stat_2">14.98 (2.48)</td>
+<td class="gt_row gt_center" headers="stat_0">15.09 (2.94)</td>
+<td class="gt_row gt_center" headers="stat_1">15.10 (2.98)</td>
+<td class="gt_row gt_center" headers="stat_2">14.96 (2.45)</td>
 </tr>
 </tbody><tfoot class="gt_footnotes">
 <tr class="odd">
@@ -2134,6 +2140,9 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
 </figure>
 </div>
 </div>
+</section>
+<section id="case-mixture-adjustment" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="case-mixture-adjustment"><span class="header-section-number">7.2</span> Case-mixture adjustment</h2>
 <p>Now we have a dataset to work with, we can work on constructing a case-mixture adjustment model. For this step we will draw partly on the review works of <span class="citation" data-cites="burgess2019">(<a href="#ref-burgess2019" role="doc-biblioref">Burgess et al. 2019</a>)</span> and <span class="citation" data-cites="sibert2021">(<a href="#ref-sibert2021" role="doc-biblioref">Sibert et al. 2021</a>)</span>. They describe considerable variability in the construction of adjustment models in the context of patient-reported outcomes and specifically within the musculoskeletal setting. In reality, this simulated model will be unlikely to be replicated, as there is unlikely to be sufficient description or reporting of some of the sample characteristics. Nevertheless, the simulation helps to illustrate key analytical choices to produce a reasonable adjustment based on the available information.</p>
 <div class="cell">
 <details class="code-fold">
@@ -2202,23 +2211,23 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
 <span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">knit_print</span>(model_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="zxvxbnpsvn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zxvxbnpsvn table {
+<div id="aajzrrcxii" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#aajzrrcxii table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zxvxbnpsvn thead, #zxvxbnpsvn tbody, #zxvxbnpsvn tfoot, #zxvxbnpsvn tr, #zxvxbnpsvn td, #zxvxbnpsvn th {
+#aajzrrcxii thead, #aajzrrcxii tbody, #aajzrrcxii tfoot, #aajzrrcxii tr, #aajzrrcxii td, #aajzrrcxii th {
   border-style: none;
 }
 
-#zxvxbnpsvn p {
+#aajzrrcxii p {
   margin: 0;
   padding: 0;
 }
 
-#zxvxbnpsvn .gt_table {
+#aajzrrcxii .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2244,12 +2253,12 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
   border-left-color: #D3D3D3;
 }
 
-#zxvxbnpsvn .gt_caption {
+#aajzrrcxii .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zxvxbnpsvn .gt_title {
+#aajzrrcxii .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2261,7 +2270,7 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
   border-bottom-width: 0;
 }
 
-#zxvxbnpsvn .gt_subtitle {
+#aajzrrcxii .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2273,7 +2282,7 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
   border-top-width: 0;
 }
 
-#zxvxbnpsvn .gt_heading {
+#aajzrrcxii .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2285,13 +2294,13 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
   border-right-color: #D3D3D3;
 }
 
-#zxvxbnpsvn .gt_bottom_border {
+#aajzrrcxii .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zxvxbnpsvn .gt_col_headings {
+#aajzrrcxii .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2306,7 +2315,7 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
   border-right-color: #D3D3D3;
 }
 
-#zxvxbnpsvn .gt_col_heading {
+#aajzrrcxii .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2326,7 +2335,7 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
   overflow-x: hidden;
 }
 
-#zxvxbnpsvn .gt_column_spanner_outer {
+#aajzrrcxii .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2338,15 +2347,15 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
   padding-right: 4px;
 }
 
-#zxvxbnpsvn .gt_column_spanner_outer:first-child {
+#aajzrrcxii .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zxvxbnpsvn .gt_column_spanner_outer:last-child {
+#aajzrrcxii .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zxvxbnpsvn .gt_column_spanner {
+#aajzrrcxii .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2358,11 +2367,11 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
   width: 100%;
 }
 
-#zxvxbnpsvn .gt_spanner_row {
+#aajzrrcxii .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zxvxbnpsvn .gt_group_heading {
+#aajzrrcxii .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2388,7 +2397,7 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
   text-align: left;
 }
 
-#zxvxbnpsvn .gt_empty_group_heading {
+#aajzrrcxii .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2403,15 +2412,15 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
   vertical-align: middle;
 }
 
-#zxvxbnpsvn .gt_from_md > :first-child {
+#aajzrrcxii .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zxvxbnpsvn .gt_from_md > :last-child {
+#aajzrrcxii .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zxvxbnpsvn .gt_row {
+#aajzrrcxii .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2430,7 +2439,7 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
   overflow-x: hidden;
 }
 
-#zxvxbnpsvn .gt_stub {
+#aajzrrcxii .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2443,7 +2452,7 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
   padding-right: 5px;
 }
 
-#zxvxbnpsvn .gt_stub_row_group {
+#aajzrrcxii .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2457,15 +2466,15 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
   vertical-align: top;
 }
 
-#zxvxbnpsvn .gt_row_group_first td {
+#aajzrrcxii .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zxvxbnpsvn .gt_row_group_first th {
+#aajzrrcxii .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zxvxbnpsvn .gt_summary_row {
+#aajzrrcxii .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2475,16 +2484,16 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
   padding-right: 5px;
 }
 
-#zxvxbnpsvn .gt_first_summary_row {
+#aajzrrcxii .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zxvxbnpsvn .gt_first_summary_row.thick {
+#aajzrrcxii .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zxvxbnpsvn .gt_last_summary_row {
+#aajzrrcxii .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2494,7 +2503,7 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
   border-bottom-color: #D3D3D3;
 }
 
-#zxvxbnpsvn .gt_grand_summary_row {
+#aajzrrcxii .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2504,7 +2513,7 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
   padding-right: 5px;
 }
 
-#zxvxbnpsvn .gt_first_grand_summary_row {
+#aajzrrcxii .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2514,7 +2523,7 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
   border-top-color: #D3D3D3;
 }
 
-#zxvxbnpsvn .gt_last_grand_summary_row_top {
+#aajzrrcxii .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2524,11 +2533,11 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
   border-bottom-color: #D3D3D3;
 }
 
-#zxvxbnpsvn .gt_striped {
+#aajzrrcxii .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zxvxbnpsvn .gt_table_body {
+#aajzrrcxii .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2537,7 +2546,7 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
   border-bottom-color: #D3D3D3;
 }
 
-#zxvxbnpsvn .gt_footnotes {
+#aajzrrcxii .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2551,7 +2560,7 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
   border-right-color: #D3D3D3;
 }
 
-#zxvxbnpsvn .gt_footnote {
+#aajzrrcxii .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2560,7 +2569,7 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
   padding-right: 5px;
 }
 
-#zxvxbnpsvn .gt_sourcenotes {
+#aajzrrcxii .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2574,7 +2583,7 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
   border-right-color: #D3D3D3;
 }
 
-#zxvxbnpsvn .gt_sourcenote {
+#aajzrrcxii .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2582,72 +2591,72 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
   padding-right: 5px;
 }
 
-#zxvxbnpsvn .gt_left {
+#aajzrrcxii .gt_left {
   text-align: left;
 }
 
-#zxvxbnpsvn .gt_center {
+#aajzrrcxii .gt_center {
   text-align: center;
 }
 
-#zxvxbnpsvn .gt_right {
+#aajzrrcxii .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zxvxbnpsvn .gt_font_normal {
+#aajzrrcxii .gt_font_normal {
   font-weight: normal;
 }
 
-#zxvxbnpsvn .gt_font_bold {
+#aajzrrcxii .gt_font_bold {
   font-weight: bold;
 }
 
-#zxvxbnpsvn .gt_font_italic {
+#aajzrrcxii .gt_font_italic {
   font-style: italic;
 }
 
-#zxvxbnpsvn .gt_super {
+#aajzrrcxii .gt_super {
   font-size: 65%;
 }
 
-#zxvxbnpsvn .gt_footnote_marks {
+#aajzrrcxii .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zxvxbnpsvn .gt_asterisk {
+#aajzrrcxii .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zxvxbnpsvn .gt_indent_1 {
+#aajzrrcxii .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zxvxbnpsvn .gt_indent_2 {
+#aajzrrcxii .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zxvxbnpsvn .gt_indent_3 {
+#aajzrrcxii .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zxvxbnpsvn .gt_indent_4 {
+#aajzrrcxii .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zxvxbnpsvn .gt_indent_5 {
+#aajzrrcxii .gt_indent_5 {
   text-indent: 25px;
 }
 
-#zxvxbnpsvn .katex-display {
+#aajzrrcxii .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#zxvxbnpsvn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#aajzrrcxii div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2669,23 +2678,23 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">Age (centered)</td>
-<td class="gt_row gt_center" headers="estimate">0.77</td>
-<td class="gt_row gt_center" headers="conf.low">0.72, 0.83</td>
+<td class="gt_row gt_center" headers="estimate">0.83</td>
+<td class="gt_row gt_center" headers="conf.low">0.77, 0.89</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">I(Age_c^2)</td>
-<td class="gt_row gt_center" headers="estimate">1.00</td>
+<td class="gt_row gt_center" headers="estimate">1.0</td>
 <td class="gt_row gt_center" headers="conf.low">0.99, 1.00</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">Sex (Female vs Male)</td>
-<td class="gt_row gt_center" headers="estimate">52.5</td>
-<td class="gt_row gt_center" headers="conf.low">25.6, 108</td>
+<td class="gt_row gt_center" headers="estimate">46.0</td>
+<td class="gt_row gt_center" headers="conf.low">22.4, 94.6</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">BMI (centered)</td>
-<td class="gt_row gt_center" headers="estimate">0.67</td>
-<td class="gt_row gt_center" headers="conf.low">0.63, 0.71</td>
+<td class="gt_row gt_center" headers="estimate">0.66</td>
+<td class="gt_row gt_center" headers="conf.low">0.62, 0.70</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">Meniscus/Cartilage Pathology</td>
@@ -2694,18 +2703,18 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">Comorbidity Count</td>
-<td class="gt_row gt_center" headers="estimate">0.13</td>
-<td class="gt_row gt_center" headers="conf.low">0.09, 0.18</td>
+<td class="gt_row gt_center" headers="estimate">0.16</td>
+<td class="gt_row gt_center" headers="conf.low">0.11, 0.22</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">SES Score (centered)</td>
-<td class="gt_row gt_center" headers="estimate">1.12</td>
-<td class="gt_row gt_center" headers="conf.low">1.09, 1.16</td>
+<td class="gt_row gt_center" headers="estimate">1.11</td>
+<td class="gt_row gt_center" headers="conf.low">1.08, 1.15</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">Education Years (centered)</td>
-<td class="gt_row gt_center" headers="estimate">1.05</td>
-<td class="gt_row gt_center" headers="conf.low">0.94, 1.18</td>
+<td class="gt_row gt_center" headers="estimate">1.01</td>
+<td class="gt_row gt_center" headers="conf.low">0.90, 1.13</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">Study Type</td>
@@ -2721,13 +2730,13 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;RCT</td>
-<td class="gt_row gt_center" headers="estimate">2.10</td>
-<td class="gt_row gt_center" headers="conf.low">0.31, 14.4</td>
+<td class="gt_row gt_center" headers="estimate">7.78</td>
+<td class="gt_row gt_center" headers="conf.low">1.38, 43.9</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Registry</td>
-<td class="gt_row gt_center" headers="estimate">0.22</td>
-<td class="gt_row gt_center" headers="conf.low">0.03, 1.45</td>
+<td class="gt_row gt_center" headers="estimate">0.77</td>
+<td class="gt_row gt_center" headers="conf.low">0.16, 3.73</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">Setting Type</td>
@@ -2743,33 +2752,33 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Community_Hospital</td>
-<td class="gt_row gt_center" headers="estimate">0.64</td>
-<td class="gt_row gt_center" headers="conf.low">0.05, 9.13</td>
+<td class="gt_row gt_center" headers="estimate">0.24</td>
+<td class="gt_row gt_center" headers="conf.low">0.03, 2.29</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Primary_Care</td>
-<td class="gt_row gt_center" headers="estimate">0.09</td>
-<td class="gt_row gt_center" headers="conf.low">0.01, 1.77</td>
+<td class="gt_row gt_center" headers="estimate">0.08</td>
+<td class="gt_row gt_center" headers="conf.low">0.01, 0.90</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Specialty_Clinic</td>
-<td class="gt_row gt_center" headers="estimate">0.82</td>
-<td class="gt_row gt_center" headers="conf.low">0.05, 13.5</td>
+<td class="gt_row gt_center" headers="estimate">0.57</td>
+<td class="gt_row gt_center" headers="conf.low">0.05, 6.39</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">Capture Method (Elec vs Paper)</td>
-<td class="gt_row gt_center" headers="estimate">0.49</td>
-<td class="gt_row gt_center" headers="conf.low">0.10, 2.28</td>
+<td class="gt_row gt_center" headers="estimate">0.70</td>
+<td class="gt_row gt_center" headers="conf.low">0.19, 2.59</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">idStudy_f.sd__(Intercept)</td>
-<td class="gt_row gt_center" headers="estimate">2.01</td>
+<td class="gt_row gt_center" headers="estimate">1.50</td>
 <td class="gt_row gt_center" headers="conf.low"><br>
 </td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">idRegion_f.sd__(Intercept)</td>
-<td class="gt_row gt_center" headers="estimate">0.00</td>
+<td class="gt_row gt_center" headers="estimate">0.53</td>
 <td class="gt_row gt_center" headers="conf.low"><br>
 </td>
 </tr>
@@ -2794,100 +2803,152 @@ N = 500<span class="gt_footnote_marks" style="white-space:nowrap;font-style:ital
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display model summary</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>model_summary <span class="ot">&lt;-</span> <span class="fu">tidy</span>(ikdc_model, <span class="at">effects =</span> <span class="st">"fixed"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span> <span class="fu">round</span>(.x, <span class="dv">3</span>)))</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">epoxy</span>(<span class="st">"</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="st">### Mixed Effects Model Summary</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="st">Fixed effects coefficients:</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="st">{knitr::kable(model_summary, format = 'markdown')}</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>model_summary <span class="ot">&lt;-</span> <span class="fu">tidy</span>(ikdc_model, <span class="at">effects =</span> <span class="st">"fixed"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span> <span class="fu">round</span>(.x, <span class="dv">3</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-### Mixed Effects Model Summary
-Fixed effects coefficients:
-|effect |term                           | estimate| std.error| statistic|
-
-
-### Mixed Effects Model Summary
-Fixed effects coefficients:
-|:------|:------------------------------|--------:|---------:|---------:|
-
-
-### Mixed Effects Model Summary
-Fixed effects coefficients:
-|fixed  |(Intercept)                    |   57.777|     1.507|    38.350|
-
-
-### Mixed Effects Model Summary
-Fixed effects coefficients:
-|fixed  |Age_c                          |   -0.255|     0.036|    -7.037|
-
-
-### Mixed Effects Model Summary
-Fixed effects coefficients:
-|fixed  |I(Age_c^2)                     |   -0.002|     0.003|    -0.601|
-
-
-### Mixed Effects Model Summary
-Fixed effects coefficients:
-|fixed  |Sex_fMale                      |    3.961|     0.366|    10.808|
-
-
-### Mixed Effects Model Summary
-Fixed effects coefficients:
-|fixed  |BMI_c                          |   -0.403|     0.032|   -12.718|
-
-
-### Mixed Effects Model Summary
-Fixed effects coefficients:
-|fixed  |MeniscusCartilage_fYes         |  -11.702|     0.360|   -32.525|
-
-
-### Mixed Effects Model Summary
-Fixed effects coefficients:
-|fixed  |comorbidity_count              |   -2.075|     0.171|   -12.144|
-
-
-### Mixed Effects Model Summary
-Fixed effects coefficients:
-|fixed  |ses_score_c                    |    0.117|     0.017|     6.941|
-
-
-### Mixed Effects Model Summary
-Fixed effects coefficients:
-|fixed  |education_years_c              |    0.050|     0.057|     0.879|
-
-
-### Mixed Effects Model Summary
-Fixed effects coefficients:
-|fixed  |study_typeRCT                  |    0.744|     0.982|     0.757|
-
-
-### Mixed Effects Model Summary
-Fixed effects coefficients:
-|fixed  |study_typeRegistry             |   -1.506|     0.959|    -1.570|
-
-
-### Mixed Effects Model Summary
-Fixed effects coefficients:
-|fixed  |setting_typeCommunity_Hospital |   -0.443|     1.355|    -0.327|
-
-
-### Mixed Effects Model Summary
-Fixed effects coefficients:
-|fixed  |setting_typePrimary_Care       |   -2.355|     1.494|    -1.577|
-
-
-### Mixed Effects Model Summary
-Fixed effects coefficients:
-|fixed  |setting_typeSpecialty_Clinic   |   -0.195|     1.428|    -0.136|
-
-
-### Mixed Effects Model Summary
-Fixed effects coefficients:
-|fixed  |capture_methodPaper            |   -0.717|     0.786|    -0.911|</code></pre>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Mixed Effects Model Summary</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Fixed effects coefficients:</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>{knitr<span class="sc">::</span><span class="fu">kable</span>(model_summary, <span class="at">format =</span> <span class="st">'markdown'</span>)}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="tbl-model-summary" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-model-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6: Summary of fixed effects coefficients for linear mixed model
+</figcaption>
+<div aria-describedby="tbl-model-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell table table-sm table-striped small">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 46%">
+<col style="width: 13%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">effect</th>
+<th style="text-align: left;">term</th>
+<th style="text-align: right;">estimate</th>
+<th style="text-align: right;">std.error</th>
+<th style="text-align: right;">statistic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">fixed</td>
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">57.049</td>
+<td style="text-align: right;">1.322</td>
+<td style="text-align: right;">43.139</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fixed</td>
+<td style="text-align: left;">Age_c</td>
+<td style="text-align: right;">-0.189</td>
+<td style="text-align: right;">0.036</td>
+<td style="text-align: right;">-5.232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fixed</td>
+<td style="text-align: left;">I(Age_c^2)</td>
+<td style="text-align: right;">-0.005</td>
+<td style="text-align: right;">0.003</td>
+<td style="text-align: right;">-1.589</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fixed</td>
+<td style="text-align: left;">Sex_fMale</td>
+<td style="text-align: right;">3.828</td>
+<td style="text-align: right;">0.368</td>
+<td style="text-align: right;">10.401</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fixed</td>
+<td style="text-align: left;">BMI_c</td>
+<td style="text-align: right;">-0.422</td>
+<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">-13.292</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fixed</td>
+<td style="text-align: left;">MeniscusCartilage_fYes</td>
+<td style="text-align: right;">-11.755</td>
+<td style="text-align: right;">0.358</td>
+<td style="text-align: right;">-32.878</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fixed</td>
+<td style="text-align: left;">comorbidity_count</td>
+<td style="text-align: right;">-1.857</td>
+<td style="text-align: right;">0.171</td>
+<td style="text-align: right;">-10.849</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fixed</td>
+<td style="text-align: left;">ses_score_c</td>
+<td style="text-align: right;">0.107</td>
+<td style="text-align: right;">0.017</td>
+<td style="text-align: right;">6.343</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fixed</td>
+<td style="text-align: left;">education_years_c</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">0.057</td>
+<td style="text-align: right;">0.109</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fixed</td>
+<td style="text-align: left;">study_typeRCT</td>
+<td style="text-align: right;">2.051</td>
+<td style="text-align: right;">0.883</td>
+<td style="text-align: right;">2.323</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fixed</td>
+<td style="text-align: left;">study_typeRegistry</td>
+<td style="text-align: right;">-0.259</td>
+<td style="text-align: right;">0.803</td>
+<td style="text-align: right;">-0.322</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fixed</td>
+<td style="text-align: left;">setting_typeCommunity_Hospital</td>
+<td style="text-align: right;">-1.415</td>
+<td style="text-align: right;">1.145</td>
+<td style="text-align: right;">-1.235</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fixed</td>
+<td style="text-align: left;">setting_typePrimary_Care</td>
+<td style="text-align: right;">-2.558</td>
+<td style="text-align: right;">1.252</td>
+<td style="text-align: right;">-2.043</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fixed</td>
+<td style="text-align: left;">setting_typeSpecialty_Clinic</td>
+<td style="text-align: right;">-0.562</td>
+<td style="text-align: right;">1.233</td>
+<td style="text-align: right;">-0.456</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fixed</td>
+<td style="text-align: left;">capture_methodPaper</td>
+<td style="text-align: right;">-0.352</td>
+<td style="text-align: right;">0.666</td>
+<td style="text-align: right;">-0.529</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
 </div>
 </div>
 <p>Create predictions</p>
@@ -2900,203 +2961,186 @@ Fixed effects coefficients:
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">re.form =</span> <span class="cn">NA</span> <span class="co"># restrict to fixed effects only</span></span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#marry into dtAnalysis</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>dtAnalysis1 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">left_join</span>(</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  dtAnalysis,</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  dtAnalysisPredict <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    rowid,</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    estimate</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">join_by</span>(idPatient <span class="sc">==</span> rowid)</span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">IKDCPredict =</span> <span class="st">"estimate"</span></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate overall mean IKDC for reference population (literature data)</span></span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>overall_mean <span class="ot">&lt;-</span> dtAnalysis1 <span class="sc">%&gt;%</span> </span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(DataSource <span class="sc">==</span> <span class="st">"Literature"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(IKDC) <span class="sc">%&gt;%</span></span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="fu">epoxy</span>(<span class="st">"Overall mean IKDC in literature: {round(overall_mean, 2)}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">#marry into dtAnalysis</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>dtAnalysis1 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">left_join</span>(</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  dtAnalysis <span class="sc">|&gt;</span> <span class="fu">mutate</span>(</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">rowid =</span> <span class="fu">row_number</span>()</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  dtAnalysisPredict <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    rowid,</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    estimate</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="st">"rowid"</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">IKDCPredict =</span> <span class="st">"estimate"</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate overall mean IKDC for reference population (literature data)</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>overall_mean <span class="ot">&lt;-</span> dtAnalysis1 <span class="sc">%&gt;%</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(DataSource <span class="sc">==</span> <span class="st">"Literature"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(IKDC) <span class="sc">%&gt;%</span></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>Overall mean IKDC in literature: 48.98</code></pre>
 </div>
+<div class="cell">
+<p>Overall mean IKDC in literature: 48.92</p>
 </div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>dtAnalysis2 <span class="ot">&lt;-</span> dtAnalysis1 <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Method 1: Nuttal et al. approach - Ratio method (unit/scale-preserving)</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># adjusted score = (observed/expected) * overall observed average</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">IKDC_adj_nuttal =</span> (IKDC <span class="sc">/</span> IKDCPredict) <span class="sc">*</span> overall_mean, </span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Method 2: Resnik and Hart approach - Difference method</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># adjusted score = expected - observed (performance indicator)</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a> <span class="at">IKDC_adj_resnik =</span> IKDCPredict <span class="sc">-</span> IKDC, <span class="co"># Positive = better than expected</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Method 3: Varagunam et al. approach - Residual + overall mean</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co"># adjusted score = (observed - expected) + overall observed average</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="at">IKDC_adj_varagunam =</span> (IKDC <span class="sc">-</span> IKDCPredict) <span class="sc">+</span> overall_mean</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>dtAnalysis2 <span class="ot">&lt;-</span> dtAnalysis1 <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Method 1: Nuttal et al. approach - Ratio method (unit/scale-preserving)</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># adjusted score = (observed/expected) * overall observed average</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">IKDC_adj_nuttal =</span> (IKDC <span class="sc">/</span> IKDCPredict) <span class="sc">*</span> overall_mean, </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Method 2: Resnik and Hart approach - Difference method</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># adjusted score = expected - observed (performance indicator)</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a> <span class="at">IKDC_adj_resnik =</span> IKDCPredict <span class="sc">-</span> IKDC, <span class="co"># Positive = better than expected</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Method 3: Varagunam et al. approach - Residual + overall mean</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># adjusted score = (observed - expected) + overall observed average</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="at">IKDC_adj_varagunam =</span> (IKDC <span class="sc">-</span> IKDCPredict) <span class="sc">+</span> overall_mean</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step x: Calculate adjusted scores specifically for SHARKS dataset</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>sharks_results <span class="ot">&lt;-</span> dtAnalysis2 <span class="sc">%&gt;%</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(DataSource <span class="sc">==</span> <span class="st">"Local_SHARKS"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(IKDC, IKDCPredict, IKDC_adj_nuttal, IKDC_adj_resnik, IKDC_adj_varagunam),</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">mean =</span> <span class="sc">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd =</span> <span class="sc">~</span> <span class="fu">sd</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">.names =</span> <span class="st">"{.col}_{.fn}"</span></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span>n,</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"measure"</span>, <span class="st">"statistic"</span>),</span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"_(?=mean|sd$)"</span>,</span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"value"</span></span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> statistic,</span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> value</span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">measure =</span> <span class="fu">case_when</span>(</span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"IKDC"</span> <span class="sc">~</span> <span class="st">"Observed IKDC"</span>,</span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"IKDCPredict"</span> <span class="sc">~</span> <span class="st">"Expected IKDC"</span>, </span>
-<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"IKDC_adj_nuttal"</span> <span class="sc">~</span> <span class="st">"Adjusted IKDC (Nuttal)"</span>,</span>
-<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"IKDC_adj_resnik"</span> <span class="sc">~</span> <span class="st">"Performance Score (Resnik)"</span>,</span>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step x: Calculate adjusted scores specifically for SHARKS dataset</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>sharks_results <span class="ot">&lt;-</span> dtAnalysis2 <span class="sc">%&gt;%</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(DataSource <span class="sc">==</span> <span class="st">"Local_SHARKS"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(IKDC, IKDCPredict, IKDC_adj_nuttal, IKDC_adj_resnik, IKDC_adj_varagunam),</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">mean =</span> <span class="sc">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd =</span> <span class="sc">~</span> <span class="fu">sd</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">.names =</span> <span class="st">"{.col}_{.fn}"</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span>n,</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"measure"</span>, <span class="st">"statistic"</span>),</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"_(?=mean|sd$)"</span>,</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"value"</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> statistic,</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> value</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">measure =</span> <span class="fu">case_when</span>(</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"IKDC"</span> <span class="sc">~</span> <span class="st">"Observed IKDC"</span>,</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"IKDCPredict"</span> <span class="sc">~</span> <span class="st">"Expected IKDC"</span>, </span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"IKDC_adj_nuttal"</span> <span class="sc">~</span> <span class="st">"Adjusted IKDC (Nuttal)"</span>,</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"IKDC_adj_resnik"</span> <span class="sc">~</span> <span class="st">"Performance Score (Resnik)"</span>,</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"IKDC_adj_varagunam"</span> <span class="sc">~</span> <span class="st">"Adjusted IKDC (Varagunam)"</span>,</span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> measure</span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">c</span>(mean, sd), <span class="sc">~</span> <span class="fu">round</span>(.x, <span class="dv">2</span>))</span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate confidence intervals for adjusted scores using tidyverse</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>sharks_ci <span class="ot">&lt;-</span> dtAnalysis2 <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(DataSource <span class="sc">==</span> <span class="st">"Local_SHARKS"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(IKDC, IKDC_adj_nuttal, IKDC_adj_varagunam, IKDC_adj_resnik),</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">mean =</span> <span class="sc">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">se =</span> <span class="sc">~</span> <span class="fu">sd</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(.x))),</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">ci_lower =</span> <span class="sc">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> <span class="fu">sd</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(.x))),</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">ci_upper =</span> <span class="sc">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> <span class="fu">sd</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(.x)))</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">.names =</span> <span class="st">"{.col}_{.fn}"</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">everything</span>(),</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"measure"</span>, <span class="st">"statistic"</span>),</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_pattern =</span> <span class="st">"^(.+)_(mean|se|ci_lower|ci_upper)$"</span>,  <span class="co"># Changed this line</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"value"</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> statistic,</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> value</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">measure =</span> <span class="fu">case_when</span>(</span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"IKDC"</span> <span class="sc">~</span> <span class="st">"Observed IKDC"</span>,</span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"IKDC_adj_nuttal"</span> <span class="sc">~</span> <span class="st">"Adjusted IKDC (Nuttal)"</span>,</span>
 <span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"IKDC_adj_varagunam"</span> <span class="sc">~</span> <span class="st">"Adjusted IKDC (Varagunam)"</span>,</span>
-<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> measure</span>
-<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">c</span>(mean, sd), <span class="sc">~</span> <span class="fu">round</span>(.x, <span class="dv">2</span>))</span>
-<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"IKDC_adj_resnik"</span> <span class="sc">~</span> <span class="st">"Performance Score (Resnik)"</span>,</span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> measure</span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">c</span>(mean, se, ci_lower, ci_upper), <span class="sc">~</span> <span class="fu">round</span>(.x, <span class="dv">2</span>)),</span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">ci_text =</span> <span class="fu">paste0</span>(mean, <span class="st">" ("</span>, ci_lower, <span class="st">", "</span>, ci_upper, <span class="st">")"</span>)</span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(measure, ci_text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+</div>
+<div class="cell">
+<p>SHARKS Dataset Case-Mix Adjustment Results (n = 500) (Mean and 95% CI) |Measure |95% CI |</p>
+<p>SHARKS Dataset Case-Mix Adjustment Results (n = 500) (Mean and 95% CI) |:————————–|:——————–|</p>
+<p>SHARKS Dataset Case-Mix Adjustment Results (n = 500) (Mean and 95% CI) |Observed IKDC |51.03 (49.38, 52.67) |</p>
+<p>SHARKS Dataset Case-Mix Adjustment Results (n = 500) (Mean and 95% CI) |Adjusted IKDC (Nuttal) |52.57 (51.03, 54.12) |</p>
+<p>SHARKS Dataset Case-Mix Adjustment Results (n = 500) (Mean and 95% CI) |Adjusted IKDC (Varagunam) |52.5 (51.01, 54) |</p>
+<p>SHARKS Dataset Case-Mix Adjustment Results (n = 500) (Mean and 95% CI) |Performance Score (Resnik) |-3.59 (-5.09, -2.09) |</p>
 </div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate confidence intervals for adjusted scores using tidyverse</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>sharks_ci <span class="ot">&lt;-</span> dtAnalysis2 <span class="sc">%&gt;%</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(DataSource <span class="sc">==</span> <span class="st">"Local_SHARKS"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(IKDC, IKDC_adj_nuttal, IKDC_adj_varagunam, IKDC_adj_resnik),</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">mean =</span> <span class="sc">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">se =</span> <span class="sc">~</span> <span class="fu">sd</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(.x))),</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">ci_lower =</span> <span class="sc">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> <span class="fu">sd</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(.x))),</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">ci_upper =</span> <span class="sc">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> <span class="fu">sd</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(.x)))</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">.names =</span> <span class="st">"{.col}_{.fn}"</span></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">everything</span>(),</span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"measure"</span>, <span class="st">"statistic"</span>),</span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_pattern =</span> <span class="st">"^(.+)_(mean|se|ci_lower|ci_upper)$"</span>,  <span class="co"># Changed this line</span></span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"value"</span></span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> statistic,</span>
-<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> value</span>
-<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">measure =</span> <span class="fu">case_when</span>(</span>
-<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"IKDC"</span> <span class="sc">~</span> <span class="st">"Observed IKDC"</span>,</span>
-<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"IKDC_adj_nuttal"</span> <span class="sc">~</span> <span class="st">"Adjusted IKDC (Nuttal)"</span>,</span>
-<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"IKDC_adj_varagunam"</span> <span class="sc">~</span> <span class="st">"Adjusted IKDC (Varagunam)"</span>,</span>
-<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"IKDC_adj_resnik"</span> <span class="sc">~</span> <span class="st">"Performance Score (Resnik)"</span>,</span>
-<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> measure</span>
-<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">c</span>(mean, se, ci_lower, ci_upper), <span class="sc">~</span> <span class="fu">round</span>(.x, <span class="dv">2</span>)),</span>
-<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">ci_text =</span> <span class="fu">paste0</span>(mean, <span class="st">" ("</span>, ci_lower, <span class="st">", "</span>, ci_upper, <span class="st">")"</span>)</span>
-<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(measure, ci_text)</span>
-<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a><span class="fu">epoxy</span>(<span class="st">"</span></span>
-<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a><span class="st">### SHARKS Dataset Case-Mix Adjustment Results (n = {sharks_results$n[1]}) (Mean and 95% CI)</span></span>
-<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a><span class="st">{knitr::kable(sharks_ci, col.names = c('Measure', '95% CI'), format = 'markdown')}</span></span>
-<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-### SHARKS Dataset Case-Mix Adjustment Results (n = 500) (Mean and 95% CI)
-|Measure                    |95% CI               |
-
-
-### SHARKS Dataset Case-Mix Adjustment Results (n = 500) (Mean and 95% CI)
-|:--------------------------|:--------------------|
-
-
-### SHARKS Dataset Case-Mix Adjustment Results (n = 500) (Mean and 95% CI)
-|Observed IKDC              |50.99 (49.37, 52.6)  |
-
-
-### SHARKS Dataset Case-Mix Adjustment Results (n = 500) (Mean and 95% CI)
-|Adjusted IKDC (Nuttal)     |50.87 (49.38, 52.37) |
-
-
-### SHARKS Dataset Case-Mix Adjustment Results (n = 500) (Mean and 95% CI)
-|Adjusted IKDC (Varagunam)  |50.82 (49.33, 52.32) |
-
-
-### SHARKS Dataset Case-Mix Adjustment Results (n = 500) (Mean and 95% CI)
-|Performance Score (Resnik) |-1.84 (-3.34, -0.35) |</code></pre>
-</div>
-</div>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|label: fig-adjust-compare</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co">#|fig-cap: "Comparison between observed and adjusted scores for SHARKS IKDC baseline"</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 6: Visualization of adjustment effects</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot comparing observed vs adjusted scores for SHARKS</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>plot_data <span class="ot">&lt;-</span> dtAnalysis2 <span class="sc">%&gt;%</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(DataSource <span class="sc">==</span> <span class="st">"Local_SHARKS"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(idPatient, IKDC, IKDCPredict, IKDC_adj_nuttal, IKDC_adj_varagunam) <span class="sc">|&gt;</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>idPatient, <span class="at">names_to =</span> <span class="st">"Score_Type"</span>, <span class="at">values_to =</span> <span class="st">"Score"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(Score_Type)</span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">Score_Type =</span> <span class="fu">factor</span>(Score_Type, </span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>                       <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"IKDC"</span>, <span class="st">"IKDCPredict"</span>, <span class="st">"IKDC_adj_nuttal"</span>, <span class="st">"IKDC_adj_varagunam"</span>),</span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>                       <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Observed-Sim"</span>, <span class="st">"Expected"</span>, <span class="st">"Adjusted (Nuttal)"</span>, <span class="st">"Adjusted (Varagunam)"</span>))</span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>comparison_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> Score_Type, <span class="at">y =</span> Score)) <span class="sc">+</span></span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_slabinterval</span>(<span class="at">side =</span> <span class="st">"right"</span>)  <span class="sc">+</span></span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> overall_mean, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">1.5</span>, <span class="at">y =</span> overall_mean <span class="sc">+</span> <span class="dv">2</span>, </span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">str_glue</span>(<span class="st">"Lit Mean = {round(overall_mean, 1)}"</span>), </span>
-<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"IKDC Score Comparison: Observed vs Case-Mix Adjusted"</span>,</span>
-<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"SHARKS Dataset - Different Adjustment Methods"</span>,</span>
-<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Score Type"</span>,</span>
-<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"IKDC Score"</span>,</span>
-<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Score Type"</span></span>
-<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
-<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">knit_print</span>(comparison_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|label: fig-adjust-compare</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#|fig-cap: "Comparison between observed and adjusted scores for SHARKS IKDC baseline"</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 6: Visualization of adjustment effects</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot comparing observed vs adjusted scores for SHARKS</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>plot_data <span class="ot">&lt;-</span> dtAnalysis2 <span class="sc">%&gt;%</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(DataSource <span class="sc">==</span> <span class="st">"Local_SHARKS"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(idPatient, IKDC, IKDCPredict, IKDC_adj_nuttal, IKDC_adj_varagunam) <span class="sc">|&gt;</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>idPatient, <span class="at">names_to =</span> <span class="st">"Score_Type"</span>, <span class="at">values_to =</span> <span class="st">"Score"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(Score_Type)</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">Score_Type =</span> <span class="fu">factor</span>(Score_Type, </span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>                       <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"IKDC"</span>, <span class="st">"IKDCPredict"</span>, <span class="st">"IKDC_adj_nuttal"</span>, <span class="st">"IKDC_adj_varagunam"</span>),</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>                       <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Observed-Sim"</span>, <span class="st">"Expected"</span>, <span class="st">"Adjusted (Nuttal)"</span>, <span class="st">"Adjusted (Varagunam)"</span>))</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>comparison_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> Score_Type, <span class="at">y =</span> Score)) <span class="sc">+</span></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_slabinterval</span>(<span class="at">side =</span> <span class="st">"right"</span>)  <span class="sc">+</span></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> overall_mean, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">1.5</span>, <span class="at">y =</span> overall_mean <span class="sc">+</span> <span class="dv">2</span>, </span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">str_glue</span>(<span class="st">"Lit Mean = {round(overall_mean, 1)}"</span>), </span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"IKDC Score Comparison: Observed vs Case-Mix Adjusted"</span>,</span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"SHARKS Dataset - Different Adjustment Methods"</span>,</span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Score Type"</span>,</span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"IKDC Score"</span>,</span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Score Type"</span></span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">knit_print</span>(comparison_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="SHARKS_ACLRBase_SVR3_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="SHARKS_ACLRBase_SVR3_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -3104,66 +3148,46 @@ Fixed effects coefficients:
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 8: Clinical interpretation using epoxy</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate key metrics for interpretation</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>sharks_metrics <span class="ot">&lt;-</span> dtAnalysis2 <span class="sc">%&gt;%</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(DataSource <span class="sc">==</span> <span class="st">"Local_SHARKS"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">observed_mean =</span> <span class="fu">mean</span>(IKDC, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">expected_mean =</span> <span class="fu">mean</span>(IKDCPredict, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">performance_mean =</span> <span class="fu">mean</span>(IKDC_adj_resnik, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">adjusted_nuttal_mean =</span> <span class="fu">mean</span>(IKDC_adj_nuttal, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Performance assessment</span></span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>performance_status <span class="ot">&lt;-</span> <span class="fu">if_else</span>(</span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>  sharks_metrics<span class="sc">$</span>observed_mean <span class="sc">&gt;</span> sharks_metrics<span class="sc">$</span>expected_mean,</span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"BETTER"</span>,</span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"WORSE"</span></span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Benchmark comparison</span></span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>benchmark_status <span class="ot">&lt;-</span> <span class="fu">if_else</span>(</span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>  sharks_metrics<span class="sc">$</span>adjusted_nuttal_mean <span class="sc">&gt;</span> overall_mean,</span>
-<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ABOVE"</span>,</span>
-<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">"BELOW"</span></span>
-<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a><span class="fu">epoxy</span>(<span class="st">"</span></span>
-<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a><span class="st">### Potential Clinical Interpretation</span></span>
-<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a><span class="st">**SHARKS Dataset Performance:**</span></span>
-<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a><span class="st">• SHARKS reports baseline IKDC that is **{performance_status}** than expected based on case-mix</span></span>
-<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a><span class="st">• Observed mean: {round(sharks_metrics$observed_mean, 1)}</span></span>
-<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a><span class="st">• Expected mean: {round(sharks_metrics$expected_mean, 1)}  </span></span>
-<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a><span class="st">• Performance difference: {round(abs(sharks_metrics$performance_mean), 1)} points</span></span>
-<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a><span class="st">**Benchmark Comparison:**</span></span>
-<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a><span class="st">• After case-mix adjustment, SHARKS patients present with an IKDC score that is **{benchmark_status}** the literature average</span></span>
-<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a><span class="st">• Adjusted IKDC (Nuttal method): {round(sharks_metrics$adjusted_nuttal_mean, 1)} vs Literature mean: {round(overall_mean, 1)}</span></span>
-<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 8: Clinical interpretation using epoxy</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate key metrics for interpretation</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>sharks_metrics <span class="ot">&lt;-</span> dtAnalysis2 <span class="sc">%&gt;%</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(DataSource <span class="sc">==</span> <span class="st">"Local_SHARKS"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">observed_mean =</span> <span class="fu">mean</span>(IKDC, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">expected_mean =</span> <span class="fu">mean</span>(IKDCPredict, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">performance_mean =</span> <span class="fu">mean</span>(IKDC_adj_resnik, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">adjusted_nuttal_mean =</span> <span class="fu">mean</span>(IKDC_adj_nuttal, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Performance assessment</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>performance_status <span class="ot">&lt;-</span> <span class="fu">if_else</span>(</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>  sharks_metrics<span class="sc">$</span>observed_mean <span class="sc">&gt;</span> sharks_metrics<span class="sc">$</span>expected_mean,</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"BETTER"</span>,</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"WORSE"</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Benchmark comparison</span></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>benchmark_status <span class="ot">&lt;-</span> <span class="fu">if_else</span>(</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>  sharks_metrics<span class="sc">$</span>adjusted_nuttal_mean <span class="sc">&gt;</span> overall_mean,</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ABOVE"</span>,</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">"BELOW"</span></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-### Potential Clinical Interpretation
-
-**SHARKS Dataset Performance:**
-• SHARKS reports baseline IKDC that is **BETTER** than expected based on case-mix
-• Observed mean: 51
-• Expected mean: 49.1  
-• Performance difference: 1.8 points
-
-**Benchmark Comparison:**
-• After case-mix adjustment, SHARKS patients present with an IKDC score that is **ABOVE** the literature average
-• Adjusted IKDC (Nuttal method): 50.9 vs Literature mean: 49</code></pre>
 </div>
+<div class="cell">
+<p>Potential Clinical Interpretation</p>
+<p><strong>SHARKS Dataset Performance:</strong> • SHARKS reports baseline IKDC that is <strong>BETTER</strong> than expected based on case-mix • Observed mean: 51 • Expected mean: 47.4<br>
+• Performance difference: 3.6 points</p>
+<p><strong>Benchmark Comparison:</strong> • After case-mix adjustment, SHARKS patients present with an IKDC score that is <strong>ABOVE</strong> the literature average • Adjusted IKDC (Nuttal method): 52.6 vs Literature mean: 48.9</p>
 </div>
 </section>
 </section>
 <section id="sample-size-considerations" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> Sample size considerations</h1>
+<p>The required sample sizes generally relate to the number of samples available in the local dataset, as well as potentially how many studies are required in the literature to establish a reasonably powered model.</p>
+<p>To provide some initial guidance on the issue of the local dataset, we can utilise power calculations for various prediction models published</p>
 </section>
 <section id="ethical-considerations" class="level1" data-number="9">
 <h1 data-number="9"><span class="header-section-number">9</span> Ethical Considerations</h1>
@@ -3187,70 +3211,207 @@ Fixed effects coefficients:
 <h1 data-number="11"><span class="header-section-number">11</span> Study Management</h1>
 <section id="assumptions" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="assumptions"><span class="header-section-number">11.1</span> Assumptions</h2>
+<ul>
+<li><p>QEII staff will undertake data collection activities</p>
+<ul>
+<li><p>Chart review for SHARKS dataset</p></li>
+<li><p>Literature review search, retrieval and extraction for IKDC baseline-related literature</p></li>
+</ul></li>
+</ul>
 </section>
-<section id="timeline" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="timeline"><span class="header-section-number">11.2</span> Timeline</h2>
+<section id="activities" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="activities"><span class="header-section-number">11.2</span> Activities</h2>
+<p>The best analogy for the proposed study is that of the development and validation of a prognostic clinical prediction model, for which some guidance with respect to best practice has been provided in the relevant literature <span class="citation" data-cites="collins2024">(<a href="#ref-collins2024" role="doc-biblioref">G. S. Collins et al. 2024</a>)</span>. For the purposes of this study plan, the open science practices for medicine as described by <span class="citation" data-cites="cobey2023">(<a href="#ref-cobey2023" role="doc-biblioref">Cobey et al. 2023</a>)</span> are used to outline the key activities of the proposed project. All items are recommended in this context, except for publication to journals.</p>
+<div id="tbl-activities" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-activities-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;7: Key activities recommended as part of the proposed study
+</figcaption>
+<div aria-describedby="tbl-activities-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 38%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Action</th>
+<th>Comments - Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Setup</td>
+<td>Protocol preparation</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Protocol preprint</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Protocol registration</td>
+<td>ANZCTR</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Protocol journal publication</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Data Collection</td>
+<td>Confirm reporting guidelines</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Conduct literature review and extraction</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Track risk of bias assessment</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Align dataset to predictors in protocol</td>
+<td>Quality Checking</td>
+</tr>
+<tr class="odd">
+<td>Analysis</td>
+<td>Manuscript setup</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Analysis report preparation</td>
+<td><p>Including model builds (literature and SHARKS dataset)</p>
+<p>Conduct sensitivity analyses</p></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Provide sufficient information for model implementation</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Data and code publication</td>
+<td>Data and code repositories with persistent identifiers <span class="citation" data-cites="cobey2023">(<a href="#ref-cobey2023" role="doc-biblioref">Cobey et al. 2023</a>)</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Preparation as supplementary material</td>
+<td>Includes links to code and data</td>
+</tr>
+<tr class="even">
+<td>Synthesis Reporting</td>
+<td>Manuscript preparation</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Reporting checklist</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Author conflicts of interest</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Author contributions</td>
+<td>Use persistent identifiers (ORCID)</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Prepare funding statement</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Publish preprint</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Publish manuscript (open-access)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="timeline" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="timeline"><span class="header-section-number">11.3</span> Timeline</h2>
 <div class="cell" data-fig-width="6.5" data-layout-align="default">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    subgraph T1 ["Months 1-3: Setup Phase"]</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>        A[Literature Review] </span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>        D[Registry Access]</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>        A -.-&gt; A1["Database searches&lt;br/&gt;Article screening&lt;br/&gt;Quality assessment"]</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>        D -.-&gt; D1["Ethics approval&lt;br/&gt;Data access agreements&lt;br/&gt;Query development"]</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    end</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    subgraph T2 ["Months 4-6: Data Collection"]</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>        B[Data Extraction]</span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>        E[Cohort Retrieval]</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>        B -.-&gt; B1["Parameter extraction&lt;br/&gt;Data standardization&lt;br/&gt;Validation checks"]</span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>        E -.-&gt; E1["Registry queries&lt;br/&gt;Patient identification&lt;br/&gt;Data export"]</span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    end</span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>    subgraph T3 ["Months 7-9: Analysis Phase"]</span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>        C[Simulation Modeling]</span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>        F[Chart Review]</span>
-<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>        C -.-&gt; C1["Model development&lt;br/&gt;Parameter estimation&lt;br/&gt;Scenario testing"]</span>
-<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>        F -.-&gt; F1["Manual review&lt;br/&gt;Clinical validation&lt;br/&gt;Quality control"]</span>
-<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>    end</span>
-<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>    subgraph T4 ["Months 10-12: Synthesis"]</span>
-<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>        G[Results Integration]</span>
-<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>        H[Manuscript Preparation]</span>
-<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>        G -.-&gt; G1["Compare findings&lt;br/&gt;Statistical analysis&lt;br/&gt;Interpretation"]</span>
-<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>        H -.-&gt; H1["Writing&lt;br/&gt;Peer review&lt;br/&gt;Submission"]</span>
-<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>    end</span>
-<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>    A --&gt; B</span>
-<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a>    B --&gt; C</span>
-<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>    C --&gt; G</span>
-<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a>    D --&gt; E</span>
-<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a>    E --&gt; F</span>
-<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a>    F --&gt; G</span>
-<span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a>    G --&gt; H</span>
-<span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a>    style A1 fill:#f0f8ff,stroke:#4682b4,stroke-dasharray: 5 5</span>
-<span id="cb27-43"><a href="#cb27-43" aria-hidden="true" tabindex="-1"></a>    style B1 fill:#f0f8ff,stroke:#4682b4,stroke-dasharray: 5 5</span>
-<span id="cb27-44"><a href="#cb27-44" aria-hidden="true" tabindex="-1"></a>    style C1 fill:#f0f8ff,stroke:#4682b4,stroke-dasharray: 5 5</span>
-<span id="cb27-45"><a href="#cb27-45" aria-hidden="true" tabindex="-1"></a>    style D1 fill:#fff8dc,stroke:#daa520,stroke-dasharray: 5 5</span>
-<span id="cb27-46"><a href="#cb27-46" aria-hidden="true" tabindex="-1"></a>    style E1 fill:#fff8dc,stroke:#daa520,stroke-dasharray: 5 5</span>
-<span id="cb27-47"><a href="#cb27-47" aria-hidden="true" tabindex="-1"></a>    style F1 fill:#fff8dc,stroke:#daa520,stroke-dasharray: 5 5</span>
-<span id="cb27-48"><a href="#cb27-48" aria-hidden="true" tabindex="-1"></a>    style G1 fill:#f0fff0,stroke:#32cd32,stroke-dasharray: 5 5</span>
-<span id="cb27-49"><a href="#cb27-49" aria-hidden="true" tabindex="-1"></a>    style H1 fill:#f0fff0,stroke:#32cd32,stroke-dasharray: 5 5</span>
-<span id="cb27-50"><a href="#cb27-50" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb27-51"><a href="#cb27-51" aria-hidden="true" tabindex="-1"></a>    classDef litBox fill:#e6f3ff,stroke:#4682b4,stroke-width:2px</span>
-<span id="cb27-52"><a href="#cb27-52" aria-hidden="true" tabindex="-1"></a>    classDef regBox fill:#fffacd,stroke:#daa520,stroke-width:2px</span>
-<span id="cb27-53"><a href="#cb27-53" aria-hidden="true" tabindex="-1"></a>    classDef synthBox fill:#f0fff0,stroke:#32cd32,stroke-width:2px</span>
-<span id="cb27-54"><a href="#cb27-54" aria-hidden="true" tabindex="-1"></a>    classDef timeBox fill:#f5f5f5,stroke:#666,stroke-width:1px</span>
-<span id="cb27-55"><a href="#cb27-55" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb27-56"><a href="#cb27-56" aria-hidden="true" tabindex="-1"></a>    class A,B,C litBox</span>
-<span id="cb27-57"><a href="#cb27-57" aria-hidden="true" tabindex="-1"></a>    class D,E,F regBox</span>
-<span id="cb27-58"><a href="#cb27-58" aria-hidden="true" tabindex="-1"></a>    class G,H synthBox</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    subgraph T1 ["Months 1-3: Setup Phase"]</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>        A[Literature Review] </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>        D[Registry Access]</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>        A -.-&gt; A1["Database searches&lt;br/&gt;Article screening&lt;br/&gt;Quality assessment"]</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        D -.-&gt; D1["Ethics approval&lt;br/&gt;Data access agreements&lt;br/&gt;Query development"]</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    subgraph T2 ["Months 4-6: Data Collection"]</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>        B[Data Extraction]</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>        E[Cohort Retrieval]</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>        B -.-&gt; B1["Parameter extraction&lt;br/&gt;Data standardization&lt;br/&gt;Validation checks"]</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>        E -.-&gt; E1["Registry queries&lt;br/&gt;Patient identification&lt;br/&gt;Data export"]</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>    subgraph T3 ["Months 7-9: Analysis Phase"]</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>        C[Simulation Modeling]</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>        F[Chart Review]</span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>        C -.-&gt; C1["Model development&lt;br/&gt;Parameter estimation&lt;br/&gt;Scenario testing"]</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>        F -.-&gt; F1["Manual review&lt;br/&gt;Clinical validation&lt;br/&gt;Quality control"]</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>    subgraph T4 ["Months 10-12: Synthesis"]</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>        G[Results Integration]</span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>        H[Manuscript Preparation]</span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>        G -.-&gt; G1["Compare findings&lt;br/&gt;Statistical analysis&lt;br/&gt;Interpretation"]</span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>        H -.-&gt; H1["Writing&lt;br/&gt;Peer review&lt;br/&gt;Submission"]</span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>    A --&gt; B</span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>    B --&gt; C</span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>    C --&gt; G</span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>    D --&gt; E</span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a>    E --&gt; F</span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>    F --&gt; G</span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>    G --&gt; H</span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a>    style A1 fill:#f0f8ff,stroke:#4682b4,stroke-dasharray: 5 5</span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a>    style B1 fill:#f0f8ff,stroke:#4682b4,stroke-dasharray: 5 5</span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a>    style C1 fill:#f0f8ff,stroke:#4682b4,stroke-dasharray: 5 5</span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a>    style D1 fill:#fff8dc,stroke:#daa520,stroke-dasharray: 5 5</span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a>    style E1 fill:#fff8dc,stroke:#daa520,stroke-dasharray: 5 5</span>
+<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a>    style F1 fill:#fff8dc,stroke:#daa520,stroke-dasharray: 5 5</span>
+<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a>    style G1 fill:#f0fff0,stroke:#32cd32,stroke-dasharray: 5 5</span>
+<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a>    style H1 fill:#f0fff0,stroke:#32cd32,stroke-dasharray: 5 5</span>
+<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a>    classDef litBox fill:#e6f3ff,stroke:#4682b4,stroke-width:2px</span>
+<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a>    classDef regBox fill:#fffacd,stroke:#daa520,stroke-width:2px</span>
+<span id="cb24-53"><a href="#cb24-53" aria-hidden="true" tabindex="-1"></a>    classDef synthBox fill:#f0fff0,stroke:#32cd32,stroke-width:2px</span>
+<span id="cb24-54"><a href="#cb24-54" aria-hidden="true" tabindex="-1"></a>    classDef timeBox fill:#f5f5f5,stroke:#666,stroke-width:1px</span>
+<span id="cb24-55"><a href="#cb24-55" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-56"><a href="#cb24-56" aria-hidden="true" tabindex="-1"></a>    class A,B,C litBox</span>
+<span id="cb24-57"><a href="#cb24-57" aria-hidden="true" tabindex="-1"></a>    class D,E,F regBox</span>
+<span id="cb24-58"><a href="#cb24-58" aria-hidden="true" tabindex="-1"></a>    class G,H synthBox</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -3322,11 +3483,11 @@ flowchart LR
 </div>
 </div>
 </section>
-<section id="key-dates" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="key-dates"><span class="header-section-number">11.3</span> Key Dates</h2>
+<section id="key-dates" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="key-dates"><span class="header-section-number">11.4</span> Key Dates</h2>
 </section>
-<section id="contributors" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="contributors"><span class="header-section-number">11.4</span> Contributors</h2>
+<section id="contributors" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="contributors"><span class="header-section-number">11.5</span> Contributors</h2>
 <p>Contributor matrix</p>
 <div id="tbl-contributors" class="anchored">
 <table class="table">
@@ -3385,30 +3546,14 @@ flowchart LR
 </table>
 </div>
 </section>
-<section id="communication-and-governance" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="communication-and-governance"><span class="header-section-number">11.5</span> Communication and Governance</h2>
+<section id="communication-and-governance" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="communication-and-governance"><span class="header-section-number">11.6</span> Communication and Governance</h2>
 </section>
-<section id="funding-and-conflicts-of-interest" class="level2" data-number="11.6">
-<h2 data-number="11.6" class="anchored" data-anchor-id="funding-and-conflicts-of-interest"><span class="header-section-number">11.6</span> Funding and Conflicts of Interest</h2>
+<section id="funding-and-conflicts-of-interest" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="funding-and-conflicts-of-interest"><span class="header-section-number">11.7</span> Funding and Conflicts of Interest</h2>
 <p>Funding will be provided the Orthopaedic Research Fund at QEII Hospital.</p>
 <p>Author CS is a stockholder of EBM Analytics and declares an institutional relationship with the Department of Orthopaedics (QEII Hospital) for the purposes of this project.</p>
 <p>The proposed stakeholders of this project</p>
-</section>
-<section id="intellectual-property" class="level2" data-number="11.7">
-<h2 data-number="11.7" class="anchored" data-anchor-id="intellectual-property"><span class="header-section-number">11.7</span> Intellectual Property</h2>
-</section>
-</section>
-<section id="financial-plan" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Financial Plan</h1>
-<section id="direct-costs" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="direct-costs"><span class="header-section-number">12.1</span> Direct Costs</h2>
-</section>
-<section id="indirect-costs" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="indirect-costs"><span class="header-section-number">12.2</span> Indirect Costs</h2>
-</section>
-<section id="total-estimates" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="total-estimates"><span class="header-section-number">12.3</span> Total Estimates</h2>
-<p>Total estimates will include the direct and indirect costs</p>
 
 </section>
 </section>
@@ -3425,6 +3570,12 @@ Anderson, Allen F., James J. Irrgang, Mininder S. Kocher, Barton J. Mann, and Jo
 </div>
 <div id="ref-burgess2019" class="csl-entry" role="listitem">
 Burgess, R., A. Bishop, M. Lewis, and J. Hill. 2019. <span>“Models Used for Case-Mix Adjustment of Patient Reported Outcome Measures (PROMs) in Musculoskeletal Healthcare: A Systematic Review of the Literature.”</span> <em>Physiotherapy</em> 105 (2): 137–46. <a href="https://doi.org/10.1016/j.physio.2018.10.002">https://doi.org/10.1016/j.physio.2018.10.002</a>.
+</div>
+<div id="ref-cobey2023" class="csl-entry" role="listitem">
+Cobey, Kelly D., Stefanie Haustein, Jamie Brehaut, Ulrich Dirnagl, Delwen L. Franzen, Lars G. Hemkens, Justin Presseau, et al. 2023. <span>“Community Consensus on Core Open Science Practices to Monitor in Biomedicine.”</span> <em>PLOS Biology</em> 21 (1): e3001949. <a href="https://doi.org/10.1371/journal.pbio.3001949">https://doi.org/10.1371/journal.pbio.3001949</a>.
+</div>
+<div id="ref-collins2024" class="csl-entry" role="listitem">
+Collins, Gary S., Rebecca Whittle, Garrett S. Bullock, Patricia Logullo, Paula Dhiman, Jennifer A. de Beyer, Richard D. Riley, and Michael M. Schlussel. 2024. <span>“Open Science Practices Need Substantial Improvement in Prognostic Model Studies in Oncology Using Machine Learning.”</span> <em>Journal of Clinical Epidemiology</em> 165 (January): 111199. <a href="https://doi.org/10.1016/j.jclinepi.2023.10.015">https://doi.org/10.1016/j.jclinepi.2023.10.015</a>.
 </div>
 <div id="ref-collins2011" class="csl-entry" role="listitem">
 Collins, Natalie J., Devyani Misra, David T. Felson, Kay M. Crossley, and Ewa M. Roos. 2011. <span>“Measures of Knee Function: International Knee Documentation Committee (IKDC) Subjective Knee Evaluation Form, Knee Injury and Osteoarthritis Outcome Score (KOOS), Knee Injury and Osteoarthritis Outcome Score Physical Function Short Form (KOOS<span>-</span>PS), Knee Outcome Survey Activities of Daily Living Scale (KOS<span>-</span>ADL), Lysholm Knee Scoring Scale, Oxford Knee Score (OKS), Western Ontario and McMaster Universities Osteoarthritis Index (WOMAC), Activity Rating Scale (ARS), and Tegner Activity Score (TAS).”</span> <em>Arthritis Care &amp; Research</em> 63 (S11). <a href="https://doi.org/10.1002/acr.20632">https://doi.org/10.1002/acr.20632</a>.
