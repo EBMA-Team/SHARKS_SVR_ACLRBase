@@ -17,6 +17,8 @@ format:
     toc: true
     number-sections: true
     code-fold: true
+    link-external-newwindow: true
+    link-external-icon: true
     
 bibliography: ACLBase.bib
 ---
@@ -1453,6 +1455,8 @@ The audience - not every article speaks to the surgical community in orthopaedic
 > Mesterton, J., Willers, C., Dahlström, T., & Rolfson, O. (2020). Comparison of individual and neighbourhood socioeconomic status in case mix adjustment of hospital performance in primary total hip replacement in Sweden: a register-based study. *BMC Health Services Research*, *20*(1), 645.
 :::
 
+Writing quality - a large component of moving through editorial and peer review is the quality of the article with respect to clarity, coherence and strength of the evidence presented to make a conclusion. Reliance on reporting guidelines can provide a robust approach to heading off most criticisms of quality, as long as it is paired with reasonable writing. Guidelines such as STROBE or RECORD from the EQUATOR network
+
 # Study Management
 
 ## Assumptions
@@ -1602,24 +1606,22 @@ flowchart LR
 Contributor matrix
 
 ::: {#tbl-contributors}
-+-----------------+----------------------------------+--------------+-------------+
-| Name            | Role                             | Project Role | Comments    |
-+=================+==================================+==============+=============+
-| Lorenzo Calabro |                                  |              |             |
-+-----------------+----------------------------------+--------------+-------------+
-| Corey Scholes   |                                  |              |             |
-+-----------------+----------------------------------+--------------+-------------+
-| Garry Kirwan    | Assistant Director Physiotherapy | Collaborator |             |
-+-----------------+----------------------------------+--------------+-------------+
-|                 |                                  |              |             |
-+-----------------+----------------------------------+--------------+-------------+
-|                 |                                  |              |             |
-+-----------------+----------------------------------+--------------+-------------+
-|                 |                                  |              |             |
-+-----------------+----------------------------------+--------------+-------------+
++-----------------+--------------------------------------+---------------------------+-------------------------------------------------+
+| Name            | Role                                 | Project Role              | Comments                                        |
++=================+======================================+===========================+=================================================+
+| Lorenzo Calabro | Consultant Orthopaedic Surgeon       | Principal Investigator    | Direct supervision of SHOs                      |
++-----------------+--------------------------------------+---------------------------+-------------------------------------------------+
+| Corey Scholes   | Chief Science Officer, EBM Analytics | Analyst and Methodologist | Provide oversight to interpretation of analysis |
++-----------------+--------------------------------------+---------------------------+-------------------------------------------------+
+| Garry Kirwan    | Assistant Director Physiotherapy     | Collaborator              |                                                 |
++-----------------+--------------------------------------+---------------------------+-------------------------------------------------+
+| SHO - 1         |                                      |                           |                                                 |
++-----------------+--------------------------------------+---------------------------+-------------------------------------------------+
+| SHO - 2         |                                      |                           |                                                 |
++-----------------+--------------------------------------+---------------------------+-------------------------------------------------+
+|                 |                                      |                           |                                                 |
++-----------------+--------------------------------------+---------------------------+-------------------------------------------------+
 :::
-
-## Communication and Governance
 
 ## Funding and Conflicts of Interest
 
