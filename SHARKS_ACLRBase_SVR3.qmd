@@ -4,7 +4,7 @@ author: "Corey Scholes"
 affiliation: "EBM Analytics"
 version: 1.0
 date: "2025-May-25"
-date-modified: "2025-May-25"
+date-modified: "2025-Aug-06"
 type: website
 editor: visual
 code-annotations: true
@@ -839,7 +839,9 @@ dtPatient <- genCluster(
   level1ID = "idPatient"
 )
 
-dtPatient <- addColumns(gen.patient, dtPatient)
+dtPatient1 <- addColumns(gen.patient, dtPatient)
+
+
 ```
 
 The literature dataset is now in place - we can move to a separate dataset to represent the local SHARKS dataset. Then the study characteristics are added to enable combination with the literature dataset for further analysis.
@@ -971,8 +973,7 @@ SHARKSLocal <- SHARKSData |>
     region_electronic_adoption = 1,
     study_type_prob = NA,
     setting_type_prob = NA
-  ) |>
-  select(all_of(names(dtPatient)))
+  ) 
 
 
 ```
@@ -982,7 +983,7 @@ We now combine the datasets and make some final adjustments to enable applicatio
 ```{r}
 # Step 7: Combine datasets
 dtCombined <- bind_rows(
-  dtPatient,
+  dtPatient1,
   SHARKSLocal
 ) |>
   mutate(
@@ -1021,7 +1022,7 @@ Let's have a look at the dataset in table and plot forms so we can understand th
 #| fig-cap: "Distribution of simulated IKDC at baseline assessment across multiple regions. Region 0 is the local dataset"
 
 
-FigSimIKDC <- dtAnalysis |> ggplot(aes(y = idRegion, x = IKDC)) +
+FigSimIKDC <- dtAnalysis |> ggplot(aes(y = idRegion_f, x = IKDC)) +
   stat_halfeye()
 
 knitr::knit_print(FigSimIKDC)
@@ -1164,22 +1165,27 @@ dtAnalysisPredict <- marginaleffects::predictions(
   re.form = NA # restrict to fixed effects only
 )
 
+
+# 
+# 
 #marry into dtAnalysis
-#
+
 dtAnalysis1 <- dplyr::left_join(
-  dtAnalysis,
+  dtAnalysis |> mutate(
+    rowid = row_number()
+  ),
   dtAnalysisPredict |> dplyr::select(
     rowid,
     estimate
   ),
-  join_by(idPatient == rowid)
+  by = "rowid"
 ) |> dplyr::rename(
   IKDCPredict = "estimate"
 )
-
+# 
 # Calculate overall mean IKDC for reference population (literature data)
-overall_mean <- dtAnalysis1 %>% 
-  filter(DataSource == "Literature") %>% 
+overall_mean <- dtAnalysis1 %>%
+  filter(DataSource == "Literature") %>%
   pull(IKDC) %>%
   mean(na.rm = TRUE)
 
@@ -1394,7 +1400,7 @@ We'll recreate the model using simr and insert effect sizes based on the model j
 # we'll grab the dtAnalysis structure and slice out some covariates
 # 
 
-str(dtAnalysis)
+str(dtAnalysis2)
 
 
 ```
@@ -1403,7 +1409,7 @@ Construct the covariate data.frame by slicing out the requisite columns from dtA
 
 ```{r}
 
-dtCovar <- dtAnalysis |> dplyr::select(
+dtCovar <- dtAnalysis2 |> dplyr::select(
   idPatient,
   idStudy_f,
   idRegion_f,
@@ -1419,18 +1425,18 @@ Construct model parameters from previous simulation
 
 ```{r}
 
-## Intercept and slopes for intervention, time1, time2, intervention:time1, intervention:time2
+## Intercept and slopes 
 fixed <- c(
   57.78,
   -0.255,
   -0.4,
-  -11.7, 
+  -12.17,
   3.96
   )
 
 randint <- list(
   4,
-  0
+  1.8
 )
 
 resvar <- 182.348
@@ -1481,14 +1487,22 @@ SimModel_ext_study <- extend(
   along = "idStudy_f", 
   n = 60
   )
+
+n_cores <- detectCores() - 1
+
+
+p_curve_treat1 <- powerCurve(
+  SimModel_ext_study,
+  test=fcompare(IKDC~Sex_f),
+  along="idStudy_f",
+  ncores = n_cores,  # Use parallel processing
+  progress = TRUE    # Show progress
+  )
+
+
 ```
 
 ```{r}
-# p_curve_treat1 <- powerCurve(
-#   SimModel_ext_study, 
-#   test=fcompare(IKDC~Sex_f), 
-#   along="idStudy_f"
-#   )
 
 plot(p_curve_treat1)
 
@@ -1735,14 +1749,4 @@ Author CS is a stockholder of EBM Analytics and declares an institutional relati
 
 The proposed stakeholders of this project
 
-## Intellectual Property
 
-# Financial Plan
-
-## Direct Costs
-
-## Indirect Costs
-
-## Total Estimates
-
-Total estimates will include the direct and indirect costs
