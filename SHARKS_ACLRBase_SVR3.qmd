@@ -107,7 +107,7 @@ The study question was presented using the PICOS framework [@amir-behghadami2020
 
 ::: {#tbl-question}
 +--------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| Component    | Study Component                                                                                                                       | Comments                                                                                                                        |
+| Component    | Description                                                                                                                           | Comments                                                                                                                        |
 +==============+=======================================================================================================================================+=================================================================================================================================+
 | Participants | Patients presenting with injury of the anterior cruciate ligament                                                                     | Patients present under variable circumstances, with referrals from emergency or primary care                                    |
 +--------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
@@ -120,12 +120,45 @@ The study question was presented using the PICOS framework [@amir-behghadami2020
 | Study Design | Meta-analysis and simulation                                                                                                          |                                                                                                                                 |
 +--------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
 
-Study question identified under the PICOS framework
+Study question 1 identified under the PICOS framework
+:::
+
+::: {#tbl-question2}
++--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+| Component    | Description                                                                                                                                                                     | Comments                                                                                                                       |
++==============+=================================================================================================================================================================================+================================================================================================================================+
+| Population   | Patients presenting with injury of the anterior cruciate ligament electing to be added to the surgical wait list                                                                |                                                                                                                                |
++--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+| Intervention | Development and application of a multivariable case-mixture adjustment model to baseline IKDC scores, accounting for the heterogeneity in case presentation                     | Application of a case-mixture adjustment model, may incorporate results of Question 1 with respect to regional-methods factors |
++--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+| Comparator   | Compared internally to unadjusted IKDC scores                                                                                                                                   |                                                                                                                                |
+|              |                                                                                                                                                                                 |                                                                                                                                |
+|              | Compared externally to existing risk adjustment models [@burgess2019]                                                                                                           |                                                                                                                                |
++--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+| Outcome      | The model will demonstrate the need for adjustments that exceed published metrics for IKDC (e.g. MCID), as well as adequate calibration and clinical utility for implementation |                                                                                                                                |
++--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+| Study Design | Cross-sectional observational study with retrospective model development and internal validation                                                                                |                                                                                                                                |
++--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+
+Study question 2 identified under the PICOS framework
 :::
 
 # Hypotheses
 
 Significant differences between the local sample at baseline and published literature will be removed when comparisons are adjusted for known confounders.
+
+::: {#tbl-hypotheses}
+| Type | Clinical | Statistical | Comments |
+|----|----|----|----|
+| Primary - Null |  | After adjusting for confounders, there is no difference in IKDC scores between our population and the published literature |  |
+| Alternative | Patients with anterior cruciate ligament injuries presenting to QEII Hospital have baseline (IKDC) scores that differ significantly from those reported in the published literature, after adjusting for relevant patient and injury characteristics | After adjusting for confounders, there remains a significant difference in IKDC scores between our population and the published literature |  |
+| Secondary - 1: Null |  |  |  |
+| Alternative |  |  |  |
+| Secondary - 1: Null |  |  |  |
+| Alternative |  |  |  |
+
+Summary of clinical and statistical hypotheses associated with Question 1
+:::
 
 # Methods - Proposed
 
