@@ -25,11 +25,11 @@ bibliography: ACLBase.bib
 
 # Summary
 
-Insert summary
+The following plan proposes a study to assess the need for a case-mixture adjustment model with respect to baseline IKDC scores in patients electing to be added to the surgical wait list at QEII Hospital. The plan highlights key elements of a potential protocol and analysis that uses best-practice to develop, assess and compare models to the current knowledge with respect to interpretation of baseline scores. Considerations for sample size requirements and study management are presented. Some issues remain outstanding with respect to the exact configuration of a case-mixture adjustment model in this context and further development work is proposed to be included in protocol development, as part of an activities list based on open science practices.
 
-# Preamble
+# Preparation
 
-Libraries installed for further analysis
+Libraries and packages were installed for further analysis.
 
 ```{r}
 #| label: load-packages
@@ -105,7 +105,7 @@ The baseline variation for surgical reconstruction cases in @fig-radhi2024 is re
 
 The study question was presented using the PICOS framework [@amir-behghadami2020].
 
-::: {#tbl-question}
+::: {#tbl-question1}
 +--------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
 | Component    | Description                                                                                                                           | Comments                                                                                                                        |
 +==============+=======================================================================================================================================+=================================================================================================================================+
@@ -145,17 +145,20 @@ Study question 2 identified under the PICOS framework
 
 # Hypotheses
 
-Significant differences between the local sample at baseline and published literature will be removed when comparisons are adjusted for known confounders.
+Each question posed for this project generates a number of clinical and statistical hypotheses, summarised below.
 
 ::: {#tbl-hypotheses}
-| Type | Clinical | Statistical | Comments |
-|----|----|----|----|
-| Primary - Null |  | After adjusting for confounders, there is no difference in IKDC scores between our population and the published literature |  |
-| Alternative | Patients with anterior cruciate ligament injuries presenting to QEII Hospital have baseline (IKDC) scores that differ significantly from those reported in the published literature, after adjusting for relevant patient and injury characteristics | After adjusting for confounders, there remains a significant difference in IKDC scores between our population and the published literature |  |
-| Secondary - 1: Null |  |  |  |
-| Alternative |  |  |  |
-| Secondary - 1: Null |  |  |  |
-| Alternative |  |  |  |
++--------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Type                     | Clinical                                                                                                                                                                                                                                             | Statistical                                                                                                                                                                                                  |
++==========================+======================================================================================================================================================================================================================================================+==============================================================================================================================================================================================================+
+| Question 1 - Null        |                                                                                                                                                                                                                                                      | After adjusting for confounders, there is no difference in IKDC scores between our population and the published literature                                                                                   |
++--------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Question 1 - Alternative | Patients with anterior cruciate ligament injuries presenting to QEII Hospital have baseline (IKDC) scores that differ significantly from those reported in the published literature, after adjusting for relevant patient and injury characteristics | After adjusting for confounders, there remains a significant difference in IKDC scores between our population and the published literature                                                                   |
++--------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Question 2 - Null        | A case-mixture adjustment model offers no clinical benefit on raw IKDC scores collected as part of routine practice at baseline assessment                                                                                                           | A multivariable model incorporating case-mix variables cannot significantly predict baseline IKDC scores beyond random chance (R² = 0) OR the model demonstrates poor calibration and lacks clinical utility |
++--------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Question 2 - Alternative | Sufficient heterogeneity exists in baseline IKDC scores that can be explained by measurable patient and injury characteristics that justifies the need for case-mixture adjustment.                                                                  | A multivariable case-mix model can significantly predict baseline IKDC scores with clinically meaningful accuracy (R² ≥ 0.3), calibration and clinical utility                                               |
++--------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Summary of clinical and statistical hypotheses associated with Question 1
 :::
@@ -189,8 +192,6 @@ Cases will be retrieved from SHARKS that match the criteria described in @ting20
 
 Summary of inclusion and exclusion criteria for local sample
 :::
-
-**Insert second table for selecting relevant papers for comparison**
 
 ## Variables
 
@@ -295,6 +296,8 @@ Measurements
 
 Summary of study variables required
 :::
+
+The list of potential variables to include in the literature-based or local adjustment models is quite extensive, as shown in @tbl-variables. Further work is required to refine the list to a manageable size.
 
 ```{r}
 #| label: fig-dag
@@ -403,6 +406,8 @@ knitr::knit_print(DagPlot)
 
 ```
 
+The DAG presented in @fig-dag illustrates the high-dimensionality of the relevant variables with respect to baseline IKDC prior to ACL reconstruction. Further analysis to identify a minimum adjustment set may not be fully effective in this instance.
+
 ```{r}
 #| label: fig-adjset
 #| fig-cap: "Calculated minimum adjustment set for modelling Sample -> IKDC at Baseline"
@@ -466,6 +471,8 @@ Figadjset <- ggdag::ggdag_adjustment_set(
 knitr::knit_print(Figadjset)
 
 ```
+
+The final adjustment model identified with the DAG approach (@fig-adjset) remains highly specified and will likely present a challenge with respect to developing a reasonable model, as well as collating a sufficient sample size for the purposes of prognostication and case adjustment. These variables will likely need to be prioritised further during protocol development.
 
 ## Data Collection
 
@@ -1422,6 +1429,8 @@ Potential Clinical Interpretation
 • Adjusted IKDC (Nuttal method): {round(sharks_metrics$adjusted_nuttal_mean, 1)} vs Literature mean: {round(overall_mean, 1)}
 ```
 
+The simulated example shows a theoretical difference that could be observed between adjusted model and the raw scores and illustrates the utility of such an approach when interpreting the related literature, or extending the model to follow up scores after surgery.
+
 # Sample size considerations
 
 The required sample sizes generally relate to the number of samples available in the local dataset, as well as potentially how many studies are required in the literature to establish a reasonably powered model.
@@ -1443,6 +1452,7 @@ For this exercise we will consider the IKDC score as a continuous outcome and us
 When these are inputted into the function we retrieve the following;
 
 ```{r}
+#| label: prediction-samplesize
 
 
 pmsampsize::pmsampsize(
@@ -1458,7 +1468,7 @@ pmsampsize::pmsampsize(
 
 With the Tibiofemoral Instability cohort of the SHARKS registry numbering 528 cases, there should be sufficient data available to develop a model for the local dataset.
 
-The second consideration for sample size is how many cases and studies may be required to develop a broader version of the model incorporating differences in regions and research methodology. This is difficult to estimate without making a number of assumptions based on limited information and may be best left to a point in the future when a clearer picture of all of the available literature is available.
+The second consideration for sample size is how many cases and studies may be required to develop a broader version of the model incorporating differences in regions and research methodology. This is difficult to estimate without making a number of assumptions based on limited information and may be best left to a point in the future when a clearer picture of all of the available literature is available. This would be a key task for the formal development of the protocol.
 
 # Ethical Considerations
 
@@ -1470,7 +1480,7 @@ As long as chart review proposed matches the variables described in the core dat
 
 ## Target Presentations
 
-Abstract submission for AOA ASM 2025 closed 4-May-2025. Consideration should be given for this project to presented at QLD AOA and AOA ASM in 2026.
+Abstract submission for AOA ASM 2025 closed 4-May-2025. Consideration should be given for this project to be presented at QLD AOA and AOA ASM in 2026.
 
 ## Target Publication
 
@@ -1517,63 +1527,77 @@ Writing quality - a large component of moving through editorial and peer review 
 The best analogy for the proposed study is that of the development and validation of a prognostic clinical prediction model, for which some guidance with respect to best practice has been provided in the relevant literature [@collins2024]. For the purposes of this study plan, the open science practices for medicine as described by [@cobey2023] are used to outline the key activities of the proposed project. All items are recommended in this context, except for publication to journals.
 
 ::: {#tbl-activities}
-+---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
-| Stage               | Action                                                  | Comments - Source                                                   |
-+=====================+=========================================================+=====================================================================+
-| Setup               | Protocol preparation                                    |                                                                     |
-+---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
-|                     | Protocol preprint                                       |                                                                     |
-+---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
-|                     | Protocol registration                                   | ANZCTR                                                              |
-+---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
-|                     | Protocol journal publication                            |                                                                     |
-+---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
-| Data Collection     | Confirm reporting guidelines                            |                                                                     |
-+---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
-|                     | Conduct literature review and extraction                |                                                                     |
-+---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
-|                     | Track risk of bias assessment                           |                                                                     |
-+---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
-|                     | Align dataset to predictors in protocol                 | Quality Checking                                                    |
-+---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
-| Analysis            | Manuscript setup                                        |                                                                     |
-+---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
-|                     | Analysis report preparation                             | Including model builds (literature and SHARKS dataset)              |
-|                     |                                                         |                                                                     |
-|                     |                                                         | Conduct sensitivity analyses                                        |
-+---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
-|                     | Provide sufficient information for model implementation | Report model coefficients and other characteristics as required     |
-+---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
-|                     | Data and code publication                               | Data and code repositories with persistent identifiers [@cobey2023] |
-+---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
-|                     | Preparation as supplementary material                   | Includes links to code and data                                     |
-+---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
-| Synthesis Reporting | Manuscript preparation                                  |                                                                     |
-+---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
-|                     | Reporting checklist                                     |                                                                     |
-+---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
-|                     | Author conflicts of interest                            |                                                                     |
-+---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
-|                     | Author contributions                                    | Use persistent identifiers (ORCID)                                  |
-+---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
-|                     | Prepare funding statement                               |                                                                     |
-+---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
-|                     | Publish preprint                                        |                                                                     |
-+---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
-|                     | Publish manuscript (open-access)                        |                                                                     |
-+---------------------+---------------------------------------------------------+---------------------------------------------------------------------+
++---------------------+----------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| Stage               | Action                                                   | Comments - Source                                                                                              |
++=====================+==========================================================+================================================================================================================+
+| Setup               | Protocol preparation                                     |                                                                                                                |
++---------------------+----------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+|                     | Protocol preprint                                        | use medrxiv or other suitable server                                                                           |
++---------------------+----------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+|                     | Protocol registration                                    | ANZ Clinical Trials Registry                                                                                   |
++---------------------+----------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+|                     | Protocol journal publication                             | Potentially optional                                                                                           |
++---------------------+----------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| Data Collection     | Confirm reporting guidelines                             | consider PRISMA, STROBE, TRIPOD-AI from [EQUATOR](https://www.equator-network.org/)                            |
++---------------------+----------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+|                     | Conduct literature review, screening and data extraction | [Systematic review accelerator](https://bond.edu.au/iebh/systematic-review-accelerator-sra) at Bond University |
++---------------------+----------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+|                     | Conduct quality assessment                               | Quality of study inputs relative to the question posed; consider GRADE                                         |
++---------------------+----------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+|                     | Track risk of bias assessment                            | ROB v2 from Cochrane                                                                                           |
++---------------------+----------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+|                     | Align dataset to predictors in protocol                  | Quality Checking                                                                                               |
++---------------------+----------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| Analysis            | Manuscript setup                                         |                                                                                                                |
++---------------------+----------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+|                     | Analysis report preparation                              | Including model builds (literature and SHARKS dataset)                                                         |
+|                     |                                                          |                                                                                                                |
+|                     |                                                          | Conduct sensitivity analyses                                                                                   |
++---------------------+----------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+|                     | Provide sufficient information for model implementation  | Report model coefficients and other characteristics as required                                                |
++---------------------+----------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+|                     | Data and code publication                                | Data and code repositories with persistent identifiers [@cobey2023]                                            |
++---------------------+----------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+|                     | Preparation as supplementary material                    | Includes links to code and data                                                                                |
++---------------------+----------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| Synthesis Reporting | Manuscript preparation                                   | Pre-existing shared file with outline pre-populated                                                            |
++---------------------+----------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+|                     | Reporting checklist                                      |                                                                                                                |
++---------------------+----------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+|                     | Author conflicts of interest                             |                                                                                                                |
++---------------------+----------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+|                     | Author contributions                                     | Use persistent identifiers (ORCID)                                                                             |
++---------------------+----------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+|                     | Prepare funding statement                                |                                                                                                                |
++---------------------+----------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+|                     | Publish preprint                                         |                                                                                                                |
++---------------------+----------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+|                     | Publish manuscript (open-access)                         |                                                                                                                |
++---------------------+----------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
 
 Key activities recommended as part of the proposed study
 :::
 
+The activities outlined in @tbl-activities are aligned to best-practice open science, however there are opportunities (albeit limited) to reduce some of the more formal activities (trial registration, protocol publication) and reduce project complexity.
+
 ## Timeline
 
 ```{mermaid}
+%%| label: fig-timeline
+%%| fig-cap: "Project timeline aligned to proposed project activities"
 %%| fig-width: 6.5
 
 
 flowchart LR
     subgraph T1 ["Months 1-3: Setup Phase"]
+        A[Protocol] 
+        D[Output]
+        
+        A -.-> A1["Preparation<br/>Circulation<br/>Finalisation"]
+        D -.-> D1["Preprint<br/>Journal Submission<br/>Publication"]
+    end
+
+    subgraph T2 ["Months 4-6: Data collection"]
         A[Literature Review] 
         D[Registry Access]
         
@@ -1581,7 +1605,7 @@ flowchart LR
         D -.-> D1["Ethics approval<br/>Data access agreements<br/>Query development"]
     end
     
-    subgraph T2 ["Months 4-6: Data Collection"]
+    subgraph T3 ["Months 7-9: Data Collection"]
         B[Data Extraction]
         E[Cohort Retrieval]
         
@@ -1589,7 +1613,7 @@ flowchart LR
         E -.-> E1["Registry queries<br/>Patient identification<br/>Data export"]
     end
     
-    subgraph T3 ["Months 7-9: Analysis Phase"]
+    subgraph T4 ["Months 10-12: Analysis Phase"]
         C[Simulation Modeling]
         F[Chart Review]
         
@@ -1597,7 +1621,7 @@ flowchart LR
         F -.-> F1["Manual review<br/>Clinical validation<br/>Quality control"]
     end
     
-    subgraph T4 ["Months 10-12: Synthesis"]
+    subgraph T5 ["Months 13-15: Synthesis"]
         G[Results Integration]
         H[Manuscript Preparation]
         
@@ -1632,29 +1656,29 @@ flowchart LR
     class G,H synthBox
 ```
 
-## Key Dates
+Overall, the timeline estimate @fig-timeline for completion of the proposed study is 15 months, not including the time required for administration to approve the financial arrangements. There is ample opportunities to shorten these estimates with concurrent activities, particularly during data collection and preparation of manuscript(s) and outputs.
 
 ## Contributors
 
-Contributor matrix
+The decision to expand the contributors on the proposed project is left with the principal investigator. Diversification of the project team can be beneficial with respect better quality methodology and interpretation of results.
 
 ::: {#tbl-contributors}
-+-----------------+--------------------------------------+---------------------------+-------------------------------------------------+
-| Name            | Role                                 | Project Role              | Comments                                        |
-+=================+======================================+===========================+=================================================+
-| Lorenzo Calabro | Consultant Orthopaedic Surgeon       | Principal Investigator    | Direct supervision of SHOs                      |
-+-----------------+--------------------------------------+---------------------------+-------------------------------------------------+
-| Corey Scholes   | Chief Science Officer, EBM Analytics | Analyst and Methodologist | Provide oversight to interpretation of analysis |
-+-----------------+--------------------------------------+---------------------------+-------------------------------------------------+
-| Garry Kirwan    | Assistant Director Physiotherapy     | Collaborator              |                                                 |
-+-----------------+--------------------------------------+---------------------------+-------------------------------------------------+
-| SHO - 1         |                                      |                           |                                                 |
-+-----------------+--------------------------------------+---------------------------+-------------------------------------------------+
-| SHO - 2         |                                      |                           |                                                 |
-+-----------------+--------------------------------------+---------------------------+-------------------------------------------------+
-|                 |                                      |                           |                                                 |
-+-----------------+--------------------------------------+---------------------------+-------------------------------------------------+
++-----------------+--------------------------------------+---------------------------+---------------------------------------------------------+
+| Name            | Role                                 | Project Role              | Comments                                                |
++=================+======================================+===========================+=========================================================+
+| Lorenzo Calabro | Consultant Orthopaedic Surgeon       | Principal Investigator    | Direct supervision of SHOs; overall project supervision |
++-----------------+--------------------------------------+---------------------------+---------------------------------------------------------+
+| Corey Scholes   | Chief Science Officer, EBM Analytics | Analyst and Methodologist | Provide oversight to interpretation of analysis         |
++-----------------+--------------------------------------+---------------------------+---------------------------------------------------------+
+| Garry Kirwan    | Assistant Director Physiotherapy     | Collaborator              | Clinical appraisal of case-mixture (prognostic) models  |
++-----------------+--------------------------------------+---------------------------+---------------------------------------------------------+
+| SHO - 1 & 2     | Senior House Officer                 | Collaborator              | Data collection and contributions to output preparation |
++-----------------+--------------------------------------+---------------------------+---------------------------------------------------------+
+
+Matrix of contributors at the time of study planning
 :::
+
+The present stakeholder list @tbl-contributors is relatively narrow, but should be sufficient to generate a quality analysis to answer the questions posed.
 
 ## Funding and Conflicts of Interest
 
@@ -1662,4 +1686,4 @@ Funding will be provided the Orthopaedic Research Fund at QEII Hospital.
 
 Author CS is a stockholder of EBM Analytics and declares an institutional relationship with the Department of Orthopaedics (QEII Hospital) for the purposes of this project.
 
-The proposed stakeholders of this project
+The proposed stakeholders of this project have no other known conflicts of interest, but all are encouraged to complete [ICMJE disclosure](https://www.icmje.org/disclosure-of-interest/) forms as routine in preparation for the release of research output.
