@@ -106,19 +106,13 @@ The baseline variation for surgical reconstruction cases in @fig-radhi2024 is re
 The study question was presented using the PICOS framework [@amir-behghadami2020].
 
 ::: {#tbl-question1}
-+--------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| Component    | Description                                                                                                                           | Comments                                                                                                                        |
-+==============+=======================================================================================================================================+=================================================================================================================================+
-| Participants | Patients presenting with injury of the anterior cruciate ligament                                                                     | Patients present under variable circumstances, with referrals from emergency or primary care                                    |
-+--------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| Intervention | Electing to be added to the wait list for surgical reconstruction within the public health system                                     | Typical wait times within the department are \~4months from initial consultation                                                |
-+--------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| Comparator   | Compared to the published literature                                                                                                  | Split into two approaches - overall combined results (meta-analysis) or with selective matching of contextually similar studies |
-+--------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| Outcomes     | Is baseline IKDC significantly different to published data when adjusted for confounders with respect to normalised or z-score totals |                                                                                                                                 |
-+--------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| Study Design | Meta-analysis and simulation                                                                                                          |                                                                                                                                 |
-+--------------+---------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| Component | Description | Comments |
+|----|----|----|
+| Participants | Patients presenting with injury of the anterior cruciate ligament | Patients present under variable circumstances, with referrals from emergency or primary care |
+| Intervention | Electing to be added to the wait list for surgical reconstruction within the public health system | Typical wait times within the department are \~4months from initial consultation |
+| Comparator | Compared to the published literature | Split into two approaches - overall combined results (meta-analysis) or with selective matching of contextually similar studies |
+| Outcomes | Is baseline IKDC significantly different to published data when adjusted for confounders with respect to normalised or z-score totals |  |
+| Study Design | Meta-analysis and simulation |  |
 
 Study question 1 identified under the PICOS framework
 :::
@@ -148,17 +142,12 @@ Study question 2 identified under the PICOS framework
 Each question posed for this project generates a number of clinical and statistical hypotheses, summarised below.
 
 ::: {#tbl-hypotheses}
-+--------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Type                     | Clinical                                                                                                                                                                                                                                             | Statistical                                                                                                                                                                                                  |
-+==========================+======================================================================================================================================================================================================================================================+==============================================================================================================================================================================================================+
-| Question 1 - Null        |                                                                                                                                                                                                                                                      | After adjusting for confounders, there is no difference in IKDC scores between our population and the published literature                                                                                   |
-+--------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Question 1 - Alternative | Patients with anterior cruciate ligament injuries presenting to QEII Hospital have baseline (IKDC) scores that differ significantly from those reported in the published literature, after adjusting for relevant patient and injury characteristics | After adjusting for confounders, there remains a significant difference in IKDC scores between our population and the published literature                                                                   |
-+--------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Question 2 - Null        | A case-mixture adjustment model offers no clinical benefit on raw IKDC scores collected as part of routine practice at baseline assessment                                                                                                           | A multivariable model incorporating case-mix variables cannot significantly predict baseline IKDC scores beyond random chance (R² = 0) OR the model demonstrates poor calibration and lacks clinical utility |
-+--------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Question 2 - Alternative | Sufficient heterogeneity exists in baseline IKDC scores that can be explained by measurable patient and injury characteristics that justifies the need for case-mixture adjustment.                                                                  | A multivariable case-mix model can significantly predict baseline IKDC scores with clinically meaningful accuracy (R² ≥ 0.3), calibration and clinical utility                                               |
-+--------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Type | Clinical | Statistical |
+|----|----|----|
+| Question 1 - Null |  | After adjusting for confounders, there is no difference in IKDC scores between our population and the published literature |
+| Question 1 - Alternative | Patients with anterior cruciate ligament injuries presenting to QEII Hospital have baseline (IKDC) scores that differ significantly from those reported in the published literature, after adjusting for relevant patient and injury characteristics | After adjusting for confounders, there remains a significant difference in IKDC scores between our population and the published literature |
+| Question 2 - Null | A case-mixture adjustment model offers no clinical benefit on raw IKDC scores collected as part of routine practice at baseline assessment | A multivariable model incorporating case-mix variables cannot significantly predict baseline IKDC scores beyond random chance (R² = 0) OR the model demonstrates poor calibration and lacks clinical utility |
+| Question 2 - Alternative | Sufficient heterogeneity exists in baseline IKDC scores that can be explained by measurable patient and injury characteristics that justifies the need for case-mixture adjustment. | A multivariable case-mix model can significantly predict baseline IKDC scores with clinically meaningful accuracy (R² ≥ 0.3), calibration and clinical utility |
 
 Summary of clinical and statistical hypotheses associated with Question 1
 :::
@@ -176,19 +165,13 @@ Literature - a non-systematic search will be conducted of Pubmed, Google Scholar
 Cases will be retrieved from SHARKS that match the criteria described in @ting2020 and summarised below.
 
 ::: {#tbl-criteria}
-+---------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+
-| Inclusion                                               | Exclusion                                                                                                             | Comments                                                                   |
-+=========================================================+=======================================================================================================================+============================================================================+
-| Enrolled in SHARKS registry                             | Surgical booking not offered                                                                                          | Inclusion criteria for SHARKS can be reviewed on wiki or governance report |
-+---------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+
-| Primary presentation                                    | Presentation is the contralateral limb of a previous ACL rupture                                                      |                                                                            |
-+---------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+
-| Clinical and imaging-supported diagnosis of ACL rupture | ACL pathology is a non-traumatic or congenital absence or deficiency                                                  |                                                                            |
-+---------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+
-| Concomitant pathology is limited to menisci             | Pathology to collateral and other cruciate ligaments deemed to require surgical reconstruction at the time of surgery |                                                                            |
-+---------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+
-|                                                         | Withdrawal of consent to participate in registry prior to surgery                                                     |                                                                            |
-+---------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+
+| Inclusion | Exclusion | Comments |
+|----|----|----|
+| Enrolled in SHARKS registry | Surgical booking not offered | Inclusion criteria for SHARKS can be reviewed on wiki or governance report |
+| Primary presentation | Presentation is the contralateral limb of a previous ACL rupture |  |
+| Clinical and imaging-supported diagnosis of ACL rupture | ACL pathology is a non-traumatic or congenital absence or deficiency |  |
+| Concomitant pathology is limited to menisci | Pathology to collateral and other cruciate ligaments deemed to require surgical reconstruction at the time of surgery |  |
+|  | Withdrawal of consent to participate in registry prior to surgery |  |
 
 Summary of inclusion and exclusion criteria for local sample
 :::
@@ -262,37 +245,22 @@ Measurements
 -   Scoring method (normalised vs z-score)
 
 ::: {#tbl-variables}
-+------------------+--------------------------------+--------------------+-----------------------------------------+------------------+-----------------------------------------------+
-| Category         | Variable                       | Type - Response    | Available SHARKS                        | Model Parameters | Available Published                           |
-+==================+================================+====================+=========================================+==================+===============================================+
-| Patient          | Age at presentation            | Continuous - Years | Yes                                     | 1 -3             | Yes                                           |
-+------------------+--------------------------------+--------------------+-----------------------------------------+------------------+-----------------------------------------------+
-|                  | Sex                            | Categorical        | Yes                                     | 1                | Yes                                           |
-+------------------+--------------------------------+--------------------+-----------------------------------------+------------------+-----------------------------------------------+
-|                  | Activity Type                  | Categorical        | No                                      | 1                | Possible (not universal)                      |
-+------------------+--------------------------------+--------------------+-----------------------------------------+------------------+-----------------------------------------------+
-|                  | Activity Level                 | Ordinal            | Yes - Tegner Activity Scale             | 1 - 10           | Possible (not universal)                      |
-+------------------+--------------------------------+--------------------+-----------------------------------------+------------------+-----------------------------------------------+
-|                  | Body Mass Index                | Continuous         | Yes                                     | 1 - 3            |                                               |
-+------------------+--------------------------------+--------------------+-----------------------------------------+------------------+-----------------------------------------------+
-|                  | General Health                 | Continuous         | Yes - VR12                              | 1 - 3            | Unlikely (not usually collected)              |
-+------------------+--------------------------------+--------------------+-----------------------------------------+------------------+-----------------------------------------------+
-| Referral Pathway | Injury to Review delay         | Continuous         | Partial - chart review will be required | 1 - 3            | Possible (not universal)                      |
-+------------------+--------------------------------+--------------------+-----------------------------------------+------------------+-----------------------------------------------+
-| Pathology        | Concomitant ligament injury    | Categorical        | Partial - chart review will be required | 1                | Yes                                           |
-+------------------+--------------------------------+--------------------+-----------------------------------------+------------------+-----------------------------------------------+
-|                  | Concomitant meniscal pathology | Categorical        | Partial - chart review will be required | 1                | Yes; form of capture can vary between studies |
-+------------------+--------------------------------+--------------------+-----------------------------------------+------------------+-----------------------------------------------+
-| Setting          | Service Type                   | Categorical        | Yes                                     | 1                | Yes                                           |
-+------------------+--------------------------------+--------------------+-----------------------------------------+------------------+-----------------------------------------------+
-|                  | Consent Model                  | Categorical        | Yes                                     | 1                | Yes                                           |
-+------------------+--------------------------------+--------------------+-----------------------------------------+------------------+-----------------------------------------------+
-| Measurement      | Data Collection                | Categorical        | Yes                                     | 1                | Yes                                           |
-+------------------+--------------------------------+--------------------+-----------------------------------------+------------------+-----------------------------------------------+
-|                  | PROMs version                  | Categorical        | Yes                                     | 1                | Yes                                           |
-+------------------+--------------------------------+--------------------+-----------------------------------------+------------------+-----------------------------------------------+
-|                  | Scoring method                 | Categorical        | Yes                                     | 1                | Possible; often not described                 |
-+------------------+--------------------------------+--------------------+-----------------------------------------+------------------+-----------------------------------------------+
+| Category | Variable | Type - Response | Available SHARKS | Model Parameters | Available Published |
+|----|----|----|----|----|----|
+| Patient | Age at presentation | Continuous - Years | Yes | 1 -3 | Yes |
+|  | Sex | Categorical | Yes | 1 | Yes |
+|  | Activity Type | Categorical | No | 1 | Possible (not universal) |
+|  | Activity Level | Ordinal | Yes - Tegner Activity Scale | 1 - 10 | Possible (not universal) |
+|  | Body Mass Index | Continuous | Yes | 1 - 3 |  |
+|  | General Health | Continuous | Yes - VR12 | 1 - 3 | Unlikely (not usually collected) |
+| Referral Pathway | Injury to Review delay | Continuous | Partial - chart review will be required | 1 - 3 | Possible (not universal) |
+| Pathology | Concomitant ligament injury | Categorical | Partial - chart review will be required | 1 | Yes |
+|  | Concomitant meniscal pathology | Categorical | Partial - chart review will be required | 1 | Yes; form of capture can vary between studies |
+| Setting | Service Type | Categorical | Yes | 1 | Yes |
+|  | Consent Model | Categorical | Yes | 1 | Yes |
+| Measurement | Data Collection | Categorical | Yes | 1 | Yes |
+|  | PROMs version | Categorical | Yes | 1 | Yes |
+|  | Scoring method | Categorical | Yes | 1 | Possible; often not described |
 
 Summary of study variables required
 :::
@@ -1663,17 +1631,12 @@ Overall, the timeline estimate @fig-timeline for completion of the proposed stud
 The decision to expand the contributors on the proposed project is left with the principal investigator. Diversification of the project team can be beneficial with respect better quality methodology and interpretation of results.
 
 ::: {#tbl-contributors}
-+-----------------+--------------------------------------+---------------------------+---------------------------------------------------------+
-| Name            | Role                                 | Project Role              | Comments                                                |
-+=================+======================================+===========================+=========================================================+
-| Lorenzo Calabro | Consultant Orthopaedic Surgeon       | Principal Investigator    | Direct supervision of SHOs; overall project supervision |
-+-----------------+--------------------------------------+---------------------------+---------------------------------------------------------+
-| Corey Scholes   | Chief Science Officer, EBM Analytics | Analyst and Methodologist | Provide oversight to interpretation of analysis         |
-+-----------------+--------------------------------------+---------------------------+---------------------------------------------------------+
-| Garry Kirwan    | Assistant Director Physiotherapy     | Collaborator              | Clinical appraisal of case-mixture (prognostic) models  |
-+-----------------+--------------------------------------+---------------------------+---------------------------------------------------------+
-| SHO - 1 & 2     | Senior House Officer                 | Collaborator              | Data collection and contributions to output preparation |
-+-----------------+--------------------------------------+---------------------------+---------------------------------------------------------+
+| Name | Role | Project Role | Comments |
+|----|----|----|----|
+| Lorenzo Calabro | Consultant Orthopaedic Surgeon | Principal Investigator | Direct supervision of SHOs; overall project supervision |
+| Corey Scholes | Chief Science Officer, EBM Analytics | Analyst and Methodologist | Provide oversight to interpretation of analysis |
+| Garry Kirwan | Assistant Director Physiotherapy | Collaborator | Clinical appraisal of case-mixture (prognostic) models |
+| SHO - 1 & 2 | Senior House Officer | Collaborator | Data collection and contributions to output preparation |
 
 Matrix of contributors at the time of study planning
 :::
